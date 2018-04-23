@@ -146,6 +146,63 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ole储存格式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="符合文档Ole对象二进制储存格式"><a href="#符合文档Ole对象二进制储存格式" class="headerlink" title="符合文档Ole对象二进制储存格式"></a>符合文档Ole对象二进制储存格式</h2><h3 id="1-什么是复合文档"><a href="#1-什么是复合文档" class="headerlink" title="1. 什么是复合文档?"></a>1. 什么是复合文档?</h3><ul>
+<li><p>复合文档（Compound Document） 是一种不仅包含文本而且包括图形、电子表格数据、声音、视频图象以及其它信息的文档。可以把复合文档想象成一个所有者，它装着文本、图形以及多媒体信息如 声音和图象。目前建立复合文档的趋势是使用面向对象技术，在这里，非标准信息如图像和声音可以作为独立的、自包含式对象包含在文档中。Microsoft Windows就是使用这种技术，叫做“OLE2 storage file format”或“Microsoft Office compatible storage file format”。</p>
+<p>当然Excel、Word等都是用这种格式存储的。本文主要研究复合文档的二进制结构。</p>
+</li>
+</ul>
+<h3 id="2-仓库与流"><a href="#2-仓库与流" class="headerlink" title="2. 仓库与流"></a>2. 仓库与流</h3><ul>
+<li><p>复合文档的原理就像一个文件系统（文件系统：如FAT与NTFS）。复合文档将数据分成许多流（Streams），这些流又存储在不同的仓库（Storages）里。将复合文档想象成你的D盘，D盘用的是NTFS（NT File System）格式，流就相当于D盘里的文件，仓库就相当于D盘里的文件夹。</p>
+<p>关系如下图:<br><img src="\img\复合文档ole格式学习\ole仓库与流的关系.png" alt="ole仓库与流的关系" title="ole仓库与流的关系"></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/23/ole储存格式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

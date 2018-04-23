@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/4 | Mario</title>
+  <title>Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="符合文档Ole对象二进制储存格式1. 什么是复合文档? 复合文档（Compound Document） 是一种不仅包含文本而且包括图形、电子表格数据、声音、视频图象以及其它信息的文档。可以把复合文档想象成一个所有者，它装着文本、图形以及多媒体信息如 声音和图象。目前建立复合文档的趋势是使用面向对象技术，在这里，非标准信息如图像和声音可以作为独立的、自包含式对象包含在文档中。Microsoft Wi">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Mario">
-<meta property="og:url" content="http://yoursite.com/archives/2018/04/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/04/23/ole储存格式/index.html">
 <meta property="og:site_name" content="Mario">
+<meta property="og:description" content="符合文档Ole对象二进制储存格式1. 什么是复合文档? 复合文档（Compound Document） 是一种不仅包含文本而且包括图形、电子表格数据、声音、视频图象以及其它信息的文档。可以把复合文档想象成一个所有者，它装着文本、图形以及多媒体信息如 声音和图象。目前建立复合文档的趋势是使用面向对象技术，在这里，非标准信息如图像和声音可以作为独立的、自包含式对象包含在文档中。Microsoft Wi">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/复合文档ole格式学习/ole仓库与流的关系.png">
+<meta property="og:updated_time" content="2018-04-23T09:07:50.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mario">
+<meta name="twitter:description" content="符合文档Ole对象二进制储存格式1. 什么是复合文档? 复合文档（Compound Document） 是一种不仅包含文本而且包括图形、电子表格数据、声音、视频图象以及其它信息的文档。可以把复合文档想象成一个所有者，它装着文本、图形以及多媒体信息如 声音和图象。目前建立复合文档的趋势是使用面向对象技术，在这里，非标准信息如图像和声音可以作为独立的、自包含式对象包含在文档中。Microsoft Wi">
+<meta name="twitter:image" content="http://yoursite.com/img/复合文档ole格式学习/ole仓库与流的关系.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -144,64 +150,150 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ole储存格式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="符合文档Ole对象二进制储存格式"><a href="#符合文档Ole对象二进制储存格式" class="headerlink" title="符合文档Ole对象二进制储存格式"></a>符合文档Ole对象二进制储存格式</h2><h3 id="1-什么是复合文档"><a href="#1-什么是复合文档" class="headerlink" title="1. 什么是复合文档?"></a>1. 什么是复合文档?</h3><ul>
+<li><p>复合文档（Compound Document） 是一种不仅包含文本而且包括图形、电子表格数据、声音、视频图象以及其它信息的文档。可以把复合文档想象成一个所有者，它装着文本、图形以及多媒体信息如 声音和图象。目前建立复合文档的趋势是使用面向对象技术，在这里，非标准信息如图像和声音可以作为独立的、自包含式对象包含在文档中。Microsoft Windows就是使用这种技术，叫做“OLE2 storage file format”或“Microsoft Office compatible storage file format”。</p>
+<p>当然Excel、Word等都是用这种格式存储的。本文主要研究复合文档的二进制结构。</p>
+</li>
+</ul>
+<h3 id="2-仓库与流"><a href="#2-仓库与流" class="headerlink" title="2. 仓库与流"></a>2. 仓库与流</h3><ul>
+<li><p>复合文档的原理就像一个文件系统（文件系统：如FAT与NTFS）。复合文档将数据分成许多流（Streams），这些流又存储在不同的仓库（Storages）里。将复合文档想象成你的D盘，D盘用的是NTFS（NT File System）格式，流就相当于D盘里的文件，仓库就相当于D盘里的文件夹。</p>
+<p>关系如下图:<br><img src="\img\复合文档ole格式学习\ole仓库与流的关系.png" alt="ole仓库与流的关系" title="ole仓库与流的关系"></p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/23/ole储存格式/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:50:19.748Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/23/ole储存格式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/21/index/" class="archive-article-date">
-  	<time datetime="2018-04-21T14:24:50.176Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/21/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -224,8 +316,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
