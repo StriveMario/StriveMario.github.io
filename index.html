@@ -178,6 +178,7 @@
 <li><p>关系如下图:<br><img src="\img\复合文档ole格式学习\ole仓库与流的关系.png" alt="仓库与流的关系" title="仓库与流的关系"></p>
 </li>
 </ul>
+<p><br><br><br><br><br></p>
 <h2 id="二-扇区与扇区链"><a href="#二-扇区与扇区链" class="headerlink" title="二. 扇区与扇区链"></a>二. 扇区与扇区链</h2><h3 id="1-扇区与扇区标识"><a href="#1-扇区与扇区标识" class="headerlink" title="1. 扇区与扇区标识"></a>1. 扇区与扇区标识</h3><ul>
 <li><p>所有的流又分成更小的数据块，叫做数据扇区（sectors）。Sectors 可能包含控制数据或用户数据。</p>
 </li>
@@ -227,6 +228,7 @@
 <p>例：<strong>一个流由4个Sector组成，其SID链为[1, 6, 3, 5, –2]</strong></p>
 </li>
 </ul>
+<p><br><br><br><br><br></p>
 <h2 id="三-复合文档头"><a href="#三-复合文档头" class="headerlink" title="三. 复合文档头"></a>三. 复合文档头</h2><h3 id="1-复合文档头-Header"><a href="#1-复合文档头-Header" class="headerlink" title="1. 复合文档头(Header)"></a>1. 复合文档头(Header)</h3><ul>
 <li><p>复合文档头在文件的开始，且其大小必定为512字节。这意味着第一个Sector的开始相对文件的偏移量为512字节。</p>
 </li>
@@ -332,12 +334,11 @@
 <h3 id="2-扇区偏移量计算方法"><a href="#2-扇区偏移量计算方法" class="headerlink" title="2. 扇区偏移量计算方法"></a>2. 扇区偏移量计算方法</h3><ul>
 <li>sector_pos: 扇区的位置<br></li>
 <li>SID: 扇区的索引<br></li>
-<li><p>ssz: header中的每个sector大小<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sector_pos[SID] = 9^2 + SID * ssz^2</span><br></pre></td></tr></table></figure>
-<p>例：ssz = 10 and SID = 5:<br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sector_pos[SID] = 9^2 + 5 * 10^2</span><br><span class="line">等于:</span><br><span class="line">sector_pos[SID] = 512 + 5 * 1024</span><br></pre></td></tr></table></figure>
-</li>
+<li>ssz: header中的每个sector大小<br></li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sector_pos[SID] = 9^2 + SID * ssz^2</span><br></pre></td></tr></table></figure>
+<p>  例：ssz = 10 and SID = 5:<br><br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sector_pos[SID] = 9^2 + 5 * 10^2</span><br><span class="line">等于:</span><br><span class="line">sector_pos[SID] = 512 + 5 * 1024</span><br></pre></td></tr></table></figure></p>
+<p><br><br><br><br><br></p>
 <h2 id="四-扇区配置"><a href="#四-扇区配置" class="headerlink" title="四. 扇区配置"></a>四. 扇区配置</h2><h2 id="1-主扇区配置表"><a href="#1-主扇区配置表" class="headerlink" title="1. 主扇区配置表"></a>1. 主扇区配置表</h2><ul>
 <li>主扇区配置表（MSAT：master sector allocation table）是一个SID数组，<strong>指明了所有用于存放扇区配置表</strong>（SAT：sector allocation table）的sector的SID。MSAT的大小（SID个数）就等于存放SAT的sector数，在头中指明。</li>
 <li><p>MSAT的前109个SID也存放于复合文档头(Header)中，如果一个MSAT的SID数多余109个，那么多出来的SID将存放于sector中，头中已经指明了用于存放MSAT的第一个sector的SID。在用于存放MSAT的sector中的最后一个SID指向下一个用于存放MSAT的sector，如果没有下一个则为End Of Chain SID（-2）</p>
@@ -404,6 +405,7 @@
 <li><p>一个SID链的起点从用户流的目录入口（directory entry，见6.2节）或头（内部控制流）或目录流本身获得。</p>
 </li>
 </ul>
+<p><br><br><br><br><br></p>
 <h2 id="五-目录"><a href="#五-目录" class="headerlink" title="五. 目录"></a>五. 目录</h2><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1. 目录结构"></a>1. 目录结构</h3><ul>
 <li><p>目录（directory）是一种内部控制流，由一系列目录入口（directory entry）组成。每一个目录入口都指向复合文档的一个仓库或流。目录入口以其在目录流中出现的顺序被列举，一个以0开始的目录入口索引称为目录入口标识(DID: directory entry identifier)。</p>
 </li>
@@ -423,26 +425,11 @@
 <li><p>如果某个节点是红的，那它的子节点一定是黑的。</p>
 </li>
 <li><p>从根节点到每个叶节点的路径（path）必须有相同数目的黑节点。</p>
-<pre><code>        B               (用图形来解说第４点，从根节点
-
-     /     /             到最底层的node，你会发现每个
-
-    B       B            path都恰好有３个black node)
-
-   / /    /   /        
-
-  B   B  R     B
-
- /      / /   / /
-
-R      B   B R   R
-
-      / /
-
-     R   R
-</code></pre></li>
+</li>
 </ol>
 </li>
+</ul>
+<ul>
 <li><p>例：以第一章中的图为例</p>
 <ol>
 <li>根仓库入口描述根仓库，它不是任何仓库入口的成员，因此无需构建红黑树。</li>
