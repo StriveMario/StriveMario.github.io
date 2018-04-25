@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 吐槽 | Mario</title>
+  <title>Frida Hook框架初试 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://yoursite.com/tags/吐槽/index.html">
+  <meta name="description" content="Frida官网 1.什么是Frida ? 它是一个将JavaScript注入到目标进程的工具，适用于Windows、macOS、Linux、iOS、Android和QNX。JavaScript采用的Google开源的JavaScript V8引擎。 通过JavaScript脚本可以注入到目标进程执行自定义代码。Hook任意函数、监控加密API或者跟踪应用程序代码。依赖于任何软件或硬件断点的代码追踪">
+<meta name="keywords" content="Android逆向,hook 框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Frida Hook框架初试">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/Frida Hook框架初试/index.html">
 <meta property="og:site_name" content="Mario">
+<meta property="og:description" content="Frida官网 1.什么是Frida ? 它是一个将JavaScript注入到目标进程的工具，适用于Windows、macOS、Linux、iOS、Android和QNX。JavaScript采用的Google开源的JavaScript V8引擎。 通过JavaScript脚本可以注入到目标进程执行自定义代码。Hook任意函数、监控加密API或者跟踪应用程序代码。依赖于任何软件或硬件断点的代码追踪">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-25T13:56:31.198Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
+<meta name="twitter:title" content="Frida Hook框架初试">
+<meta name="twitter:description" content="Frida官网 1.什么是Frida ? 它是一个将JavaScript注入到目标进程的工具，适用于Windows、macOS、Linux、iOS、Android和QNX。JavaScript采用的Google开源的JavaScript V8引擎。 通过JavaScript脚本可以注入到目标进程执行自定义代码。Hook任意函数、监控加密API或者跟踪应用程序代码。依赖于任何软件或硬件断点的代码追踪">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -132,54 +137,274 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Frida Hook框架初试" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Frida Hook框架初试
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/24/2018年4月24日/" class="archive-article-date">
-  	<time datetime="2018-04-24T08:37:45.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+
+        
+        <a href="/2018/04/25/Frida Hook框架初试/" class="archive-article-date">
+  	<time datetime="2018-04-25T12:07:41.322Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.frida.re/" target="_blank" rel="noopener">Frida官网</a></p>
+<h3 id="1-什么是Frida"><a href="#1-什么是Frida" class="headerlink" title="1.什么是Frida ?"></a>1.什么是Frida ?</h3><ul>
+<li><p>它是一个将JavaScript注入到目标进程的工具，适用于Windows、macOS、Linux、iOS、Android和QNX。JavaScript采用的Google开源的JavaScript V8引擎。 通过JavaScript脚本可以注入到目标进程执行自定义代码。Hook任意函数、监控加密API或者跟踪应用程序代码。依赖于任何软件或硬件断点的代码追踪。有很多种方式来使用Frida。Python、Swift、.NET、Qt/Qml、C和Node.js。本文主要讨论Python和C方式使用Frida。</p>
+</li>
+<li><p>这里我们只尝试 [windows平台] [python调用] [HOOK安卓代码]</p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="2-在Windows下安装Frida"><a href="#2-在Windows下安装Frida" class="headerlink" title="2.在Windows下安装Frida"></a>2.在Windows下安装Frida</h3><ul>
+<li><p>首先你必须有python环境, 最好是python3环境</p>
+<ol>
+<li><p>安装setuptools: <a href="https://pypi.python.org/pypi/setuptools#downloads" target="_blank" rel="noopener">下载地址</a></p>
+<ul>
+<li><p>在setuptools目录下：<br><br></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setup.py install</span><br></pre></td></tr></table></figure>
+<p> <br></p>
+</li>
+</ul>
+</li>
+<li><p>安装pip.zip: <a href="https://pypi.python.org/pypi/pip/#downloads" target="_blank" rel="noopener">下载地址</a></p>
+<ul>
+<li><p>在pip目录下：<br><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setup.py install</span><br></pre></td></tr></table></figure>
+<p><br></p>
+</li>
+<li><p>或者进入python的/Scripts目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easy_install.exe pip</span><br></pre></td></tr></table></figure>
+<p><br></p>
+</li>
+<li><p>验证pip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Python\Scripts\pip.exe --version</span><br><span class="line">pip 9.0.1 from C:\Python27\lib\site-packages\pip-9.0.1-py2.7.egg (python 2.7)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+</li>
+</ul>
+</li>
+<li><p>使用pip安装Frida</p>
+<ul>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Python\Scripts\pip.exe install frida</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; Python\Scripts\frida-ps.exe</span><br><span class="line"> PID  Name</span><br><span class="line">----  --------------------------</span><br><span class="line">6788  EXCEL.EXE</span><br><span class="line">2580  WXWork.exe</span><br><span class="line">2588  WeChat.exe</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p><br></p>
+</li>
+<li>安装完成</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-使用Frida的简单功能"><a href="#3-使用Frida的简单功能" class="headerlink" title="3. 使用Frida的简单功能"></a>3. 使用Frida的简单功能</h3><ul>
+<li><p><strong>得到Android设备当前最前端Activity所在的进程信息</strong></p>
+<ul>
+<li>使用python编写以下代码:</li>
+</ul>
+<figure class="highlight python"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line">rdev = frida.get_remote_device()</span><br><span class="line">front_app = rdev.get_frontmost_application()</span><br><span class="line"><span class="keyword">print</span> front_app</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; python.exe get_front_activity.py</span><br><span class="line">Application(identifier=&quot;com.android.dialer&quot;, name=&quot;鎷ㄥ彿&quot;, pid=1203)</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+</li>
+</ul>
+</li>
+<li><p><strong>枚举Android设备的所有进程信息</strong></p>
+<ul>
+<li><p>使用python编写以下代码:</p>
+  <figure class="highlight python"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line">rdev = frida.get_remote_device()</span><br><span class="line">session = rdev.attach(<span class="string">"com.android.phone"</span>)</span><br><span class="line">modules = session.enumerate_modules()</span><br><span class="line"><span class="keyword">for</span> module <span class="keyword">in</span> modules:</span><br><span class="line">    <span class="keyword">print</span> module</span><br><span class="line">    export_funcs = module.enumerate_exports()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"\tfunc_name \tRVA"</span></span><br><span class="line">    <span class="keyword">for</span> export_func <span class="keyword">in</span> export_funcs:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"\t%s\t%20s"</span>%(export_func.name,hex(export_func.relative_address))</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Hook Android设备某一进程的C库函数</strong></p>
+<ul>
+<li><p>使用python编写以下代码:</p>
+<figure class="highlight python"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">rdev = frida.get_remote_device()</span><br><span class="line">session = rdev.attach(<span class="string">"com.android.phone"</span>)</span><br><span class="line">scr = <span class="string">"""</span></span><br><span class="line"><span class="string">Interceptor.attach(Module.findExportByName("libc.so" , "open"), &#123;</span></span><br><span class="line"><span class="string">    onEnter: function(args) &#123;</span></span><br><span class="line"><span class="string">        send("open("+Memory.readCString(args[0])+","+args[1]+")");</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    onLeave:function(retval)&#123;</span></span><br><span class="line"><span class="string">　</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">script = session.create_script(scr)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(message ,data)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> message</span><br><span class="line">script.on(message<span class="string">" , on_message)</span></span><br><span class="line"><span class="string">script.load()</span></span><br><span class="line"><span class="string">sys.stdin.read()</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把frida调试服务器传入手机运行</p>
+</li>
+</ul>
+<figure class="highlight makefile"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FRIDA_PATH = D:\笔记\Frida\frida-server-10.6.44-android-arm</span><br><span class="line">FRIDA_SERVERNAME = frida86</span><br><span class="line"><span class="section">fdbg:</span></span><br><span class="line"><span class="comment">#上传调试服务器</span></span><br><span class="line">adb push <span class="variable">$(FRIDA_PATH)\$</span>(FRIDA_SERVERNAME) /data/local/tmp/<span class="variable">$(FRIDA_SERVERNAME)</span></span><br><span class="line"><span class="comment">#修改权限</span></span><br><span class="line">adb shell chmod 777 /data/local/tmp/<span class="variable">$(FRIDA_SERVERNAME)</span></span><br><span class="line"><span class="comment">#执行调试服务器</span></span><br><span class="line">adb shell /data/local/tmp/<span class="variable">$(FRIDA_SERVERNAME)</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>转发端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行后结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; python.exe hook_func.py</span><br><span class="line">&#123;u&apos;type&apos;: u&apos;send&apos;, u&apos;payload&apos;: u&apos;open(/proc/net/xt_qtaguid/iface_stat_fmt,0x0)&apos;&#125;</span><br><span class="line">&#123;u&apos;type&apos;: u&apos;send&apos;, u&apos;payload&apos;: u&apos;open(/proc/net/xt_qtaguid/iface_stat_fmt,0x0)&apos;&#125;</span><br><span class="line">&#123;u&apos;type&apos;: u&apos;send&apos;, u&apos;payload&apos;: u&apos;open(/proc/net/xt_qtaguid/iface_stat_fmt,0x0)&apos;&#125;</span><br><span class="line">&#123;u&apos;type&apos;: u&apos;send&apos;, u&apos;payload&apos;: u&apos;open(/proc/net/xt_qtaguid/iface_stat_fmt,0x0)&apos;&#125;</span><br><span class="line">&#123;u&apos;type&apos;: u&apos;send&apos;, u&apos;payload&apos;: u&apos;open(/proc/net/xt_qtaguid/iface_stat_fmt,0x0)&apos;&#125;</span><br><span class="line">&#123;u&apos;type&apos;: u&apos;send&apos;, u&apos;payload&apos;: u&apos;open(/proc/net/xt_qtaguid/iface_stat_fmt,0x0)&apos;&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><strong>Hook Android设备某一进程的Java层函数</strong></p>
+<ul>
+<li><p>使用python编写以下代码:<br>#hook onCreate函数</p>
+<figure class="highlight python"><figcaption><span>[]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">jscode = <span class="string">"""</span></span><br><span class="line"><span class="string">Java.perform(function()</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">	var Activity = Java.use('android.app.Activity');</span></span><br><span class="line"><span class="string">	var Toast = Java.use('android.widget.Toast');</span></span><br><span class="line"><span class="string">	var Bundle = Java.use('android.os.Bundle');</span></span><br><span class="line"><span class="string">	var PackageInfo = Java.use('android.content.pm.PackageInfo');</span></span><br><span class="line"><span class="string">	//得到context</span></span><br><span class="line"><span class="string">	var currentApplication = Java.use('android.app.ActivityThread').currentApplication();</span></span><br><span class="line"><span class="string">	var context = currentApplication.getApplicationContext();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	Activity.onCreate.overload('android.os.Bundle').implementation = function (c) &#123;</span></span><br><span class="line"><span class="string">	console.log('onCreate --&gt; '+this);</span></span><br><span class="line"><span class="string">	this.onCreate(c);&#125;;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">script = session.create_script(scr)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(message ,data)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> message</span><br><span class="line">script.on(message<span class="string">" , on_message)</span></span><br><span class="line"><span class="string">script.load()</span></span><br><span class="line"><span class="string">sys.stdin.read()</span></span><br><span class="line"><span class="string">        </span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把frida调试服务器传入手机运行(参考上一条)</p>
+</li>
+<li>转发端口(参考上一条)</li>
+<li>运行结果:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结果忘保存, hook代码的功能就是执行OnCreate时, 就会打印该类名</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">吐槽</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">hook 框架</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/25/Frida Hook框架初试/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/04/24/2018年4月24日/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -202,9 +427,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
