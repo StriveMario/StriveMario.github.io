@@ -6,22 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>MarkDown语法 | Mario</title>
+  <title>使用IDA调试so或NDK | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介:MarkDown常用语法总结">
-<meta name="keywords" content="markdown">
+  <meta name="description" content="1. 准备工作 首先无论是调试NDK还是so都需要把IDA的调试服务器push进Android系统中运行">
+<meta name="keywords" content="Android调试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MarkDown语法">
-<meta property="og:url" content="http://yoursite.com/2018/01/29/MarkDown语法/index.html">
+<meta property="og:title" content="使用IDA调试so或NDK">
+<meta property="og:url" content="http://yoursite.com/2018/04/26/使用IDA调试so或NDK/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="简介:MarkDown常用语法总结">
+<meta property="og:description" content="1. 准备工作 首先无论是调试NDK还是so都需要把IDA的调试服务器push进Android系统中运行">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/01/29/MarkDown语法/url">
-<meta property="og:updated_time" content="2018-04-26T09:58:13.928Z">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试NDK_1.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试NDK_2.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试NDK_3.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试NDK_4.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_1.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_2.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_3.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_4.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_5.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_6.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_7.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_8.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_9.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_10.png">
+<meta property="og:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试SO_11.png">
+<meta property="og:updated_time" content="2018-04-26T09:44:06.007Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MarkDown语法">
-<meta name="twitter:description" content="简介:MarkDown常用语法总结">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/29/MarkDown语法/url">
+<meta name="twitter:title" content="使用IDA调试so或NDK">
+<meta name="twitter:description" content="1. 准备工作 首先无论是调试NDK还是so都需要把IDA的调试服务器push进Android系统中运行">
+<meta name="twitter:image" content="http://yoursite.com/img/IDA动态调试NDK与SO/IDA调试NDK_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -145,92 +159,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MarkDown语法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用IDA调试so或NDK" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MarkDown语法
+      使用IDA调试so或NDK
     </h1>
   
 
         
-        <a href="/2018/01/29/MarkDown语法/" class="archive-article-date">
-  	<time datetime="2018-01-29T03:46:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
+        <a href="/2018/04/26/使用IDA调试so或NDK/" class="archive-article-date">
+  	<time datetime="2018-04-26T08:11:33.363Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介:MarkDown常用语法总结</p>
+        <p><br></p>
+<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><ul>
+<li><p>首先无论是调试NDK还是so都需要把IDA的调试服务器push进Android系统中运行</p>
 <a id="more"></a>
-<p>Markdown 语法的目标是：成为一种适用于网络的书写语言，兼容HTML。</p>
-<h3 id="MarkDown语法"><a href="#MarkDown语法" class="headerlink" title="MarkDown语法"></a>MarkDown语法</h3><p><a href="https://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">原文链接</a></p>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure></p>
-<p>效果：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><hr>
-<h3 id="反引号（-这个键位）"><a href="#反引号（-这个键位）" class="headerlink" title="反引号（~这个键位）"></a>反引号（~这个键位）</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```反引号</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">效果：</span><br></pre></td></tr></table></figure>
-<p>反引号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 代码高亮 (``一对反引号)</span><br><span class="line">语法：</span><br></pre></td></tr></table></figure></p>
-<p><code>反引号块</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">效果：</span><br><span class="line">`反引号块`</span><br></pre></td></tr></table></figure></p>
-<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|*斜体1*|</span><br><span class="line">|**粗体1**|</span><br><span class="line">|~~删除线~~|</span><br></pre></td></tr></table></figure></p>
-<p>效果：<br>|<em>斜体1</em>|<br>|<strong>粗体1</strong>|<br>|<del>删除线</del>|</p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">![alt](url &quot;title&quot;)</span><br><span class="line">alt表示图片显示失败时的替换文本</span><br><span class="line">title表示鼠标悬停在图片时的显示文本（注意这里要加引号）</span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<p><div align="center"><br><img src="url" alt="jpg" title="jpg"><br></div></p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[baidu](http://www.baidu.com)</span><br><span class="line">[本文位置](# MarkDown语法)</span><br></pre></td></tr></table></figure></p>
-<p>效果：<br><a href="http://www.baidu.com" target="_blank" rel="noopener">baidu</a><br><a href="#MarkDown语法">顶部</a></p>
-<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 无序</span><br><span class="line">1.</span><br><span class="line">2. 有序</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-</ul>
 <ol>
-<li>A</li>
-<li>E</li>
-<li>B</li>
-</ol>
-<h3 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; 块</span><br></pre></td></tr></table></figure></p>
-<p>效果：</p>
+<li><p>在Android设备中添加、配置android_server程序</p>
 <blockquote>
-<p>块引用</p>
+<p>先将IDA目录下的./dbgsrv/android_server程序拷贝到Android设备下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push [IDA_PATH]/dbgsrv/android_server /data/local/tmp/</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">分割</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Item     | Value</span><br><span class="line">-------- | ---</span><br><span class="line">Computer | $1600</span><br><span class="line">Phone    | $12</span><br><span class="line">Pipe     | $1</span><br></pre></td></tr></table></figure></p>
-<p>效果：</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Computer</td>
-<td>$1600</td>
-</tr>
-<tr>
-<td>Phone</td>
-<td>$12</td>
-</tr>
-<tr>
-<td>Pipe</td>
-<td>$1</td>
-</tr>
-</tbody>
-</table>
-<h3 id="字体、字号、颜色"><a href="#字体、字号、颜色" class="headerlink" title="字体、字号、颜色"></a>字体、字号、颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;font face=&quot;黑体&quot;&gt;我是黑体字&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;微软雅黑&quot;&gt;我是微软雅黑&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;STCAIYUN&quot;&gt;我是华文彩云&lt;/font&gt;</span><br><span class="line">&lt;font color=#0099ff size=12 face=&quot;黑体&quot;&gt;黑体&lt;/font&gt;</span><br><span class="line">&lt;font color=#00ffff size=3&gt;null&lt;/font&gt;</span><br><span class="line">&lt;font color=gray size=5&gt;gray&lt;/font&gt;</span><br></pre></td></tr></table></figure>
-<p><font face="黑体">我是黑体字</font><br></p>
-<p><font face="微软雅黑">我是微软雅黑</font><br></p>
-<p><font face="STCAIYUN">我是华文彩云</font><br></p>
-<p><font color="#0099ff" size="12" face="黑体">黑体</font><br></p>
-<p><font color="#00ffff" size="3">null</font><br></p>
-<p><font color="gray" size="5">gray</font><br></p>
+<blockquote>
+<p>修改文件权限属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell chmod 777 /data/local/tmp/android_server</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>启动调试服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell/data/local/tmp/android_server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行端口转发，使PC端口与Android端口可进行交互</p>
+<blockquote>
+<p>在打开一个cmd窗口执行:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:23946 tcp:23946</span><br></pre></td></tr></table></figure>
+<p>监听端口可以修改, 有的反调试就是    利用默认的23946端口被占用判断是否被调试</p>
+</li>
+</ol>
+</li>
+</ul>
+<p><br></p>
+<h3 id="2-使用IDA调试NDK程序"><a href="#2-使用IDA调试NDK程序" class="headerlink" title="2. 使用IDA调试NDK程序"></a>2. 使用IDA调试NDK程序</h3><ul>
+<li><p><strong>1) 打开IDA, 打开菜单: Debugger -&gt; Run -&gt;RemoteArmLinux/Android debugger</strong></p>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试NDK_1.png" alt="IDA调试NDK" title="IDA调试NDK"></p>
+<blockquote>
+<p>打开调试程序的设置对话框：<br>  Application：对应调试程序所在的路径<br>  Directory：对应调试程序所在的目录路径<br>  HostName：输入localhost<br>  Port：PC端口</p>
+</blockquote>
+</li>
+<li><p><strong>2) 菜单: Debugger -&gt; Debuger Options</strong></p>
+<blockquote>
+<p>设置在入口点断下</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试NDK_2.png" alt="IDA调试NDK" title="IDA调试NDK"></p>
+</li>
+<li><p><strong>3) F9运行程序</strong></p>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试NDK_3.png" alt="IDA调试NDK" title="IDA调试NDK"></p>
+</li>
+<li><p><strong>4) 对于已经运行的程序可以Atach附加调试</strong></p>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试NDK_4.png" alt="IDA调试NDK" title="IDA调试NDK"></p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="3-使用IDA调试so动态库"><a href="#3-使用IDA调试so动态库" class="headerlink" title="3. 使用IDA调试so动态库"></a>3. 使用IDA调试so动态库</h3><ul>
+<li><p><strong>1) 以调试模式启动apk程序</strong></p>
+<blockquote>
+<p> adb shell am start -D -n 包名/类名<br>  如: adb shell am start  -D -n com.example.jnitest/.MainActivity<br>  启动后会停在这个界面</p>
+</blockquote>
+<p>  <img src="\img\IDA动态调试NDK与SO\IDA调试SO_1.png" alt="IDA调试SO" title="IDA调试SO"></p>
+</li>
+<li><p><strong>2) 附加开启的进程</strong></p>
+<blockquote>
+<p>启动ida pro，点击”Debugger - &gt; Attach -&gt; Remote ArmLinux/Android debugger”</p>
+</blockquote>
+<p>  <img src="\img\IDA动态调试NDK与SO\IDA调试SO_2.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p>  <br></p>
+<blockquote>
+<p>直接确定</p>
+</blockquote>
+<p>  <img src="\img\IDA动态调试NDK与SO\IDA调试SO_3.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p>  <br></p>
+<blockquote>
+<p>选择进程双击, 或者OK</p>
+</blockquote>
+</li>
+<li><p><strong>3) 设置调试选项</strong></p>
+<blockquote>
+<p><strong>(一定要在这个步骤设置, 之前没附加设置无效)</strong><br>点击”Debug options”按钮, 设置如下, 因为要在loadlibrary之前断下;</p>
+</blockquote>
+<p>  <img src="\img\IDA动态调试NDK与SO\IDA调试SO_4.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p>  <br></p>
+<blockquote>
+<p>之后, F9 运行程序, 把程序跑起来</p>
+</blockquote>
+<p>  <br></p>
+</li>
+<li><p><strong>4) 获取调试端口</strong></p>
+<blockquote>
+<p>打开eclipse ddms在Devices窗口</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_5.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p><br></p>
+<blockquote>
+<p>前面的是调试端口, 圈住的就是映射后的端口:<br>映射的步骤如果开启Esclipse了就不用:<br>没开启的话把8700端口映射到进程ID, 所以JDB连8700端口等于连目标进程;<br>adb forward  tcp:8700  jdwp:进程ID<br>如: adb forward tcp:8700 jdwp:487</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>在命令行输入:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdb -connect com.sun.jdi.SocketAttach:port=8700,hostname=localhost</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>运行成功:</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_6.png" alt="IDA调试SO" title="IDA调试SO"></p>
+</li>
+<li><p><strong>5) 进入调试流程</strong></p>
+<blockquote>
+<p>之后, 可能会出现add map窗口一律cancle, 可以发现加载的是我们要的so</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_7.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p><br></p>
+<blockquote>
+<p>这时, 程序会断下, 点击ida中的”Debugger -&gt; Debugger windows -&gt; Module list ”。在”Modules”窗口中找到我们的so</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_8.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p><br></p>
+<blockquote>
+<p>双击后就可以看到so中的函数了</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_9.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p><br></p>
+<blockquote>
+<p>在之后就可以双击到对应函数的ARM汇编中F2下断, F9运行就会断下</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_10.png" alt="IDA调试SO" title="IDA调试SO"></p>
+<p><br></p>
+<blockquote>
+<p>F9后断点就激活了</p>
+</blockquote>
+<p><img src="\img\IDA动态调试NDK与SO\IDA调试SO_11.png" alt="IDA调试SO" title="IDA调试SO"></p>
+</li>
+<li><p><strong>至此, 就可以使用IDA愉快调试SO或NDK程序了</strong></p>
+</li>
+</ul>
 
       
 
@@ -265,7 +345,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android调试</a>
         		</li>
       		
 		</ul>
@@ -321,7 +401,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/29/MarkDown语法/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/26/使用IDA调试so或NDK/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,15 +415,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/23/ole储存格式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          复合文档Ole对象二进制储存格式
-        
-      </div>
-    </a>
   
+    <a href="/2018/04/25/Frida Hook框架初试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Frida Hook框架初试</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
