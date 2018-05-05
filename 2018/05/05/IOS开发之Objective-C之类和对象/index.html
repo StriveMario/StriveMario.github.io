@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-05T12:14:10.748Z">
+<meta property="og:updated_time" content="2018-05-05T13:01:20.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS开发之Objective-C之类和对象">
 <meta name="twitter:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
@@ -166,6 +166,7 @@
         <h3 id="类成员公私属性"><a href="#类成员公私属性" class="headerlink" title="类成员公私属性"></a>类成员公私属性</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@private</span></span><br><span class="line">  <span class="built_in">NSString</span> *_name;<span class="comment">//在ObjC中推荐成员变量名以_开头</span></span><br><span class="line">  <span class="keyword">int</span> _age;</span><br><span class="line"><span class="keyword">@protected</span></span><br><span class="line">  <span class="built_in">NSString</span> *_nation;</span><br><span class="line"><span class="keyword">@public</span></span><br><span class="line">  <span class="keyword">float</span> height;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *birthday;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="类的成员和方法使用"><a href="#类的成员和方法使用" class="headerlink" title="类的成员和方法使用"></a>类的成员和方法使用</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//生成对象</span></span><br><span class="line">Person *p=[Person alloc];</span><br><span class="line">p=[p init];</span><br><span class="line"><span class="comment">//上面两句代码可以直接写成：Person *p=[[Person alloc] init];</span></span><br><span class="line"><span class="comment">//还可以写成：Person *p=[Person new];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员变量调用</span></span><br><span class="line">p-&gt;height=<span class="number">1.72</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"height=%.2f"</span>,p-&gt;height);<span class="comment">//结果：height=1.72</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法调用</span></span><br><span class="line">[p setName:<span class="string">@"Kenshin"</span>];</span><br></pre></td></tr></table></figure>
+<hr>
 <h3 id="自动生成set-get函数"><a href="#自动生成set-get函数" class="headerlink" title="自动生成set get函数"></a>自动生成set get函数</h3><blockquote>
 <p>在ObjC中可以通过声明@property，同时通过@synthesize自动生成getter、setter方法（在新版本中甚至甚至都不用通过@synthesize只声明就可以使用）</p>
 </blockquote>
@@ -188,6 +189,14 @@
 <li>如果声明了一个属性a，使用@synthesize a=_a进行实现，这个过程已经指定了使用的成员变量：此时会使用指定的成员变量作为属性变量；</li>
 </ul>
 </blockquote>
+<hr>
+<h3 id="自定义构造函数"><a href="#自定义构造函数" class="headerlink" title="自定义构造函数"></a>自定义构造函数</h3><ul>
+<li><p>当构造函数需要初始化一些成员, 或要传输参数时需要使用自定义构造函数</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//头文件</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name andAge:(<span class="keyword">int</span> )age;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现文件</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义构造方法</span></span><br><span class="line">-(<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name andAge:(<span class="keyword">int</span>)age&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">self</span>=[<span class="keyword">super</span> init])&#123; <span class="comment">//super代表父类</span></span><br><span class="line">        <span class="keyword">self</span>.name=name;</span><br><span class="line">        <span class="keyword">self</span>.age=age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>; <span class="comment">//返回类对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//调用</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line"></span><br><span class="line">    Person *p=[[Person alloc]initWithName:<span class="string">@"Kenshin"</span> andAge:<span class="number">28</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"name=%@,age=%i"</span>,p.name,p.age);</span><br><span class="line">    <span class="comment">//结果：name=Kenshin,age=28</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <hr>
 <p><a href="http://www.cnblogs.com/kenshincui/p/3861302.html" target="_blank" rel="noopener">教程链接</a></p>
 
@@ -443,7 +452,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,10 +473,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">逆向工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,19 +488,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
               </li>
             
             <div class="clearfix"></div>
