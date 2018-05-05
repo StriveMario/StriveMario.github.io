@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>关于我 | Mario</title>
+  <title>IOS开发之Objective-C之类和对象 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个拼命生存, 却又想要追求自由的人儿;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://yoursite.com/resume/index.html">
+  <meta name="description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
+<meta name="keywords" content="IOS开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS开发之Objective-C之类和对象">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/IOS开发之Objective-C之类和对象/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="一个拼命生存, 却又想要追求自由的人儿;">
+<meta property="og:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-26T09:51:12.497Z">
+<meta property="og:updated_time" content="2018-05-05T12:14:10.748Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="一个拼命生存, 却又想要追求自由的人儿;">
+<meta name="twitter:title" content="IOS开发之Objective-C之类和对象">
+<meta name="twitter:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -142,30 +143,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-IOS开发之Objective-C之类和对象" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于我
+      IOS开发之Objective-C之类和对象
     </h1>
   
 
         
-        <a href="/resume/index.html" class="archive-article-date">
-  	<time datetime="2018-04-26T09:51:12.497Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
+        <a href="/2018/05/05/IOS开发之Objective-C之类和对象/" class="archive-article-date">
+  	<time datetime="2018-05-05T11:55:15.720Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><br><br><br><br><br></p>
-<blockquote>
-<p> <font color="#00ffff" face="黑体">一个拼命生存, 却又想要追求自由的人儿;</font><br></p>
+        <h3 id="类成员公私属性"><a href="#类成员公私属性" class="headerlink" title="类成员公私属性"></a>类成员公私属性</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@private</span></span><br><span class="line">  <span class="built_in">NSString</span> *_name;<span class="comment">//在ObjC中推荐成员变量名以_开头</span></span><br><span class="line">  <span class="keyword">int</span> _age;</span><br><span class="line"><span class="keyword">@protected</span></span><br><span class="line">  <span class="built_in">NSString</span> *_nation;</span><br><span class="line"><span class="keyword">@public</span></span><br><span class="line">  <span class="keyword">float</span> height;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *birthday;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="类的成员和方法使用"><a href="#类的成员和方法使用" class="headerlink" title="类的成员和方法使用"></a>类的成员和方法使用</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//生成对象</span></span><br><span class="line">Person *p=[Person alloc];</span><br><span class="line">p=[p init];</span><br><span class="line"><span class="comment">//上面两句代码可以直接写成：Person *p=[[Person alloc] init];</span></span><br><span class="line"><span class="comment">//还可以写成：Person *p=[Person new];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员变量调用</span></span><br><span class="line">p-&gt;height=<span class="number">1.72</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"height=%.2f"</span>,p-&gt;height);<span class="comment">//结果：height=1.72</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法调用</span></span><br><span class="line">[p setName:<span class="string">@"Kenshin"</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="自动生成set-get函数"><a href="#自动生成set-get函数" class="headerlink" title="自动生成set get函数"></a>自动生成set get函数</h3><blockquote>
+<p>在ObjC中可以通过声明@property，同时通过@synthesize自动生成getter、setter方法（在新版本中甚至甚至都不用通过@synthesize只声明就可以使用）</p>
 </blockquote>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//头文件</span></span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span>&#123;</span><br><span class="line">    <span class="keyword">@public</span></span><br><span class="line">    <span class="built_in">NSString</span> *birthday;</span><br><span class="line">    <span class="built_in">NSString</span> *_position;</span><br><span class="line">    <span class="built_in">NSString</span> *_degress;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明</span></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *birthday;</span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *position;</span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *degress;</span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *education;</span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">float</span> weight;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)printInfo;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//m文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//实现</span></span><br><span class="line"><span class="keyword">@synthesize</span> birthday;</span><br><span class="line"><span class="keyword">@synthesize</span> position;</span><br><span class="line"><span class="keyword">@synthesize</span> degress=_degress;</span><br><span class="line"><span class="keyword">@synthesize</span> education;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)printInfo&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"_weight=%.2f"</span>,_weight);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"education=%@"</span>,education);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"_degress=%@"</span>,_degress);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用</span></span><br><span class="line">Person *p=[[Person alloc]init];</span><br><span class="line">p-&gt;birthday=<span class="string">@"1987-08-20"</span>;</span><br><span class="line">p.birthday=<span class="string">@"1986-08-08"</span>;</span><br><span class="line">p-&gt;_position=<span class="string">@"developer"</span>;</span><br><span class="line">p.position=<span class="string">@"architect"</span>;</span><br></pre></td></tr></table></figure>
+<p>  <br></p>
+<blockquote>
+<ul>
+<li>如果只声明一个属性a，不使用@synthesize实现：编译器会使用_a作为属性的成员变量（如果没有定义成员变量_a则会自动生成一个私有的成员变量_a；如果已经定义了成员变量_a则使用自定义的成员变量_a。注意：如果此时定义的成员变量不是_a而是a则此时会自动生成一个成员变量_a，它跟自定义成员变量a没有任何关系）；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果声明了一个属性a，使用@synthesize a进行实现，但是实现过程中没有指定使用的成员变量（例如上面birthday）：则此时编译器会使用a作为属性的成员变量（如果定义了成员变量a，则使用自定义成员变量；如果此时没有定义则会自动生成一个私有的成员变量a，注意如果此时定义的是_a则它跟生成的a成员变量没有任何关系）；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果声明了一个属性a，使用@synthesize a=_a进行实现，这个过程已经指定了使用的成员变量：此时会使用指定的成员变量作为属性变量；</li>
+</ul>
+</blockquote>
+<hr>
+<p><a href="http://www.cnblogs.com/kenshincui/p/3861302.html" target="_blank" rel="noopener">教程链接</a></p>
 
       
 
@@ -195,6 +219,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -245,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/resume/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/05/IOS开发之Objective-C之类和对象/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -257,6 +292,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/05/IOS开发之Objective-C 简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IOS开发之Objective-C 简介</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -307,7 +352,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

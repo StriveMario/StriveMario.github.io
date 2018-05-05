@@ -140,6 +140,272 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IOS开发之Objective-C之类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/05/IOS开发之Objective-C之类和对象/">IOS开发之Objective-C之类和对象</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/05/IOS开发之Objective-C之类和对象/" class="archive-article-date">
+  	<time datetime="2018-05-05T11:55:15.720Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="类成员公私属性"><a href="#类成员公私属性" class="headerlink" title="类成员公私属性"></a>类成员公私属性</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@private</span></span><br><span class="line">  <span class="built_in">NSString</span> *_name;<span class="comment">//在ObjC中推荐成员变量名以_开头</span></span><br><span class="line">  <span class="keyword">int</span> _age;</span><br><span class="line"><span class="keyword">@protected</span></span><br><span class="line">  <span class="built_in">NSString</span> *_nation;</span><br><span class="line"><span class="keyword">@public</span></span><br><span class="line">  <span class="keyword">float</span> height;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *birthday;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C之类和对象/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C之类和对象/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IOS开发之Objective-C 简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/05/IOS开发之Objective-C 简介/">IOS开发之Objective-C 简介</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/05/IOS开发之Objective-C 简介/" class="archive-article-date">
+  	<time datetime="2018-05-05T07:53:56.878Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里呢, 就记录我自己的理解, 相当于和C++的区别吧</p>
+<h3 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyClass</span>:<span class="title">NSObject</span></span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// 类变量声明</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类属性声明</span></span><br><span class="line"><span class="comment">// 类方法和声明</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>执行MyClass.m文件，如下所示<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="comment">// 类方法定义</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="静态方法和类方法"><a href="#静态方法和类方法" class="headerlink" title="静态方法和类方法"></a>静态方法和类方法</h3><p>Objective C中声明的方法如下所示:<br></p>
+<blockquote>
+<p><strong>-(返回类型)方法名:(变量1类型) 变量1 :(变量2类型)变量2;</strong></p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C 简介/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C 简介/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IOS逆向工具介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/04/IOS逆向工具介绍/">IOS逆向工具介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/04/IOS逆向工具介绍/" class="archive-article-date">
+  	<time datetime="2018-05-04T12:20:29.188Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<h3 id="监测工具"><a href="#监测工具" class="headerlink" title="监测工具"></a>监测工具</h3><h4 id="class-dump"><a href="#class-dump" class="headerlink" title="class-dump"></a>class-dump</h4><blockquote>
+<p>class-dump， 顾名思义， 就是用来dump目标对象<br>的class信息的工具。 它利用Objective-C语言的runtime<br>特性， 将存储在Mach-O文件中的头文件信息提取出<br>来， 并生成对应的.h文件</p>
+</blockquote>
+<h4 id="Reveal"><a href="#Reveal" class="headerlink" title="Reveal"></a>Reveal</h4><blockquote>
+<p>可以用来实时监测目标App的UI布局变化</p>
+</blockquote>
+<p><br></p>
+<h3 id="反汇编工具"><a href="#反汇编工具" class="headerlink" title="反汇编工具"></a>反汇编工具</h3><h4 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h4><blockquote>
+<p>老牌子不做介绍</p>
+</blockquote>
+<h4 id="Hopper"><a href="#Hopper" class="headerlink" title="Hopper"></a>Hopper</h4><blockquote>
+<p>针对苹果系操作系统的一款反汇编工具</p>
+</blockquote>
+<p><br></p>
+<h3 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h3><h4 id="IDA-1"><a href="#IDA-1" class="headerlink" title="IDA"></a>IDA</h4><blockquote>
+<p>没错. IDA也能调试IOS</p>
+</blockquote>
+<h4 id="LLDB"><a href="#LLDB" class="headerlink" title="LLDB"></a>LLDB</h4><blockquote>
+<p>IOS最常用的调试器, 命令行形式, 但很强大</p>
+</blockquote>
+<p><br></p>
+<h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><blockquote>
+<p>IOS开发者最常用工具, 但是无法开发越狱后的程序</p>
+</blockquote>
+<h4 id="iOSOpenDev"><a href="#iOSOpenDev" class="headerlink" title="iOSOpenDev"></a>iOSOpenDev</h4><blockquote>
+<p>基于Xcode的越狱程序开发工具</p>
+</blockquote>
+<h4 id="Theos"><a href="#Theos" class="headerlink" title="Theos"></a>Theos</h4><blockquote>
+<p>偏命令行形式的开发工具</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS逆向</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">逆向工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/04/IOS逆向工具介绍/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用IDA调试so或NDK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -400,7 +666,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法:"></a>使用方法:</h2><pre><code>- OleDump.exe [docpath]
+        <hr>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法:"></a>使用方法:</h2><pre><code>- OleDump.exe [docpath]
 </code></pre><ul>
 <li>运行之后选择.xls?|.doc?|.ppt?|.bin文件，会生成以模块名开头的文本文件，用记事本打开查看即可, 只支持2003或之前的版本, 之后的版本把文档改为.zip就可以拿出宏</li>
 </ul>
@@ -556,7 +823,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-仓库与流"><a href="#一-仓库与流" class="headerlink" title="一. 仓库与流"></a>一. 仓库与流</h2><h3 id="1-什么是复合文档"><a href="#1-什么是复合文档" class="headerlink" title="1. 什么是复合文档?"></a>1. 什么是复合文档?</h3><ul>
+        <hr>
+<h2 id="一-仓库与流"><a href="#一-仓库与流" class="headerlink" title="一. 仓库与流"></a>一. 仓库与流</h2><h3 id="1-什么是复合文档"><a href="#1-什么是复合文档" class="headerlink" title="1. 什么是复合文档?"></a>1. 什么是复合文档?</h3><ul>
 <li><p>复合文档（Compound Document） 是一种不仅包含文本而且包括图形、电子表格数据、声音、视频图象以及其它信息的文档。可以把复合文档想象成一个所有者，它装着文本、图形以及多媒体信息如 声音和图象。目前建立复合文档的趋势是使用面向对象技术，在这里，非标准信息如图像和声音可以作为独立的、自包含式对象包含在文档中。Microsoft Windows就是使用这种技术，叫做“OLE2 storage file format”或“Microsoft Office compatible storage file format”。</p>
 </li>
 <li><p>当然Excel、Word等都是用这种格式存储的。本文主要研究复合文档的二进制结构。</p>
@@ -815,23 +1083,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
+                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">逆向工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -840,6 +1104,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">非PE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
               </li>
             
             <div class="clearfix"></div>
@@ -891,7 +1171,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="http://deelmind.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>deelmind</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://ring3.xyz/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>YLLEN</a>
             </li>
           
         </ul>
