@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-05T13:01:20.808Z">
+<meta property="og:updated_time" content="2018-05-07T13:01:53.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS开发之Objective-C之类和对象">
 <meta name="twitter:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
@@ -197,6 +197,82 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//调用</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line"></span><br><span class="line">    Person *p=[[Person alloc]initWithName:<span class="string">@"Kenshin"</span> andAge:<span class="number">28</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"name=%@,age=%i"</span>,p.name,p.age);</span><br><span class="line">    <span class="comment">//结果：name=Kenshin,age=28</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="description方法"><a href="#description方法" class="headerlink" title="description方法"></a>description方法</h3><blockquote>
+<p>在C#中每个类都有一个ToString()方法（java中叫做toString()）用于打印一个对象的信息，在ObjC中这个方法叫description, 也就是把类名转成字符串, 当然你也可以自定义</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">NSString</span> *)description&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"&#123;name:%@,age:%i&#125;"</span>,<span class="keyword">self</span>.name,<span class="keyword">self</span>.age];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person *p=[[Person alloc]init];</span><br><span class="line">p.name=<span class="string">@"Kenshin"</span>;</span><br><span class="line">p.age=<span class="number">28</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,p);<span class="comment">//此时会调用对象description方法返回对应的描述信息</span></span><br></pre></td></tr></table></figure>
+<h3 id="property的一些修饰词"><a href="#property的一些修饰词" class="headerlink" title="property的一些修饰词"></a>property的一些修饰词</h3><blockquote>
+<p>@property的参数分为三类，也就是说参数最多可以有三个，中间用逗号分隔，每类参数可以从上表三类参数中人选一个。如果不进行设置或者只设置其中一类参数，程序会使用三类中的各个默认参数，<strong>MRC默认参数：(atomic,readwrite,assign),   ARC下基本数据类型默认的属性参数为(atomic,readwrite,assign)，对象类型默认的属性参数为(atomic,readwrite,strong)</strong></p>
+</blockquote>
+<blockquote>
+<p>常见修饰词有：assign、weak、strong、retain、copy、nonatomic、atomic、readonly、readwrite<br>　其中部分用在特定的内存管理中:<br>　　ARC(自动管理内存)：assign、weak、strong、copy<br>　　MRC(手动管理内存)：assign、retain、copy、nonatomic、atomic</p>
+</blockquote>
+<ul>
+<li><p><strong>assign ( ARC/MRC )</strong></p>
+<blockquote>
+<p>1.这个修饰词是直接赋值的意思 , 整型/浮点型等数据类型都用这个词修饰 。<br>2.如果没有使用 weak、strong、 retain、 copy 等修饰 , 那么默认就是使用 assign 了 ( 它们之间是有你没我的关系 ，一般的指针变量是strong修饰)。<br>3.当然其实对象也可以用 assign 修饰 , 只是对象的计数器不会+1 . ( 与 strong 的区别 )<br>4.如果用来修饰对象属性 , 那么当对象被销毁后指针是不会指向 nil 的 . 所以会出现野指针错误 ( 与weak的区别 )。</p>
+</blockquote>
+</li>
+<li><p><strong>weak ( ARC )(对象)</strong></p>
+<blockquote>
+<p>1.弱指针是针对对象的修饰词 , 就是说它不能修饰基本数据类型(int float) 。<br>2.weak 修饰的引用计数器不会+1 , 也就是直接赋值 。<br>3.弱引用是为打破循环引用而生的，比如在Block中，block在copy的时候，会对内部使用到的对象的引用技术+1，如果使用[self 方法名]，那么就会有一个强指针指向self所在的对象的内存地址，对象的引用计数会+1，这样一来会导致对象所在的内存地址无法被释放，造成内存泄漏 。<br>4.它最被人所喜欢的原因是 它所指向的对象如果被销毁 , 它会指向 nil . 从而不会出现野指针错误 。<br><strong>weak 和 assign的区别</strong><br>assign与weak，它们都是弱引用声明类型，但是他们是有区别的。<br>1.用weak声明的变量在栈中就会自动清空，赋值为nil。<br>2.用assign声明的变量在栈中可能不会自动赋值为nil，就会造成野指针错误！<br>以delegate的声明为例，在MRC中多delegate声明使用的是assign，这是为了不造成循环引用，这时，我们需要在-dealloc方法中写上 self.delegate = nil，以免造成delegate的野指针错误。当然，在ARC中，只需要用weak声明delgate，就会自动释放了。</p>
+</blockquote>
+</li>
+<li><p><strong>strong ( ARC )(对象)</strong></p>
+<blockquote>
+<p>1.直接赋值并且对象的引用计数器 +1 。<br>2.在 ARC 里替代了 retain 的作用 。</p>
+</blockquote>
+</li>
+<li><p><strong>retain ( MRC )</strong></p>
+<blockquote>
+<p>1.release 旧对象( 旧对象计数器 -1 ) , retain 新对象( 新对象计数器 +1 ) , 然后指向新对象 。</p>
+</blockquote>
+</li>
+<li><p><strong>copy ( ARC/MRC )</strong></p>
+<blockquote>
+<p>1.copy 在 MRC 时是这样做的,  release 旧对象( 旧对象的引用计数器 -1 ) , copy 新对象( 新对象的引用计数器 +1 ) , 然后指向新对象 .（新对象是指最终指向的那个对象，不管深拷贝还是浅拷贝）</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><strong>nonatomic ( ARC/MRC )</strong></p>
+<blockquote>
+<p>1.不对set方法加同步锁 。<br>2.性能好。<br>3.线程不安全。</p>
+</blockquote>
+</li>
+<li><p><strong>atomic ( ARC/MRC )</strong></p>
+<blockquote>
+<p>1.原子属性就是对生成的 set 方法加互斥锁 （互斥锁 是一种同步锁，<br>互斥锁：如果共享数据已经有其他线程加锁了，线程会进入休眠状态等待锁。一旦被访问的资源被解锁，则等待资源的线程会被唤醒。<br>自旋锁：如果共享数据已经有其他线程加锁了，线程会以死循环的方式等待锁，一旦被访问的资源被解锁，则等待资源的线程会立即执行。<strong>自旋锁的效率高于互斥锁</strong> ）</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>@synchronized(锁对象) 。<br>@synchronized(self) { _delegate = delegate;}<br>2.需要消耗系统资源 。<br>3.互斥锁是利用线程同步实现的 , 意在保证同一时间只有一个线程调用 set 方法 。<br>4.其实还有 get 方法 , 要是同时 set 和 get 一起调用还是会有问题的 . 所以即使用了 atomic 修饰 还是不够安全 。</p>
+</blockquote>
+<ul>
+<li><p><strong>readonly (只读)</strong></p>
+<blockquote>
+<p>1.让 Xcode 只生成get方法 。<br>2.不想把暴露的属性被人随便替换时 , 可以使用 。</p>
+</blockquote>
+</li>
+<li><p><strong>readwrite (读写)(默认)</strong></p>
+<blockquote>
+<p>1.让 Xcode 生成get/set方法 。<br>2.不用 readonly 修饰时 , 默认就是 readwrite 。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="nonatomic-和-atomic-的介绍和区别"><a href="#nonatomic-和-atomic-的介绍和区别" class="headerlink" title="nonatomic 和 atomic 的介绍和区别"></a>nonatomic 和 atomic 的介绍和区别</h3><p><strong>什么是atomicity（原子性）？</strong></p>
+<blockquote>
+<p>atomicity（原子性）：我把原子性理解成线程对属性的单一执行。<br>　　例如，当两条线程同时执行一个属性的set方法的时候，如果不具有原子性（也就是声明属性时使用　了nonatimic），那么就可能出现当A线程正在改写某属性值的时候，B线程也许会突然闯入，把尚未修改好的属性值读取出来。发生这种情况时，线程读取到的属性值肯定不对。</p>
+</blockquote>
+<p><strong>保证atomicity真的就线程安全了吗？为什么日常声明都用的是nonatomic呢？</strong></p>
+<blockquote>
+<p>1.保证atomicity并非也是线程安全的，如果需要保证安全，需要跟深层次的线程锁定机制。<br>2.使用同步锁在iOS中开销比较大，会给程序带来性能上的问题。</p>
+<ol start="3">
+<li>为什么atomicity也不能保证线程安全？<br>　　例如：当使用atomic时，仍然可能出现线程错误：当线程A进行set操作，这时其他线程的get或者set操作会因为等该操作而等待。当A线程的set操作结束后，B线程进行set操作，然后当A线程需要get操作时，却获得了在B线程的值，这就破坏了线程安全，如果有C线程在A线程get操作之前release了该属性，那么还会导致程序崩溃。所以仅仅使用atomic并不会使得线程安全，我们还是要为线程添加lock来确保线程的安全。</li>
+</ol>
+</blockquote>
 <hr>
 <p><a href="http://www.cnblogs.com/kenshincui/p/3861302.html" target="_blank" rel="noopener">教程链接</a></p>
 
@@ -302,6 +378,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          IOS开发之Objective-C之协议、代码块、分类
+        
+      </div>
+    </a>
   
   
     <a href="/2018/05/05/IOS开发之Objective-C 简介/" id="article-nav-older" class="article-nav-link-wrap">
@@ -452,15 +537,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,11 +573,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
             
             <div class="clearfix"></div>

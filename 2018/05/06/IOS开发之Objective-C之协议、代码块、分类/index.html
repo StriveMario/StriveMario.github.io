@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: markdown | Mario</title>
+  <title>IOS开发之Objective-C之协议、代码块、分类 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://yoursite.com/tags/markdown/index.html">
+  <meta name="description" content="protocol(协议) 在ObjC中使用@protocol定义一组方法规范，实现此协议的类必须实现对应的方法。也就是说在ObjC中@protocol和其他语言的接口定义是类似的，只是在ObjC中interface关键字已经用于定义类了，因此它不会再像C#、Java中使用interface定义接口了。   定义一个协议  123456789101112//定义一个协议@protocol Anima">
+<meta name="keywords" content="IOS开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS开发之Objective-C之协议、代码块、分类">
+<meta property="og:url" content="http://yoursite.com/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/index.html">
 <meta property="og:site_name" content="Mario">
+<meta property="og:description" content="protocol(协议) 在ObjC中使用@protocol定义一组方法规范，实现此协议的类必须实现对应的方法。也就是说在ObjC中@protocol和其他语言的接口定义是类似的，只是在ObjC中interface关键字已经用于定义类了，因此它不会再像C#、Java中使用interface定义接口了。   定义一个协议  123456789101112//定义一个协议@protocol Anima">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-06T07:49:45.969Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
+<meta name="twitter:title" content="IOS开发之Objective-C之协议、代码块、分类">
+<meta name="twitter:description" content="protocol(协议) 在ObjC中使用@protocol定义一组方法规范，实现此协议的类必须实现对应的方法。也就是说在ObjC中@protocol和其他语言的接口定义是类似的，只是在ObjC中interface关键字已经用于定义类了，因此它不会再像C#、Java中使用interface定义接口了。   定义一个协议  123456789101112//定义一个协议@protocol Anima">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -138,60 +143,238 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-IOS开发之Objective-C之协议、代码块、分类" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/29/MarkDown语法/" class="archive-article-date">
-  	<time datetime="2018-01-29T03:46:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/29/MarkDown语法/">MarkDown语法</a>
+    <h1 class="article-title" itemprop="name">
+      IOS开发之Objective-C之协议、代码块、分类
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/" class="archive-article-date">
+  	<time datetime="2018-05-06T06:10:36.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="protocol-协议"><a href="#protocol-协议" class="headerlink" title="protocol(协议)"></a>protocol(协议)</h3><blockquote>
+<p>在ObjC中使用@protocol定义一组方法规范，实现此协议的类必须实现对应的方法。也就是说在ObjC中@protocol和其他语言的接口定义是类似的，只是在ObjC中interface关键字已经用于定义类了，因此它不会再像C#、Java中使用interface定义接口了。</p>
+</blockquote>
+<ul>
+<li>定义一个协议</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个协议</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">AnimalDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span> <span class="comment">//必须实现的方法</span></span><br><span class="line">-(<span class="keyword">void</span>)eat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span> <span class="comment">//可选实现的方法</span></span><br><span class="line">-(<span class="keyword">void</span>)run;</span><br><span class="line">-(<span class="keyword">void</span>)say;</span><br><span class="line">-(<span class="keyword">void</span>)sleep;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>遵循协议</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span>&lt;<span class="title">AnimalDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)eat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)eat&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"eating..."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>protocol 需要注意几点:</strong><blockquote>
+<p>　　1 一个协议可以扩展自另一个协议，例如上面AnimalDelegate就扩展自NSObject，如果需要扩展多个协议中间使用逗号分隔；<br>　　2 和其他高级语言中接口不同的是协议中定义的方法不一定是必须实现的，我们可以通过关键字进行@required和@optional进行设置，如果不设置则默认是@required（注意ObjC是弱语法，即使不实现必选方法编译运行也不会报错）；<br>　　3 协议通过&lt;&gt;进行实现，一个类可以同时实现多个协议，中间通过逗号分隔；<br>　　4 协议的实现只能在类的声明上,不能放到类的实现上（也就是说必须写成@interface Person:NSObject<animaldelegate>而不能写成@implementation Person<animaldelegate>）；<br>协议中不能定义属性、成员变量等,只能定义方法；</animaldelegate></animaldelegate></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="一个完整使用protocal实现事件绑定的例子"><a href="#一个完整使用protocal实现事件绑定的例子" class="headerlink" title="一个完整使用protocal实现事件绑定的例子"></a>一个完整使用protocal实现事件绑定的例子</h3><blockquote>
+<p>在Cocoa框架中大量采用这种模式实现数据和UI的分离，而且基本上所有的协议都是以Delegate结尾。<br>现在假设需要设计一个按钮，我们知道按钮都是需要点击的，在其他语言中通常会引入事件机制，只要使用者订阅了点击事件，那么点击的时候就会触发执行这个事件（这是对象之间解耦的一种方式：代码注入）。但是在ObjC中没有事件的定义，而是使用代理来处理这个问题。首先在按钮中定义按钮的代理，同时使用协议约束这个代理（事件的触发者）必须实现协议中的某些方法，当按钮处理过程中查看代理是否实现了这个方法，如果实现了则调用这个方法。</p>
+</blockquote>
+<p>KCButton.h<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">KCButton</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//一个协议可以扩展另一个协议，例如KCButtonDelegate扩展了NSObject协议</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">KCButtonDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span> <span class="comment">//@required修饰的方法必须实现</span></span><br><span class="line">-(<span class="keyword">void</span>)onClick:(KCButton *)button;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span> <span class="comment">//@optional修饰的方法是可选实现的</span></span><br><span class="line">-(<span class="keyword">void</span>)onMouseover:(KCButton *)button;</span><br><span class="line">-(<span class="keyword">void</span>)onMouseout:(KCButton *)button;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">KCButton</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 属性</span></span><br><span class="line"><span class="meta">#pragma mark 代理属性，同时约定作为代理的对象必须实现KCButtonDelegate协议</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">retain</span>) <span class="keyword">id</span>&lt;KCButtonDelegate&gt; delegate;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 公共方法</span></span><br><span class="line"><span class="meta">#pragma mark 点击方法</span></span><br><span class="line">-(<span class="keyword">void</span>)click;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>KCButton.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"KCButton.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">KCButton</span></span></span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)click&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Invoke KCButton's click method."</span>);</span><br><span class="line">    <span class="comment">//判断_delegate实例是否实现了onClick:方法（注意方法名是"onClick:",后面有个:）</span></span><br><span class="line">    <span class="comment">//避免未实现ButtonDelegate的类也作为KCButton的监听</span></span><br><span class="line">    <span class="keyword">if</span>([_delegate respondsToSelector:<span class="keyword">@selector</span>(onClick:)])&#123;</span><br><span class="line">        [_delegate onClick:<span class="keyword">self</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>MyListener.h<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">KCButton</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">KCButtonDelegate</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyListener</span> : <span class="title">NSObject</span>&lt;<span class="title">KCButtonDelegate</span>&gt;</span></span><br><span class="line">-(<span class="keyword">void</span>)onClick:(KCButton *)button;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>MyListener.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"MyListener.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"KCButton.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyListener</span></span></span><br><span class="line">-(<span class="keyword">void</span>)onClick:(KCButton *)button&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Invoke MyListener's onClick method.The button is:%@."</span>,button);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>main.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"KCButton.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"MyListener.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line"></span><br><span class="line">        KCButton *button=[[KCButton alloc]init];</span><br><span class="line">        MyListener *listener=[[MyListener alloc]init];</span><br><span class="line">        button.delegate=listener;</span><br><span class="line">        [button click];</span><br><span class="line">        <span class="comment">/* 结果：</span></span><br><span class="line"><span class="comment">         Invoke KCButton's click method.</span></span><br><span class="line"><span class="comment">         Invoke MyListener's onClick method.The button is:&lt;KCButton: 0x1001034c0&gt;.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>我们通过例子模拟了一个按钮的点击过程，有点类似于Java中事件的实现机制。通过这个例子我们需要注意以下几点内容：<blockquote>
+<p>　　1 id可以表示任何一个ObjC对象类型，类型后面的”&lt;协议名&gt;“用于约束作为这个属性的对象必须实现该协议(注意：使用id定义的对象类型不需要加“*”)；<br>　　2 MyListener作为事件触发者，它实现了KCButtonDelegate代理（在ObjC中没有命名空间和包的概念，通常通过前缀进行类的划分，“KC”是我们自定义的前缀）<br>　　3 在.h文件中如果使用了另一个文件的类或协议我们可以通过@class或者@protocol进行声明，而不必导入这个文件，这样可以提高编译效率（注意有些情况必须使用@class或@protocol，例如上面KCButton.h中上面声明的KCButtonDelegate协议中用到了KCButton类，而此文件下方的KCButton类声明中又使用了KCButtonDelegate，从而形成在一个文件中互相引用关系，此时必须使用@class或者@protocol声明，否则编译阶段会报错），但是在.m文件中则必须导入对应的类声明文件或协议文件（如果不导入虽然语法检查可以通过但是编译链接会报错）；<br>　　4 使用respondsToSelector方法可以判断一个对象是否实现了某个方法（需要注意方法名不是”onClick”而是“onClick:”，冒号也是方法名的一部分）；</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="代码块Block"><a href="#代码块Block" class="headerlink" title="代码块Block"></a>代码块Block</h3><ul>
+<li><p>个人感觉像函数指针, 或者是lambda, 具体看实现吧</p>
+<p>KCButton.h</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">KCButton</span>;</span></span><br><span class="line">**<span class="keyword">typedef</span> <span class="keyword">void</span>(^KCButtonClick)(KCButton *);**</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">KCButton</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 属性</span></span><br><span class="line"><span class="meta">#pragma mark 点击操作属性</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) KCButtonClick onClick;</span><br><span class="line"><span class="comment">//上面的属性定义等价于下面的代码</span></span><br><span class="line"><span class="comment">//@property (nonatomic,copy) void(^ onClick)(KCButton *);</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 公共方法</span></span><br><span class="line"><span class="meta">#pragma mark 点击方法</span></span><br><span class="line">-(<span class="keyword">void</span>)click;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>KCButton.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"KCButton.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">KCButton</span></span></span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)click&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Invoke KCButton's click method."</span>);</span><br><span class="line">    <span class="keyword">if</span> (_onClick) &#123;</span><br><span class="line">        _onClick(<span class="keyword">self</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>main.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"KCButton.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line"></span><br><span class="line">    KCButton *button=[[KCButton alloc]init];</span><br><span class="line">    button.onClick=^(KCButton *btn)&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Invoke onClick method.The button is:%@."</span>,btn);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    [button click];</span><br><span class="line">    <span class="comment">/*结果：</span></span><br><span class="line"><span class="comment">     Invoke KCButton's click method.</span></span><br><span class="line"><span class="comment">     Invoke onClick method.The button is:&lt;KCButton: 0x1006011f0&gt;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>上面代码中使用Block同样实现了按钮的点击事件，关于Block总结如下：</strong></p>
+<blockquote>
+<p>　　1 Block类型定义：返回值类型(^ 变量名)(参数列表)（注意Block也是一种类型）；<br>　　2 Block的typedef定义：返回值类型(^类型名称)(参数列表)；<br>　　3 Block的实现：^(参数列表){操作主体}；<br>　　4 Block中可以读取块外面定义的变量但是不能修改，如果要修改那么这个变量必须声明_block修饰；</p>
+</blockquote>
+<h3 id="Category-分类"><a href="#Category-分类" class="headerlink" title="Category(分类)"></a>Category(分类)</h3><blockquote>
+<p>Extend关键字作用就是给已存在的类增加新的函数或成员  </p>
+</blockquote>
+<p><br></p>
+<ul>
+<li><p><font color="#000000" size="5">   实例:</font><br></p>
+<p>NSString+Extend.h</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSString</span> (<span class="title">Extend</span>)</span></span><br><span class="line">-(<span class="built_in">NSString</span> *)stringByTrim;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>NSString+Extend.m</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"NSString+Extend.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSString</span> (<span class="title">Extend</span>)</span></span><br><span class="line">-(<span class="built_in">NSString</span> *)stringByTrim&#123;</span><br><span class="line">  <span class="built_in">NSCharacterSet</span> *character= [<span class="built_in">NSCharacterSet</span> whitespaceCharacterSet];</span><br><span class="line">  <span class="keyword">return</span> [<span class="keyword">self</span> stringByTrimmingCharactersInSet:character];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"NSString+Extend.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSString</span> *name=<span class="string">@" Kenshin Cui "</span>;</span><br><span class="line">  name=[name stringByTrim];</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@"I'm %@!"</span>,name); <span class="comment">//结果：I'm Kenshin Cui!</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>通过上面的输出结果我们可以看出已经成功将@” Kenshin Cui ”两端的空格去掉了。<strong>分类文件名一般是“原有类名+分类名称”</strong>，分类的定义是通过在原有类名后加上”(分类名)”来定义的（注意声明文件.h和实现文件.m都是如此）。</p>
+</blockquote>
+<hr>
+<p><a href="http://www.cnblogs.com/kenshincui/p/3869639.html" target="_blank" rel="noopener">教程链接</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/05/06/IOS开发之内存管理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          IOS开发之内存管理
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/05/05/IOS开发之Objective-C之类和对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IOS开发之Objective-C之类和对象</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -214,9 +397,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

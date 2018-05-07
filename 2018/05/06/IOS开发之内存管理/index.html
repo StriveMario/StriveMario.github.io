@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: markdown | Mario</title>
+  <title>IOS开发之内存管理 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://yoursite.com/tags/markdown/index.html">
+  <meta name="description" content="这章很简单, 基本和C++是一样的, 利用引用计数管理内存中的对象 用例子看一下引用计数器的知识：Person.h   12345678#import &amp;lt;Foundation/Foundation.h&amp;gt;@interface Person : NSObject#pragma mark - 属性@property (nonatomic,copy) NSString *name;@prope">
+<meta name="keywords" content="IOS开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS开发之内存管理">
+<meta property="og:url" content="http://yoursite.com/2018/05/06/IOS开发之内存管理/index.html">
 <meta property="og:site_name" content="Mario">
+<meta property="og:description" content="这章很简单, 基本和C++是一样的, 利用引用计数管理内存中的对象 用例子看一下引用计数器的知识：Person.h   12345678#import &amp;lt;Foundation/Foundation.h&amp;gt;@interface Person : NSObject#pragma mark - 属性@property (nonatomic,copy) NSString *name;@prope">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-07T12:40:33.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
+<meta name="twitter:title" content="IOS开发之内存管理">
+<meta name="twitter:description" content="这章很简单, 基本和C++是一样的, 利用引用计数管理内存中的对象 用例子看一下引用计数器的知识：Person.h   12345678#import &amp;lt;Foundation/Foundation.h&amp;gt;@interface Person : NSObject#pragma mark - 属性@property (nonatomic,copy) NSString *name;@prope">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -138,60 +143,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-IOS开发之内存管理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/29/MarkDown语法/" class="archive-article-date">
-  	<time datetime="2018-01-29T03:46:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/29/MarkDown语法/">MarkDown语法</a>
+    <h1 class="article-title" itemprop="name">
+      IOS开发之内存管理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/06/IOS开发之内存管理/" class="archive-article-date">
+  	<time datetime="2018-05-06T07:50:12.870Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这章很简单, 基本和C++是一样的, 利用引用计数管理内存中的对象</p>
+<h3 id="用例子看一下引用计数器的知识："><a href="#用例子看一下引用计数器的知识：" class="headerlink" title="用例子看一下引用计数器的知识："></a>用例子看一下引用计数器的知识：</h3><p>Person.h</p>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 属性</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Person.m</p>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 覆盖方法</span></span><br><span class="line"><span class="meta">#pragma mark 重写dealloc方法，在这个方法中通常进行对象释放操作</span></span><br><span class="line">-(<span class="keyword">void</span>)dealloc&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Invoke Person's dealloc method."</span>);</span><br><span class="line">    [<span class="keyword">super</span> dealloc];<span class="comment">//注意最后一定要调用父类的dealloc方法（两个目的：一是父类可能有其他引用对象需要释放；二是：当前对象真正的释放操作是在super的dealloc中完成的）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m</p>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Test1()&#123;</span><br><span class="line">    Person *p=[[Person alloc]init]; <span class="comment">//调用alloc，引用计数器+1</span></span><br><span class="line">    p.name=<span class="string">@"Kenshin"</span>;</span><br><span class="line">    p.age=<span class="number">28</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"retainCount=%lu"</span>,[p retainCount]);</span><br><span class="line">    <span class="comment">//结果：retainCount=1</span></span><br><span class="line"></span><br><span class="line">    [p release];</span><br><span class="line">    <span class="comment">//结果：Invoke Person's dealloc method.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//上面调用过release方法，p指向的对象就会被销毁，但是此时变量p中还存放着Person对象的地址，</span></span><br><span class="line">    <span class="comment">//如果不设置p=nil，则p就是一个野指针，它指向的内存已经不属于这个程序，因此是很危险的</span></span><br><span class="line">    p=<span class="literal">nil</span>;</span><br><span class="line">    <span class="comment">//如果不设置p=nil，此时如果再调用对象release会报错，但是如果此时p已经是空指针了，</span></span><br><span class="line">    <span class="comment">//则在ObjC中给空指针发送消息是不会报错的</span></span><br><span class="line">    [p release];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Test2()&#123;</span><br><span class="line">    Person *p=[[Person alloc]init];</span><br><span class="line">    p.name=<span class="string">@"Kenshin"</span>;</span><br><span class="line">    p.age=<span class="number">28</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"retainCount=%lu"</span>,[p retainCount]);</span><br><span class="line">    <span class="comment">//结果：retainCount=1</span></span><br><span class="line"></span><br><span class="line">    [p <span class="keyword">retain</span>];<span class="comment">//引用计数器+1</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"retainCount=%lu"</span>,[p retainCount]);</span><br><span class="line">    <span class="comment">//结果：retainCount=2</span></span><br><span class="line"></span><br><span class="line">    [p release];<span class="comment">//调用1次release引用计数器-1</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"retainCount=%lu"</span>,[p retainCount]);</span><br><span class="line">    <span class="comment">//结果：retainCount=1</span></span><br><span class="line">    [p release];</span><br><span class="line">    <span class="comment">//结果：Invoke Person's dealloc method.</span></span><br><span class="line">    p=<span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        Test1();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br><br>　　在上面的代码中我们可以通过dealloc方法来查看是否一个对象已经被回收，如果没有被回收则有可能造成内存泄露。如果一个对象被释放之后，那么最后引用它的变量我们手动设置为nil，否则可能造成野指针错误，而且需要注意在ObjC中给空对象发送消息是不会引起错误的。</p>
+<blockquote>
+<p>野指针错误形式在Xcode中通常表现为：Thread 1：EXC_BAD_ACCESS(code=EXC_I386_GPFLT)错误。因为你访问了一块已经不属于你的内存。</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/06/IOS开发之内存管理/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IOS开发之Objective-C之协议、代码块、分类</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -214,9 +336,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
