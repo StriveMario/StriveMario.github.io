@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>IOS开发之Objective-C之类和对象 | Mario</title>
+  <title>iOS开发之Objective-C之类和对象 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
 <meta name="keywords" content="IOS开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IOS开发之Objective-C之类和对象">
+<meta property="og:title" content="iOS开发之Objective-C之类和对象">
 <meta property="og:url" content="http://yoursite.com/2018/05/05/IOS开发之Objective-C之类和对象/index.html">
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-07T13:01:53.177Z">
+<meta property="og:image" content="http://yoursite.com/img/IOS开发之Objective-C之类和对象/类型属性.png">
+<meta property="og:updated_time" content="2018-05-08T12:25:44.568Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IOS开发之Objective-C之类和对象">
+<meta name="twitter:title" content="iOS开发之Objective-C之类和对象">
 <meta name="twitter:description" content="类成员公私属性123456789@private  NSString *_name;//在ObjC中推荐成员变量名以_开头  int _age;@protected  NSString *_nation;@public  float height;@property NSString *birthday;">
+<meta name="twitter:image" content="http://yoursite.com/img/IOS开发之Objective-C之类和对象/类型属性.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -150,7 +152,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      IOS开发之Objective-C之类和对象
+      iOS开发之Objective-C之类和对象
     </h1>
   
 
@@ -208,6 +210,7 @@
 <blockquote>
 <p>常见修饰词有：assign、weak、strong、retain、copy、nonatomic、atomic、readonly、readwrite<br>　其中部分用在特定的内存管理中:<br>　　ARC(自动管理内存)：assign、weak、strong、copy<br>　　MRC(手动管理内存)：assign、retain、copy、nonatomic、atomic</p>
 </blockquote>
+<p><img src="\img\IOS开发之Objective-C之类和对象\类型属性.png" alt="类型属性" title="类型属性"></p>
 <ul>
 <li><p><strong>assign ( ARC/MRC )</strong></p>
 <blockquote>
@@ -273,6 +276,12 @@
 <li>为什么atomicity也不能保证线程安全？<br>　　例如：当使用atomic时，仍然可能出现线程错误：当线程A进行set操作，这时其他线程的get或者set操作会因为等该操作而等待。当A线程的set操作结束后，B线程进行set操作，然后当A线程需要get操作时，却获得了在B线程的值，这就破坏了线程安全，如果有C线程在A线程get操作之前release了该属性，那么还会导致程序崩溃。所以仅仅使用atomic并不会使得线程安全，我们还是要为线程添加lock来确保线程的安全。</li>
 </ol>
 </blockquote>
+<blockquote>
+<p>一般情况下如果在多线程开发中一个属性可能会被两个及两个以上的线程同时访问，此时可以考虑atomic属性，否则建议使用nonatomic，不加锁，效率较高；readwirte方法会生成getter、setter两个方法，如果使用readonly则只生成getter方法；关于set方法处理需要特别说明，假设我们定义一个属性a，这里列出三种方式的生成代码：</p>
+</blockquote>
+<p>assign，用于基本数据类型<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)setA:(<span class="keyword">int</span>)a&#123;</span><br><span class="line">    _a=a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>retain，通常用于非字符串对象<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)setA:(Car *)a&#123;</span><br><span class="line">    <span class="keyword">if</span>(_a!=a)&#123;</span><br><span class="line">        [_a release];</span><br><span class="line">        _a=[a <span class="keyword">retain</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>copy，通常用于字符串对象、block、NSArray、NSDictionary<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)setA:(<span class="built_in">NSString</span> *)a&#123;</span><br><span class="line">    <span class="keyword">if</span>(_a!=a)&#123;</span><br><span class="line">        [_a release];</span><br><span class="line">        _a=[a <span class="keyword">copy</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p><a href="http://www.cnblogs.com/kenshincui/p/3861302.html" target="_blank" rel="noopener">教程链接</a></p>
 
@@ -541,14 +550,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
@@ -561,15 +562,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">非PE</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,6 +579,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">非PE</a>
               </li>
             
             <div class="clearfix"></div>

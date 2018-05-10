@@ -140,6 +140,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-记不住却用常用的C代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/24/记不住却用常用的C代码/">记不住却用常用的代码</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/24/记不住却用常用的C代码/" class="archive-article-date">
+  	<time datetime="2018-04-24T06:56:26.620Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h3 id="ASCII和Unicode互转"><a href="#ASCII和Unicode互转" class="headerlink" title="ASCII和Unicode互转"></a>ASCII和Unicode互转</h3><ul>
+<li>记得使用完delete空间</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ASCI -&gt; Unicode</span></span><br><span class="line"><span class="keyword">wchar_t</span>* trans(<span class="keyword">const</span> <span class="keyword">char</span> * ch, <span class="keyword">int</span> type = CP_ACP) &#123;</span><br><span class="line">	<span class="keyword">int</span> len = MultiByteToWideChar(type, <span class="number">0</span>, ch, <span class="number">-1</span>, <span class="literal">nullptr</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">wchar_t</span> *str = <span class="keyword">new</span> <span class="keyword">wchar_t</span>[len + <span class="number">1</span>];</span><br><span class="line">	wmemset(str, <span class="number">0</span>, len + <span class="number">1</span>);</span><br><span class="line">	MultiByteToWideChar(type, <span class="number">0</span>, ch, <span class="number">-1</span>, str, len);</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Unicode -&gt; ASCI</span></span><br><span class="line"><span class="comment">// 当type为CP_ACP时，UNICODE转化为GBK；当type为CP_UTF8时，UNICODE转化为UTF8  </span></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">trans</span><span class="params">(<span class="keyword">const</span> <span class="keyword">wchar_t</span> * wch, <span class="keyword">int</span> type = CP_ACP)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = WideCharToMultiByte(type, <span class="number">0</span>, wch, <span class="number">-1</span>, <span class="literal">nullptr</span>, <span class="number">0</span>, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">	<span class="keyword">char</span> *str = <span class="keyword">new</span> <span class="keyword">char</span>[len + <span class="number">1</span>];</span><br><span class="line">	<span class="built_in">memset</span>(str, <span class="number">0</span>, len + <span class="number">1</span>);</span><br><span class="line">	WideCharToMultiByte(type, <span class="number">0</span>, wch, <span class="number">-1</span>, str, len, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/04/24/记不住却用常用的C代码/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/24/记不住却用常用的C代码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ole储存格式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -424,14 +504,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
@@ -444,15 +516,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">非PE</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,6 +533,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">非PE</a>
               </li>
             
             <div class="clearfix"></div>
