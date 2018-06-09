@@ -6,15 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Mario</title>
+  <title>AndroidStudio下使用Xposed | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!">
+<meta name="keywords" content="Android,hook框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidStudio下使用Xposed">
+<meta property="og:url" content="http://yoursite.com/2018/06/09/AndroidStudio下使用Xposed/index.html">
 <meta property="og:site_name" content="Mario">
+<meta property="og:description" content="最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/1.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/2.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/3.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/5.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/4.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/6.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/7.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/8.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/9.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/10.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/11.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/12.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/13.png">
+<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/14.png">
+<meta property="og:updated_time" content="2018-06-09T09:39:38.198Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
+<meta name="twitter:title" content="AndroidStudio下使用Xposed">
+<meta name="twitter:description" content="最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!">
+<meta name="twitter:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -138,181 +158,249 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-AndroidStudio下使用Xposed" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AndroidStudio下使用Xposed
+    </h1>
+  
+
+        
+        <a href="/2018/06/09/AndroidStudio下使用Xposed/" class="archive-article-date">
+  	<time datetime="2018-06-09T03:21:47.182Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-09</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　<br>最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!</p>
+<a id="more"></a>
+<blockquote>
+<p>以下内容需要系统ROOT权限
+　</p>
+</blockquote>
+<h3 id="安装Xposed框架"><a href="#安装Xposed框架" class="headerlink" title="安装Xposed框架"></a>安装Xposed框架</h3><p> <a href="http://xposed.appkg.com/" target="_blank" rel="noopener">Xposed框架中文站</a><br> 该网站里有不少Xposed相关的资源</p>
+<p> <a href="http://repo.xposed.info/" target="_blank" rel="noopener">Xposed官网</a>  论坛里帖子可以解决不少你的问题<br> 注意XposedInstaller的版本, 2.7支持4.0,  3.0支持5.0及以上的安卓系统</p>
+<ul>
+<li>安装激活Xposed框架<br><img src="\img\AndroidStudio下使用Xposed\1.png" alt="Mario" title="Mario"></li>
+</ul>
+<blockquote>
+<p>依次安装Recovery和Install即可, 每次安装后都需要重启哦</p>
+</blockquote>
+<h3 id="编写Xposed模块"><a href="#编写Xposed模块" class="headerlink" title="编写Xposed模块"></a>编写Xposed模块</h3><ul>
+<li>添加meta<br>　在AndroidStudio创建一个android应用后, 在AndroidManifest.xml里添加以下内容</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"xposedmodule"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:value</span>=<span class="string">"true"</span>/&gt;</span> //true表示设置当前程序为Xposed模块</span><br><span class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"xposeddescription"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:value</span>=<span class="string">"Mario"</span>/&gt;</span> //HOOK插件描述</span><br><span class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"xposedminversion"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:value</span>=<span class="string">"54"</span>/&gt;</span>    //这个是API版本号</span><br></pre></td></tr></table></figure>
+<p><img src="\img\AndroidStudio下使用Xposed\2.png" alt="Mario" title="Mario"></p>
+<ul>
+<li><p>添加api依赖库</p>
+<p>把XposedBridgeApi-54.jar复制到工程libs目录后右键 -&gt; Add As Library<br><img src="\img\AndroidStudio下使用Xposed\3.png" alt="Mario" title="Mario"></p>
+</li>
+</ul>
+<ul>
+<li>指定模块的入口</li>
+</ul>
+<p>　<br>  一个模块可以有多个继承IXposedHookLoadPackage的子类，所以要指定一个入口让xposed去执行（指定两个似乎也是可行的，未测试）</p>
+<blockquote>
+<p>1 新建一个类实现IXposedHookLoadPackage接口类, 并重写虚函数handleLoadPackage</p>
+</blockquote>
+<p>要进行代码注入,必须实现接口de.robv.android.xposed.IXposedHookLoadPackage,因为Xposed将其作为回调,在应用程序进程启动时,调用IXposedHookLoadPackage里的handleLoadPackage方法, 这样就能在应用的进程中执行handleLoadPackage()方法中的代码。</p>
+<p>  <img src="\img\AndroidStudio下使用Xposed\5.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p> 2 右键App文件夹创建一个assets目录</p>
+</blockquote>
+<p><img src="\img\AndroidStudio下使用Xposed\4.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p> 3 在assets目录下新建一个名为xposed_init的文件。<br>  4 在xposed_init中写入某个IXposedHookLoadPackage子类的完整类名，如：com.main.mario.HookMain。</p>
+</blockquote>
+<p><img src="\img\AndroidStudio下使用Xposed\6.png" alt="Mario" title="Mario"></p>
+<h3 id="Hook任意java层函数"><a href="#Hook任意java层函数" class="headerlink" title="Hook任意java层函数"></a>Hook任意java层函数</h3><p>　　在上面终于搭建好了框架, 现在可以写hook的逻辑代码啦</p>
+<blockquote>
+<p>测试被hook的主角</p>
+</blockquote>
+<p>  <img src="\img\AndroidStudio下使用Xposed\7.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p>hook的代码</p>
+</blockquote>
+<p>  <img src="\img\AndroidStudio下使用Xposed\8.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p>函数介绍</p>
+</blockquote>
+<p>XposedHelpers.findAndHookMethod([hook目的类的全包名],<br>　　　　　　　　　　　　　　　　　　[目标类的classloader],<br>　　　　　　　　　　　　　　　　　　[要hook的方法],<br>　　　　　　　　　　　　　　　　　　[…不定参的参数类型]<br>　　　　　　　　　　　　　　　　　　new XC_MethodHook())<br>XC_MethodHook用于编写注入的代码逻辑;</p>
+<p>指定HOOK时机的虚函数:<br>　（beforeHookedMethod） 执行前拦截, 在方法执行前先执行我们自己的代码<br>　（afterHookedMethod）  执行后拦截, 在方法执行后再执行我们自己的代码。</p>
+<p>对于回调过来的参数MethodHookParam param：<br>　　param.args[0]：得到被拦截方法的第一个参数，返回值是Object<br>　　param.getResult()：得到被拦截方法的执行结果，返回值是Object</p>
+<p>　</p>
+<blockquote>
+<p>激活插件</p>
+</blockquote>
+<p>　把被Hook和hook的程序安装后, 进入XposedInstaller激活该模块, 并重启系统</p>
+<p><img src="\img\AndroidStudio下使用Xposed\9.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p>查看Hook结果</p>
+</blockquote>
+<p>　　hook前:<br><img src="\img\AndroidStudio下使用Xposed\10.png" alt="Mario" title="Mario"><br>　　hook后:<br><img src="\img\AndroidStudio下使用Xposed\11.png" alt="Mario" title="Mario"></p>
+<h2 id="遇到的一些坑"><a href="#遇到的一些坑" class="headerlink" title="遇到的一些坑"></a>遇到的一些坑</h2><p>为什么这个标题这么大的, 因为这个问题坑了我几个小时, 最后还是感谢大佬@DeelMind</p>
+<p>使用新版AndroidStudio开发Xposed需要注意一下几点:</p>
+<blockquote>
+<p>1 在添加api依赖库后, Bulid -&gt; Edit Library and … 选择刚刚添加的库把Scope修改为CompileOnly</p>
+</blockquote>
+<p>  <img src="\img\AndroidStudio下使用Xposed\12.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p>2 在build.gradle里把<br>  <strong>implementation</strong> fileTree(include: [‘*.jar’], dir: ‘libs’)<br>  修改为<br>  <strong>compileOnly</strong> fileTree(include: [‘*.jar’], dir: ‘libs’)</p>
+</blockquote>
+<p>  <img src="\img\AndroidStudio下使用Xposed\13.png" alt="Mario" title="Mario"></p>
+<blockquote>
+<p>3 在File -&gt; setting &gt; InstantRun  里把 Enble Instant Run to …复选框取消</p>
+</blockquote>
+<p>  <img src="\img\AndroidStudio下使用Xposed\14.png" alt="Mario" title="Mario"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/24/提取office文档中的宏/" class="archive-article-date">
-  	<time datetime="2018-04-24T08:28:02.500Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/24/提取office文档中的宏/">提取office文档中的宏</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/24/记不住却用常用的C代码/" class="archive-article-date">
-  	<time datetime="2018-04-24T06:56:26.620Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/24/记不住却用常用的C代码/">记不住却用常用的代码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/23/ole储存格式/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:50:19.748Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/23/ole储存格式/">复合文档Ole对象二进制储存格式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">非PE</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hook框架</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/09/AndroidStudio下使用Xposed/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/29/MarkDown语法/" class="archive-article-date">
-  	<time datetime="2018-01-29T03:46:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/08/iOS开发之Objective-C之KVC、KVO/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS开发之Objective-C之KVC、KVO</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/29/MarkDown语法/">MarkDown语法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -336,8 +424,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
