@@ -140,6 +140,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Frida_Js_Api小记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/14/Frida_Js_Api小记/">Frida知识小记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/14/Frida_Js_Api小记/" class="archive-article-date">
+  	<time datetime="2018-06-14T12:18:42.442Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　这个长期更新的…主要记录学习和常用到的Frida_Js_API</p>
+<h3 id="dump内存"><a href="#dump内存" class="headerlink" title="dump内存"></a>dump内存</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Module.findBaseAddress(<span class="string">'x.so'</span>); <span class="comment">//用于寻找指定so的基址</span></span><br><span class="line">Memory.readByteArray(addr, length); <span class="comment">//读取内存返回数组</span></span><br><span class="line">hexdump(buf, &#123;                     <span class="comment">//dump指定内存</span></span><br><span class="line">                offset: <span class="number">0</span>,   <span class="comment">//从何处开始</span></span><br><span class="line">                length: <span class="number">64</span>, <span class="comment">//长度</span></span><br><span class="line">                header: <span class="literal">true</span>,</span><br><span class="line">                ansi: <span class="literal">true</span> <span class="comment">//是否是ansi</span></span><br><span class="line">                &#125;));</span><br></pre></td></tr></table></figure>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int64(v)：&gt;&gt; <span class="keyword">new</span> Int64(v)</span><br><span class="line">uint64(v)：&gt;&gt; <span class="keyword">new</span> UInt64(v)</span><br><span class="line">ptr(s)：&gt;&gt; <span class="keyword">new</span> NativePointer(s)</span><br><span class="line">NULL：&gt;&gt; ptr(<span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="延迟调用与重复调用"><a href="#延迟调用与重复调用" class="headerlink" title="延迟调用与重复调用"></a>延迟调用与重复调用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id = setTimeout(fn, delay) <span class="comment">//延迟调用</span></span><br><span class="line">id = setInterval(fn, delay) <span class="comment">//定时调用</span></span><br><span class="line">clearInterval(id) <span class="comment">//取消定时调用</span></span><br></pre></td></tr></table></figure>
+<h3 id="Process模块"><a href="#Process模块" class="headerlink" title="Process模块"></a>Process模块</h3><p><strong>Process.arch</strong>：属性包含字符串ia32，x64，arm 或arm64<br><strong>Process.platform</strong>：属性包含字符串windows，  darwin，linux或qnx<br><strong>Process.pageSize</strong>：包含虚拟内存页面大小（以字节为单位）的属性。这用于使脚本更加便携。<br><strong>Process.pointerSize</strong>：包含指针大小（以字节为单位）的属性。这用于使脚本更加便携。<br><strong>Process.isDebuggerAttached()</strong>：返回一个指示调试器当前是否连接的布尔值<br><strong>Process.getCurrentThreadId()</strong>：获取此线程的操作系统特定的id作为数字<br><strong>Process.enumerateThreads(callbacks)</strong>：枚举所有线程，其中callbacks是一个对象，指定：<br>　　onMatch: function (thread)：用thread对象调用包含：<br>　　id：操作系统特定的ID<br>　　state：字符串指定是running，stopped，waiting， uninterruptible或halted<br>　　context：与键对象pc和sp，其是指定EIP / RIP / PC分别<br>　　<br>　　onComplete: function ()：在结束时调用</p>
+<h4 id="枚举线程例子："><a href="#枚举线程例子：" class="headerlink" title="枚举线程例子："></a>枚举线程例子：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Process.enumerateThreads(&#123;</span><br><span class="line">    onMatch: <span class="function"><span class="keyword">function</span> (<span class="params">thread</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        send(thread.id);</span><br><span class="line">        send(thread.state);</span><br><span class="line">    &#125;,</span><br><span class="line">    onComplete: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        send(<span class="string">'end'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>Process.enumerateThreadsSync()</strong>：同步版本的enumerateThreads()，返回线程数组。<br><strong>Process.findModuleByAddress(address)</strong>，<br><strong>Process.getModuleByAddress(address)</strong>，<br><strong>Process.findModuleByName(name)</strong>，<br><strong>Process.getModuleByName(name)</strong>：顾名思义根据模块名或地址互查。如果找不到这样的模块，find -prefixed函数会返回null，而get -prefixed函数会抛出异常<br><strong>Process.enumerateModules(callbacks)</strong>：枚举所有线程，其中callbacks是一个对象，指定：<br>　onMatch: function (module)：用module对象调用包含：<br>　　name：规范模块名称作为字符串<br>　　base：基地址为 NativePointer<br>　　size：大小以字节为单位<br>　　path：完整的文件系统路径作为一个字符串<br>　　此函数可能会返回字符串stop以提前取消枚举。</p>
+<p>　onComplete: function ()在结束时调用</p>
+<h4 id="枚举模块例子："><a href="#枚举模块例子：" class="headerlink" title="枚举模块例子："></a>枚举模块例子：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Process.enumerateModules(&#123;</span><br><span class="line">    onMatch: <span class="function"><span class="keyword">function</span> (<span class="params">module</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        send(<span class="built_in">module</span>.name);</span><br><span class="line">    &#125;,</span><br><span class="line">    onComplete: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        send(<span class="string">'end'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>Process.enumerateModulesSync()：同步版本  enumerateModules()</p>
+<h3 id="Module模块"><a href="#Module模块" class="headerlink" title="Module模块"></a>Module模块</h3><p><strong>Module.emuerateImports(name, callbacks):</strong><br>枚举模块 name 的导入表，枚举到一个导入项的时候回调callbacks, callbacks包含下面2个回调：<br>　onMatch: function(imp): 枚举到一个导入项到时候会被调用，imp包含如下的字段：<br>　　type，导入项的类型， 取值范围是 function或者variable<br>　　name，导入项的名称<br>　　module，模块名称<br>　　address，导入项的绝对地址<br>以上所有的属性字段，只有 name 字段是一定会有，剩余的其他字段不能保证都有，底层会尽量保证每个字段都能给出数据，但是不能保证一定能拿到数据，onMatch函数可以返回字符串 stop 表示要停止枚举。<br>　onComplete: function(): 当所有的导入表项都枚举完成的时候会回调</p>
+<p><strong>Module.eumerateImportsSync(name)</strong>: enumerateImports()的同步版本<br><strong>Module.emuerateExports(name, callbacks)</strong>: 枚举指定模块 name 的导出表项，结果用 callbacks 进行回调<br>　onMatch: function(exp): 其中 exp 代表枚举到的一个导出项，包含如下几个字段：<br>　　type，导入项的类型， 取值范围是 function或者variable<br>　　name，导入项的名称<br>　　module，模块名称<br>　　address，导入项的绝对地址<br>　onComplete: function(): 当所有的导入表项都枚举完成的时候会回调<br><strong>Module.enumerateExportsSync()</strong>: Module.enumerateExports()的同步版本<br><strong>Module.enumerateSymbols(name, callbacks)</strong>: 枚举指定模块中包含的符号，枚举结果通过回调进行通知：<br>　onMatch: function(sym): 其中 sym 包含下面几个字段：<br>　　isGlobal，布尔值，表示符号是否全局可见<br>　　type，符号的类型，取值是下面其中一种：<br>　　　undefined<br>　　　absolute<br>　　　section<br>　　　indirect<br>　　section，如果这个字段不为空的话，那这个字段包含下面几个属性：<br>　　id，小节序号，段名，节名<br>　　protection，保护属性类型， rwx这样的属性<br>　　name，符号名称<br>　　address，符号的绝对地址，NativePointer<br>　这个函数返回 stop 的时候，表示要结束枚举过程</p>
+<p><strong>Module.findBaseAddress(name)</strong>: 获取指定模块的基地址<br><strong>Module.findExportByName(module | null, exp)</strong>: 返回模块module 内的导出项的绝对地址，如果模块名不确定，第一个参数传入 null，这种情况下会增大查找开销，尽量不要使用。</p>
+<p>###　ModuleMap模块<br><strong>new ModuleMap([filter])</strong>: 可以理解为内存模块快照，主要目的是可以作为一个模块速查表，比如你可以用这个快照来快速定位一个具体的地址是属于哪个模块。创建ModuleMap的时候，就是对目标进程当前加载的模块的信息作一个快照，后续想要更新这个快照信息的时候，可以使用 update 进行更新。 这个 filter 参数是可选的，主要是用来过滤你关心的模块，可以用来缩小快照的范围（注意：filter是过滤函数，不是字符串参数），为了让模块进入这个快照里，过滤函数的返回值要设置为true，反之设为false，如果后续内存中的模块加载信息更新了， 还会继续调用这个filter函数。<br><strong>has(address)</strong>: 检查 address 这个地址是不是包含在ModuleMap里面，返回bool值<br><strong>find(address), get(address)</strong>: 返回 address 地址所指向的模块对象详细信息，如果不存在 find 返回null，get 直接会抛出异常，具体的返回的对象的详细信息，可以参考 Process.enumerateModules()<br><strong>findName(address), getName(address), findPath(address), getPath(address)</strong>: 功能跟 find(), get() 类似，但是只返回 name 或者 path 字段，可以省点开销<br><strong>update()</strong>: 更新ModuleMap信息，如果有模块加载或者卸载，最好调用一次，免得使用旧数据。</p>
+<p>###　Memory模块<br><strong>Memory.scan</strong>(address, size, pattern, callbacks):<br>　在 address 开始的地址，size 大小的内存范围内以 pattern 这个模式进行匹配查找，查找到一个内存块就回调callbacks<br>各个参数详细如下：<br>　pattern 比如使用13 37 ?? ff来匹配0x13开头，然后跟着0x37，然后是任意字节内容，接着是0xff这样的内存块<br>　callbacks 是扫描函数回调对象：<br>　　onMatch: function(address, size): 扫描到一个内存块，起始地址是address，大小size的内存块，返回 stop 表示停止扫描<br>　　onError: function(reason): 扫描内存的时候出现内存访问异常的时候回调<br>　　onComplete: function(): 内存扫描完毕的时候调用<br><strong>Memory.scanSync(address, size, pattern)</strong>: 内存扫描 scan() 的同步版本<br><strong>Memory.alloc(size)</strong>: 在目标进程中的堆上申请size大小的内存，并且会按照Process.pageSize对齐，返回一个NativePointer，并且申请的内存如果在JavaScript里面没有对这个内存的使用的时候会自动释放的。也就是说，如果你不想要这个内存被释放，你需要自己保存一份对这个内存块的引用。<br><strong>Memory.copy(dust, src, n)</strong>: 就像是memcpy<br><strong>Memory.dup(address, size)</strong>: 等价于 Memory.alloc()和Memory.copy()的组合。<br><strong>Memory.protect(address, size, protection)</strong>: 更新address开始，size大小的内存块的保护属性，protection 的取值参考 Process.enumerateRanges()，比如：Memory.protect(ptr(“0x123”, 4096, ‘rw-‘));</p>
+<h3 id="Hook一个Java类"><a href="#Hook一个Java类" class="headerlink" title="Hook一个Java类"></a>Hook一个Java类</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> MainActivity = Java.use([packname]);</span><br><span class="line">    MainActivity.onClick.implementation = <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">        send(<span class="string">"Hook Start..."</span>);</span><br><span class="line">        <span class="keyword">this</span>.onClick(v);</span><br><span class="line">        <span class="keyword">this</span>.n.value = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.m.value = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">this</span>.cnt.value = <span class="number">999</span>;</span><br><span class="line">        send(<span class="string">"Success!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">hook 框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/14/Frida_Js_Api小记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-AndroidStudio下使用Xposed" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -870,81 +963,6 @@
 
 
   
-    <article id="post-2018年4月24日" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/2018年4月24日/">New Begin</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/24/2018年4月24日/" class="archive-article-date">
-  	<time datetime="2018-04-24T08:37:45.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="2018年4月24日-16-38-04-阴雨天"><a href="#2018年4月24日-16-38-04-阴雨天" class="headerlink" title="2018年4月24日 16:38:04 阴雨天"></a>2018年4月24日 16:38:04 阴雨天</h2><p><br><br><br>&ensp;&ensp;&ensp;&ensp;<font color="#00ffff" size="3">准备把这个窝的内容丰富起来</font></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">吐槽</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/2018年4月24日/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1063,7 +1081,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hook框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,19 +1101,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hook框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">逆向工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
