@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Frida知识小记 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API dump内存12345678Module.findBaseAddress(&apos;x.so&apos;); //用于寻找指定so的基址Memory.readByteArray(addr, length); //读取内存返回数组hexdump(buf, &amp;#123;                     //dump指定内存">
+  <meta name="description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API">
 <meta name="keywords" content="Android逆向,hook 框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Frida知识小记">
 <meta property="og:url" content="http://yoursite.com/2018/06/14/Frida_Js_Api小记/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API dump内存12345678Module.findBaseAddress(&apos;x.so&apos;); //用于寻找指定so的基址Memory.readByteArray(addr, length); //读取内存返回数组hexdump(buf, &amp;#123;                     //dump指定内存">
+<meta property="og:description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-15T11:59:19.403Z">
+<meta property="og:updated_time" content="2018-09-06T08:34:00.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frida知识小记">
-<meta name="twitter:description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API dump内存12345678Module.findBaseAddress(&apos;x.so&apos;); //用于寻找指定so的基址Memory.readByteArray(addr, length); //读取内存返回数组hexdump(buf, &amp;#123;                     //dump指定内存">
+<meta name="twitter:description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -164,6 +164,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>　这个长期更新的…主要记录学习和常用到的Frida_Js_API</p>
+<a id="more"></a>
 <h3 id="dump内存"><a href="#dump内存" class="headerlink" title="dump内存"></a>dump内存</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Module.findBaseAddress(<span class="string">'x.so'</span>); <span class="comment">//用于寻找指定so的基址</span></span><br><span class="line">Memory.readByteArray(addr, length); <span class="comment">//读取内存返回数组</span></span><br><span class="line">hexdump(buf, &#123;                     <span class="comment">//dump指定内存</span></span><br><span class="line">                offset: <span class="number">0</span>,   <span class="comment">//从何处开始</span></span><br><span class="line">                length: <span class="number">64</span>, <span class="comment">//长度</span></span><br><span class="line">                header: <span class="literal">true</span>,</span><br><span class="line">                ansi: <span class="literal">true</span> <span class="comment">//是否是ansi</span></span><br><span class="line">                &#125;));</span><br></pre></td></tr></table></figure>
 <h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int64(v)：&gt;&gt; <span class="keyword">new</span> Int64(v)</span><br><span class="line">uint64(v)：&gt;&gt; <span class="keyword">new</span> UInt64(v)</span><br><span class="line">ptr(s)：&gt;&gt; <span class="keyword">new</span> NativePointer(s)</span><br><span class="line">NULL：&gt;&gt; ptr(<span class="string">"0"</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="延迟调用与重复调用"><a href="#延迟调用与重复调用" class="headerlink" title="延迟调用与重复调用"></a>延迟调用与重复调用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id = setTimeout(fn, delay) <span class="comment">//延迟调用</span></span><br><span class="line">id = setInterval(fn, delay) <span class="comment">//定时调用</span></span><br><span class="line">clearInterval(id) <span class="comment">//取消定时调用</span></span><br></pre></td></tr></table></figure>
@@ -286,6 +287,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/09/06/Android黑盒利用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          利用Xposed对Android的so黑盒利用
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/09/AndroidStudio下使用Xposed/" id="article-nav-older" class="article-nav-link-wrap">
@@ -436,6 +446,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
@@ -461,10 +475,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">逆向工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
