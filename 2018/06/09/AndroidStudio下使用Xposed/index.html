@@ -5,36 +5,36 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://StriveMario.cn">
   <title>AndroidStudio下使用Xposed | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!">
 <meta name="keywords" content="Android,hook框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AndroidStudio下使用Xposed">
-<meta property="og:url" content="http://yoursite.com/2018/06/09/AndroidStudio下使用Xposed/index.html">
+<meta property="og:url" content="http://StriveMario.cn/2018/06/09/AndroidStudio下使用Xposed/index.html">
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/1.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/2.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/3.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/5.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/4.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/6.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/7.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/8.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/9.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/10.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/11.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/12.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/13.png">
-<meta property="og:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/14.png">
+<meta property="og:locale" content="CH">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/1.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/2.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/3.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/5.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/4.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/6.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/7.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/8.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/9.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/10.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/11.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/12.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/13.png">
+<meta property="og:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/14.png">
 <meta property="og:updated_time" content="2018-06-09T09:39:38.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AndroidStudio下使用Xposed">
 <meta name="twitter:description" content="最近忙的没时间更博, 之前计划的iOS方向也搁置了(没错就是懒), 因为小组转型又要重新拾起Android逆向, 最近可能会写一些Android方面的内容, 之前都是用Eclipse来用Xposed, 今天试一下准备把代码全转到AndroidStudio上, 在这里做个记录吧!">
-<meta name="twitter:image" content="http://yoursite.com/img/AndroidStudio下使用Xposed/1.png">
+<meta name="twitter:image" content="http://strivemario.cn/img/AndroidStudio下使用Xposed/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -352,7 +352,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/09/AndroidStudio下使用Xposed/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.cn/2018/06/09/AndroidStudio下使用Xposed/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -524,10 +524,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
@@ -536,23 +532,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +548,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
+                <a href="javascript:void(0)" class="js-tag color4">window开发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,10 +629,6 @@ MathJax.Hub.Queue(function() {
           
             <li class="search-li">
               <a href="http://deelmind.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>deelmind</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://ring3.xyz/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>YLLEN</a>
             </li>
           
         </ul>

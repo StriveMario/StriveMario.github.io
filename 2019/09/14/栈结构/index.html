@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.cn">
-  <title>关于我 | Mario</title>
+  <title>栈的结构 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个拼命生存, 却又想要追求自由的人儿;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://StriveMario.cn/resume/index.html">
+  <meta name="description" content="1. 什么是堆栈?">
+<meta name="keywords" content="window开发,C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="栈的结构">
+<meta property="og:url" content="http://StriveMario.cn/2019/09/14/栈结构/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="一个拼命生存, 却又想要追求自由的人儿;">
+<meta property="og:description" content="1. 什么是堆栈?">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2018-04-26T09:51:12.497Z">
+<meta property="og:image" content="https://i.loli.net/2019/09/14/chQVrFNUkjB9EeG.png">
+<meta property="og:updated_time" content="2019-09-14T07:51:27.380Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="一个拼命生存, 却又想要追求自由的人儿;">
+<meta name="twitter:title" content="栈的结构">
+<meta name="twitter:description" content="1. 什么是堆栈?">
+<meta name="twitter:image" content="https://i.loli.net/2019/09/14/chQVrFNUkjB9EeG.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -142,30 +145,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-栈结构" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于我
+      栈的结构
     </h1>
   
 
         
-        <a href="/resume/index.html" class="archive-article-date">
-  	<time datetime="2018-04-26T09:51:12.497Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
+        <a href="/2019/09/14/栈结构/" class="archive-article-date">
+  	<time datetime="2019-09-14T10:37:31.765Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><br><br><br><br><br></p>
-<blockquote>
-<p> <font color="#00ffff" face="黑体">一个拼命生存, 却又想要追求自由的人儿;</font><br></p>
-</blockquote>
+        <h3 id="1-什么是堆栈"><a href="#1-什么是堆栈" class="headerlink" title="1. 什么是堆栈?"></a>1. 什么是堆栈?</h3><a id="more"></a>
+<p>堆栈是一种执行“后进先出”算法的数据结构<br>栈作为一种数据结构,是一种只能在一端进行插入和删除操作的特殊线性表.它按照后进先出的原则存储数据,先进入的数据被压入栈底,最后的数据在栈顶,需要读数据的时候从栈顶开始弹出数据（最后一个数据被第一个读出来）.栈具有记忆作用,对栈的插入与删除操作中,不需要改变栈底指针</p>
+<h3 id="2-堆栈的操作"><a href="#2-堆栈的操作" class="headerlink" title="2. 堆栈的操作"></a>2. 堆栈的操作</h3><h4 id="压栈"><a href="#压栈" class="headerlink" title="压栈:"></a>压栈:</h4><p>好比有一个箱子,你一本一本放书进去,最先放进去的书本在最底层,最后的书本在最上层(这叫做压栈)</p>
+<h4 id="出栈"><a href="#出栈" class="headerlink" title="出栈:"></a>出栈:</h4><p>如果你想拿出来,那么把最上面的书也就是最后放进去的书先拿出来,最先放进去的书最后才能拿出来(这叫做出栈)</p>
+<p><img src="https://i.loli.net/2019/09/14/chQVrFNUkjB9EeG.png" alt="screenShot.png"></p>
 
       
 
@@ -195,6 +199,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -245,7 +264,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.cn/resume/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.cn/2019/09/14/栈结构/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -257,6 +276,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/14/VC6的快捷键/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">VS快捷键和一些编译选项</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -307,7 +336,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
