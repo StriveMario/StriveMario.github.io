@@ -143,31 +143,29 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-IOS开发之内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++/友元函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/IOS开发之内存管理/">iOS开发之内存管理</a>
+      <a class="article-title" href="/2019/09/15/C++/友元函数/">C++ - 友元函数</a>
     </h1>
   
 
         
-        <a href="/2018/05/06/IOS开发之内存管理/" class="archive-article-date">
-  	<time datetime="2018-05-06T07:50:12.870Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
+        <a href="/2019/09/15/C++/友元函数/" class="archive-article-date">
+  	<time datetime="2019-09-15T08:07:08.439Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这章很简单, 基本和C++是一样的, 利用引用计数管理内存中的对象</p>
-<h3 id="用例子看一下引用计数器的知识："><a href="#用例子看一下引用计数器的知识：" class="headerlink" title="用例子看一下引用计数器的知识："></a>用例子看一下引用计数器的知识：</h3><p>Person.h</p>
-  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 属性</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+        <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/2018/05/06/IOS开发之内存管理/#more">查看更多 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/友元函数/#more">查看更多 >></a>
         
       
 
@@ -181,330 +179,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/IOS开发之内存管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IOS开发之Objective-C之协议、代码块、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/">iOS开发之Objective-C之协议、代码块、分类</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/" class="archive-article-date">
-  	<time datetime="2018-05-06T06:10:36.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="protocol-协议"><a href="#protocol-协议" class="headerlink" title="protocol(协议)"></a>protocol(协议)</h3><blockquote>
-<p>在ObjC中使用@protocol定义一组方法规范，实现此协议的类必须实现对应的方法。也就是说在ObjC中@protocol和其他语言的接口定义是类似的，只是在ObjC中interface关键字已经用于定义类了，因此它不会再像C#、Java中使用interface定义接口了。</p>
-</blockquote>
-<ul>
-<li>定义一个协议</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个协议</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">AnimalDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span> <span class="comment">//必须实现的方法</span></span><br><span class="line">-(<span class="keyword">void</span>)eat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span> <span class="comment">//可选实现的方法</span></span><br><span class="line">-(<span class="keyword">void</span>)run;</span><br><span class="line">-(<span class="keyword">void</span>)say;</span><br><span class="line">-(<span class="keyword">void</span>)sleep;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/IOS开发之Objective-C之协议、代码块、分类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IOS开发之Objective-C之类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/05/IOS开发之Objective-C之类和对象/">iOS开发之Objective-C之类和对象</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/05/IOS开发之Objective-C之类和对象/" class="archive-article-date">
-  	<time datetime="2018-05-05T11:55:15.720Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="类成员公私属性"><a href="#类成员公私属性" class="headerlink" title="类成员公私属性"></a>类成员公私属性</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@private</span></span><br><span class="line">  <span class="built_in">NSString</span> *_name;<span class="comment">//在ObjC中推荐成员变量名以_开头</span></span><br><span class="line">  <span class="keyword">int</span> _age;</span><br><span class="line"><span class="keyword">@protected</span></span><br><span class="line">  <span class="built_in">NSString</span> *_nation;</span><br><span class="line"><span class="keyword">@public</span></span><br><span class="line">  <span class="keyword">float</span> height;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">NSString</span> *birthday;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C之类和对象/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C之类和对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IOS开发之Objective-C 简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/05/IOS开发之Objective-C 简介/">iOS开发之Objective-C 简介</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/05/IOS开发之Objective-C 简介/" class="archive-article-date">
-  	<time datetime="2018-05-05T07:53:56.878Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObjC的语法主要基于smalltalk进行设计的(乔布斯真的叼啊)</span><br></pre></td></tr></table></figure>
-<h3 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyClass</span>:<span class="title">NSObject</span></span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// 类变量声明</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类属性声明</span></span><br><span class="line"><span class="comment">// 类方法和声明</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-<p>执行MyClass.m文件，如下所示<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="comment">// 类方法定义</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="静态方法和类方法"><a href="#静态方法和类方法" class="headerlink" title="静态方法和类方法"></a>静态方法和类方法</h3><p>Objective C中声明的方法如下所示:<br></p>
-<blockquote>
-<p><strong>-(返回类型)方法名:(变量1类型) 变量1 :(变量2类型)变量2;</strong></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C 简介/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/05/IOS开发之Objective-C 简介/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IOS逆向工具介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/04/IOS逆向工具介绍/">iOS逆向工具介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/04/IOS逆向工具介绍/" class="archive-article-date">
-  	<time datetime="2018-05-04T12:20:29.188Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<h3 id="监测工具"><a href="#监测工具" class="headerlink" title="监测工具"></a>监测工具</h3><h4 id="class-dump"><a href="#class-dump" class="headerlink" title="class-dump"></a>class-dump</h4><blockquote>
-<p>class-dump， 顾名思义， 就是用来dump目标对象的class信息的工具。 它利用Objective-C语言的runtime特性将存储在Mach-O文件中的头文件信息提取出来， 并生成对应的.h文件</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/05/04/IOS逆向工具介绍/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IOS逆向</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">逆向工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -514,7 +193,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/04/IOS逆向工具介绍/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/友元函数/">展开全文 >></a>
         </p>
       
 
@@ -544,31 +223,29 @@
 
 
   
-    <article id="post-使用IDA调试so或NDK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++/C++虚继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/26/使用IDA调试so或NDK/">使用IDA调试so或NDK</a>
+      <a class="article-title" href="/2019/09/15/C++/C++虚继承/">C++ - 虚继承机制</a>
     </h1>
   
 
         
-        <a href="/2018/04/26/使用IDA调试so或NDK/" class="archive-article-date">
-  	<time datetime="2018-04-26T08:11:33.363Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
+        <a href="/2019/09/15/C++/C++虚继承/" class="archive-article-date">
+  	<time datetime="2019-09-15T08:02:02.580Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><br></p>
-<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h3><ul>
-<li><p>首先无论是调试NDK还是so都需要把IDA的调试服务器push进Android系统中运行</p>
+        <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/2018/04/26/使用IDA调试so或NDK/#more">查看更多 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/C++虚继承/#more">查看更多 >></a>
         
       
 
@@ -582,94 +259,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android调试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/26/使用IDA调试so或NDK/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Frida Hook框架初试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/25/Frida Hook框架初试/">Frida Hook框架初试</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/25/Frida Hook框架初试/" class="archive-article-date">
-  	<time datetime="2018-04-25T12:07:41.322Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><a href="https://www.frida.re/" target="_blank" rel="noopener">Frida官网</a></p>
-<h3 id="1-什么是Frida"><a href="#1-什么是Frida" class="headerlink" title="1.什么是Frida ?"></a>1.什么是Frida ?</h3><ul>
-<li><p>它是一个将JavaScript注入到目标进程的工具，适用于Windows、macOS、Linux、iOS、Android和QNX。JavaScript采用的Google开源的JavaScript V8引擎。 通过JavaScript脚本可以注入到目标进程执行自定义代码。Hook任意函数、监控加密API或者跟踪应用程序代码。依赖于任何软件或硬件断点的代码追踪。有很多种方式来使用Frida。Python、Swift、.NET、Qt/Qml、C和Node.js。本文主要讨论Python和C方式使用Frida。</p>
-</li>
-<li><p>这里我们只尝试 [windows平台] [python调用] [HOOK安卓代码]</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/04/25/Frida Hook框架初试/#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">hook 框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -679,7 +273,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/25/Frida Hook框架初试/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/C++虚继承/">展开全文 >></a>
         </p>
       
 
@@ -709,29 +303,30 @@
 
 
   
-    <article id="post-2018年4月24日" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++/虚函数补充" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/2018年4月24日/">New Begin</a>
+      <a class="article-title" href="/2019/09/15/C++/虚函数补充/">C++ - 虚函数补充</a>
     </h1>
   
 
         
-        <a href="/2018/04/24/2018年4月24日/" class="archive-article-date">
-  	<time datetime="2018-04-24T08:37:45.435Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+        <a href="/2019/09/15/C++/虚函数补充/" class="archive-article-date">
+  	<time datetime="2019-09-15T07:53:44.496Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="2018年4月24日-16-38-04-阴雨天"><a href="#2018年4月24日-16-38-04-阴雨天" class="headerlink" title="2018年4月24日 16:38:04 阴雨天"></a>2018年4月24日 16:38:04 阴雨天</h2><p><br><br><br>&ensp;&ensp;&ensp;&ensp;<font color="#00ffff" size="3">准备把这个窝的内容丰富起来</font></p>
-
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/15/C++/虚函数补充/#more">查看更多 >></a>
+        
       
 
       
@@ -744,7 +339,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">吐槽</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -754,7 +353,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/2018年4月24日/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/虚函数补充/">展开全文 >></a>
         </p>
       
 
@@ -784,33 +383,30 @@
 
 
   
-    <article id="post-提取office文档中的宏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++/C++虚函数的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/提取office文档中的宏/">提取office文档中的宏</a>
+      <a class="article-title" href="/2019/09/15/C++/C++虚函数的使用/">C++ - 虚函数的使用</a>
     </h1>
   
 
         
-        <a href="/2018/04/24/提取office文档中的宏/" class="archive-article-date">
-  	<time datetime="2018-04-24T08:28:02.500Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+        <a href="/2019/09/15/C++/C++虚函数的使用/" class="archive-article-date">
+  	<time datetime="2019-09-15T07:37:17.818Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法:"></a>使用方法:</h2><pre><code>- OleDump.exe [docpath]
-</code></pre><ul>
-<li>运行之后选择.xls?|.doc?|.ppt?|.bin文件，会生成以模块名开头的文本文件，用记事本打开查看即可, 只支持2003或之前的版本, 之后的版本把文档改为.zip就可以拿出宏</li>
-</ul>
-<p><a href="https://pan.baidu.com/s/1Wdfdh_VbRTv9pdNXMhAN0A" target="_blank" rel="noopener">点我下载</a></p>
-
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/15/C++/C++虚函数的使用/#more">查看更多 >></a>
+        
       
 
       
@@ -823,7 +419,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -833,7 +433,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/提取office文档中的宏/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/C++虚函数的使用/">展开全文 >></a>
         </p>
       
 
@@ -863,33 +463,29 @@
 
 
   
-    <article id="post-记不住却用常用的C代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++/C++虚表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/记不住却用常用的C代码/">记不住却用常用的代码</a>
+      <a class="article-title" href="/2019/09/15/C++/C++虚表/">C++ - 虚表机制</a>
     </h1>
   
 
         
-        <a href="/2018/04/24/记不住却用常用的C代码/" class="archive-article-date">
-  	<time datetime="2018-04-24T06:56:26.620Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+        <a href="/2019/09/15/C++/C++虚表/" class="archive-article-date">
+  	<time datetime="2019-09-15T07:22:02.204Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h3 id="ASCII和Unicode互转"><a href="#ASCII和Unicode互转" class="headerlink" title="ASCII和Unicode互转"></a>ASCII和Unicode互转</h3><ul>
-<li>记得使用完delete空间</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ASCI -&gt; Unicode</span></span><br><span class="line"><span class="keyword">wchar_t</span>* trans(<span class="keyword">const</span> <span class="keyword">char</span> * ch, <span class="keyword">int</span> type = CP_ACP) &#123;</span><br><span class="line">	<span class="keyword">int</span> len = MultiByteToWideChar(type, <span class="number">0</span>, ch, <span class="number">-1</span>, <span class="literal">nullptr</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">wchar_t</span> *str = <span class="keyword">new</span> <span class="keyword">wchar_t</span>[len + <span class="number">1</span>];</span><br><span class="line">	wmemset(str, <span class="number">0</span>, len + <span class="number">1</span>);</span><br><span class="line">	MultiByteToWideChar(type, <span class="number">0</span>, ch, <span class="number">-1</span>, str, len);</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Unicode -&gt; ASCI</span></span><br><span class="line"><span class="comment">// 当type为CP_ACP时，UNICODE转化为GBK；当type为CP_UTF8时，UNICODE转化为UTF8  </span></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">trans</span><span class="params">(<span class="keyword">const</span> <span class="keyword">wchar_t</span> * wch, <span class="keyword">int</span> type = CP_ACP)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = WideCharToMultiByte(type, <span class="number">0</span>, wch, <span class="number">-1</span>, <span class="literal">nullptr</span>, <span class="number">0</span>, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">	<span class="keyword">char</span> *str = <span class="keyword">new</span> <span class="keyword">char</span>[len + <span class="number">1</span>];</span><br><span class="line">	<span class="built_in">memset</span>(str, <span class="number">0</span>, len + <span class="number">1</span>);</span><br><span class="line">	WideCharToMultiByte(type, <span class="number">0</span>, wch, <span class="number">-1</span>, str, len, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/2018/04/24/记不住却用常用的C代码/#more">查看更多 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/C++虚表/#more">查看更多 >></a>
         
       
 
@@ -903,7 +499,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
@@ -913,7 +513,407 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/记不住却用常用的C代码/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/15/C++/C++虚表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++/C++继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/15/C++/C++继承/">C++ - 继承机制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/15/C++/C++继承/" class="archive-article-date">
+  	<time datetime="2019-09-15T07:16:01.633Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/15/C++/C++继承/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/15/C++/C++继承/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++/初始化列表(list)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/15/C++/初始化列表(list)/">C++ - 类初始化列表/类Const成员</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/15/C++/初始化列表(list)/" class="archive-article-date">
+  	<time datetime="2019-09-15T07:04:14.341Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/15/C++/初始化列表(list)/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/15/C++/初始化列表(list)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++/构造函数和析构函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/15/C++/构造函数和析构函数/">C++ - 构造/析构/New/Delete</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/15/C++/构造函数和析构函数/" class="archive-article-date">
+  	<time datetime="2019-09-15T05:17:02.337Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/15/C++/构造函数和析构函数/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/15/C++/构造函数和析构函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++/缺省参数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/C++/缺省参数/">C++ - 缺省参数</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/14/C++/缺省参数/" class="archive-article-date">
+  	<time datetime="2019-09-14T13:41:30.836Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/14/C++/缺省参数/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/14/C++/缺省参数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C++/OverLoad (重载) - 函数重载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/C++/OverLoad (重载) - 函数重载/">C++ - OverLoad (重载) - 函数重载</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/14/C++/OverLoad (重载) - 函数重载/" class="archive-article-date">
+  	<time datetime="2019-09-14T13:24:33.157Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/2019/09/14/C++/OverLoad (重载) - 函数重载/#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/14/C++/OverLoad (重载) - 函数重载/">展开全文 >></a>
         </p>
       
 
@@ -945,7 +945,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1061,10 +1061,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
@@ -1073,7 +1069,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1085,15 +1081,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1118,6 +1118,30 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
             
             <div class="clearfix"></div>
