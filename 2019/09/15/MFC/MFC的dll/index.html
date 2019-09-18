@@ -41,6 +41,7 @@
   
   <link rel="stylesheet" href="/lib/gitalk/gitalk.css">
   <script src="/lib/gitalk/gitalk.min.js"></script>
+  <script src="/lib/gitalk/md5.js"></script>
   
 </head>
 
@@ -331,7 +332,6 @@
   
   <div class="gitalk">
     <div id="gitalk-container"></div>
-    <script src="/js/src/md5.min.js"></script>
     <script type="text/javascript">
         const gitalk = new Gitalk({
             clientID: '805f9b5eebc221a5666c',
@@ -339,7 +339,7 @@
             repo: 'strivemario.github.io',
             owner: 'StriveMario',
             admin: ['StriveMario'],
-            id: location.pathname,      // Ensure uniqueness and length less than 50
+            id: md5(location.pathname),
             distractionFreeMode: false  // Facebook-like distraction free mode
         })
 
@@ -483,10 +483,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
@@ -495,11 +491,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,30 +535,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
               </li>
              
@@ -559,11 +551,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
