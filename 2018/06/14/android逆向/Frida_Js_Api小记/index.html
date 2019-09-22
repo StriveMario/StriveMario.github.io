@@ -9,14 +9,14 @@
   <title>Frida知识小记 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API">
-<meta name="keywords" content="Android逆向,hook 框架">
+<meta name="keywords" content="Android逆向,AndroidHook">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Frida知识小记">
 <meta property="og:url" content="http://StriveMario.cn/2018/06/14/android逆向/Frida_Js_Api小记/index.html">
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2018-09-06T08:34:00.106Z">
+<meta property="og:updated_time" content="2019-09-21T10:48:30.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Frida知识小记">
 <meta name="twitter:description" content="这个长期更新的…主要记录学习和常用到的Frida_Js_API">
@@ -229,7 +229,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">hook 框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">AndroidHook</a>
         		</li>
       		
 		</ul>
@@ -486,15 +486,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,19 +506,35 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window逆向</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,19 +546,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hook框架</a>
+                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+                <a href="javascript:void(0)" class="js-tag color2">AndroidHook</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">hook 框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,7 +566,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">逆向工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,23 +578,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+                <a href="javascript:void(0)" class="js-tag color5">脚本语言</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android调试</a>
+                <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">非PE</a>
               </li>
             
             <div class="clearfix"></div>
