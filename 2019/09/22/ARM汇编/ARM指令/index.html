@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.cn">
-  <title>ARM汇编 - ARM指令 | Mario</title>
+  <title>ARM汇编- ARM指令 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ARM指令格式 1234567891011121314151617181920212223242526272829图中圈出的为三地址指令格式;ARM是三地址指令格式，指令的基本格式如下：&amp;lt;opcode&amp;gt; &amp;#123;&amp;lt;cond&amp;gt;&amp;#125; &amp;#123;S&amp;#125;    &amp;lt;Rd&amp;gt; ,&amp;lt;Rn&amp;gt;&amp;#123;,&amp;lt;operand2&amp;gt;&amp;#12">
+  <meta name="description" content="之前的笔记搬运">
 <meta name="keywords" content="Android逆向,ARM汇编">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ARM汇编 - ARM指令">
+<meta property="og:title" content="ARM汇编- ARM指令">
 <meta property="og:url" content="http://StriveMario.cn/2019/09/22/ARM汇编/ARM指令/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="ARM指令格式 1234567891011121314151617181920212223242526272829图中圈出的为三地址指令格式;ARM是三地址指令格式，指令的基本格式如下：&amp;lt;opcode&amp;gt; &amp;#123;&amp;lt;cond&amp;gt;&amp;#125; &amp;#123;S&amp;#125;    &amp;lt;Rd&amp;gt; ,&amp;lt;Rn&amp;gt;&amp;#123;,&amp;lt;operand2&amp;gt;&amp;#12">
+<meta property="og:description" content="之前的笔记搬运">
 <meta property="og:locale" content="CH">
 <meta property="og:image" content="https://i.loli.net/2019/09/22/efCrADSplB1o4aT.png">
 <meta property="og:image" content="https://i.loli.net/2019/09/22/GhUEKPB4jVatZYp.png">
-<meta property="og:updated_time" content="2019-09-22T12:24:41.315Z">
+<meta property="og:updated_time" content="2019-09-22T12:49:37.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ARM汇编 - ARM指令">
-<meta name="twitter:description" content="ARM指令格式 1234567891011121314151617181920212223242526272829图中圈出的为三地址指令格式;ARM是三地址指令格式，指令的基本格式如下：&amp;lt;opcode&amp;gt; &amp;#123;&amp;lt;cond&amp;gt;&amp;#125; &amp;#123;S&amp;#125;    &amp;lt;Rd&amp;gt; ,&amp;lt;Rn&amp;gt;&amp;#123;,&amp;lt;operand2&amp;gt;&amp;#12">
+<meta name="twitter:title" content="ARM汇编- ARM指令">
+<meta name="twitter:description" content="之前的笔记搬运">
 <meta name="twitter:image" content="https://i.loli.net/2019/09/22/efCrADSplB1o4aT.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
@@ -159,7 +159,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ARM汇编 - ARM指令
+      ARM汇编- ARM指令
     </h1>
   
 
@@ -172,7 +172,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>之前的笔记搬运</p>
+<a id="more"></a>
 <h2 id="ARM指令格式"><a href="#ARM指令格式" class="headerlink" title="ARM指令格式"></a>ARM指令格式</h2><p><img src="https://i.loli.net/2019/09/22/efCrADSplB1o4aT.png" alt="23fd1b68dd6ba2aa5d5cb62375d53a5e.png"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">图中圈出的为三地址指令格式;</span><br><span class="line"></span><br><span class="line">ARM是三地址指令格式，指令的基本格式如下：</span><br><span class="line">&lt;opcode&gt; &#123;&lt;cond&gt;&#125; &#123;S&#125;    &lt;Rd&gt; ,&lt;Rn&gt;&#123;,&lt;operand2&gt;&#125; </span><br><span class="line">其中&lt;&gt;号内的项是必须的，&#123;&#125;号内的项是可选的。</span><br><span class="line"></span><br><span class="line">各项的说明如下：</span><br><span class="line">    opcode：指令助记符；    </span><br><span class="line">    cond：执行条件；</span><br><span class="line">    S：是否影响CPSR寄存器的值；</span><br><span class="line">    Rd：目标寄存器；</span><br><span class="line">    Rn：第1个操作数的寄存器；</span><br><span class="line">    operand2：第2个操作数；</span><br><span class="line">    I:  表示operand2是寄存器还是立即数</span><br><span class="line"></span><br><span class="line">例子： ADD R3， R1， R2</span><br><span class="line"></span><br><span class="line">其中第2个操作数</span><br><span class="line">&lt;opcode&gt; &#123;&lt;cond&gt;&#125; &#123;S&#125;  &lt;Rd&gt; ,&lt;Rn&gt;&#123;,&lt;operand2&gt;&#125; </span><br><span class="line"></span><br><span class="line">它有如下的形式：</span><br><span class="line">    #immed_8r——常数表达式；</span><br><span class="line">    ADD R3， R1， #1</span><br><span class="line">    Rm——寄存器方式；</span><br><span class="line">    ADD R3， R1， R2</span><br><span class="line">    Rm,shift——寄存器移位方式；</span><br><span class="line">    ADD R3， R1， LSL #1</span><br><span class="line"></span><br><span class="line">因为operand2的长度只有12bit, 所以无法表示很大的立即数, 所以operand2的常数表达式中的立即数会有着一些限制;</span><br></pre></td></tr></table></figure>
 <p>常数表达式表示立即数的方式:</p>
@@ -610,11 +611,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,10 +628,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,6 +643,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
               </li>
              
@@ -650,7 +655,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,15 +663,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,11 +671,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AndroidHook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,7 +679,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+                <a href="javascript:void(0)" class="js-tag color2">AndroidHook</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,7 +687,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,10 +708,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
