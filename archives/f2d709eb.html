@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>32位汇编- TEB与PEB | Mario</title>
+  <title>32位汇编- inlineHOOK | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="之前的笔记搬运">
 <meta name="keywords" content="window逆向,32位汇编">
 <meta property="og:type" content="article">
-<meta property="og:title" content="32位汇编- TEB与PEB">
-<meta property="og:url" content="http://StriveMario.work/archives/64079.html">
+<meta property="og:title" content="32位汇编- inlineHOOK">
+<meta property="og:url" content="http://StriveMario.work/archives/f2d709eb.html">
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="之前的笔记搬运">
 <meta property="og:locale" content="CH">
-<meta property="og:image" content="https://i.loli.net/2019/09/22/iPyMK53lNFIVqTU.png">
-<meta property="og:updated_time" content="2019-09-26T06:19:36.594Z">
+<meta property="og:image" content="https://i.loli.net/2019/09/26/14ghbQH9PYp7KEO.png">
+<meta property="og:updated_time" content="2019-09-26T12:04:44.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="32位汇编- TEB与PEB">
+<meta name="twitter:title" content="32位汇编- inlineHOOK">
 <meta name="twitter:description" content="之前的笔记搬运">
-<meta name="twitter:image" content="https://i.loli.net/2019/09/22/iPyMK53lNFIVqTU.png">
+<meta name="twitter:image" content="https://i.loli.net/2019/09/26/14ghbQH9PYp7KEO.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -158,12 +158,12 @@
         
   
     <h1 class="article-title" itemprop="name">
-      32位汇编- TEB与PEB
+      32位汇编- inlineHOOK
     </h1>
   
 
         
-        <a href="/archives/64079.html" class="archive-article-date">
+        <a href="/archives/f2d709eb.html" class="archive-article-date">
   	<time datetime="2019-09-22T05:23:28.212Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
 </a>
         
@@ -173,17 +173,7 @@
       
         <p>之前的笔记搬运</p>
 <a id="more"></a>
-<h2 id="0x1-什么是TEB与PEB"><a href="#0x1-什么是TEB与PEB" class="headerlink" title="0x1 什么是TEB与PEB"></a><strong>0x1 什么是TEB与PEB</strong></h2><p>TEB: 全称Thread Environment Block, 线程环境块</p>
-<p>PEB: 全称Process Environment Block, 进程环境块</p>
-<p>在TEB和PEB里分别指向了一个结构体, 结构体了记录了当前运行中线程和进程的一些信息</p>
-<h2 id="0x2-如何访问TEB与PEB"><a href="#0x2-如何访问TEB与PEB" class="headerlink" title="0x2 如何访问TEB与PEB"></a><strong>0x2 如何访问TEB与PEB</strong></h2><p>32位程序在OD或WinDbg调试状态中可以发现段寄存器增加了2个,而其中的一个fs段寄存器就是用于访问这两个环境块设置的</p>
-<p>fs指向一个 _NT_TIB结构体首部 + 18的位置取内容得到一个指针, 指向TEB, 而TEB +<br>30的位置取内容就是指向PEB</p>
-<p>具体的访问:</p>
-<p>mov eax, fs:[18] ;TEB</p>
-<p>mov eax, [eax+30] ; PEB</p>
-<p>然而其实本身[fs+18]的地址和fs本身地址是一样的,这么设计可能是为了将来给TEB移动位置, 而所有微软API只要访问TEB都是这么写的,所以微软怎么写就跟着怎么写喽</p>
-<p>在高级语言的编程中也可以使用GetThreadSelectEntry, 这个函数来获取TEB</p>
-<h2 id="0x3-利用WINDBG查询进程模块信息"><a href="#0x3-利用WINDBG查询进程模块信息" class="headerlink" title="0x3 利用WINDBG查询进程模块信息"></a>0x3 利用WINDBG查询进程模块信息</h2><p><img src="https://i.loli.net/2019/09/22/iPyMK53lNFIVqTU.png" alt="2019-09-22_131835.png"></p>
+<h2 id="如图"><a href="#如图" class="headerlink" title="如图:"></a>如图:</h2><p><img src="https://i.loli.net/2019/09/26/14ghbQH9PYp7KEO.png" alt="inlinehook.png"></p>
 
       
 
@@ -283,7 +273,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/64079.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/f2d709eb.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -492,11 +482,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,7 +494,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -524,19 +518,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,7 +530,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +542,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,11 +554,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
