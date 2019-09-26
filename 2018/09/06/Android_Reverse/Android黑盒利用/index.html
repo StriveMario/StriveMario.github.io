@@ -5,31 +5,31 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://StriveMario.cn">
+  <link rel="dns-prefetch" href="http://StriveMario.work">
   <title>利用Xposed对Android的so黑盒利用 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="又是N久没有更新, 真的懒是能变成习惯的, 今天记录一下安卓里的so黑盒利用; 一般在逆向安卓的程序时, 重要的算法都在so里, 如果没有OLLVM还好, 如果一旦被VM了, 那么就只能退而其次想其他的解决办法, 那么开始吧">
 <meta name="keywords" content="Android逆向">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用Xposed对Android的so黑盒利用">
-<meta property="og:url" content="http://StriveMario.cn/2018/09/06/Android_Reverse/Android黑盒利用/index.html">
+<meta property="og:url" content="http://StriveMario.work/2018/09/06/Android_Reverse/Android黑盒利用/index.html">
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="又是N久没有更新, 真的懒是能变成习惯的, 今天记录一下安卓里的so黑盒利用; 一般在逆向安卓的程序时, 重要的算法都在so里, 如果没有OLLVM还好, 如果一旦被VM了, 那么就只能退而其次想其他的解决办法, 那么开始吧">
 <meta property="og:locale" content="CH">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/1.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/3.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/2.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/4.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/6.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/7.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/8.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/9.png">
-<meta property="og:image" content="http://strivemario.cn/img/Android黑盒利用/10.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/1.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/3.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/2.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/4.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/6.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/7.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/8.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/9.png">
+<meta property="og:image" content="http://strivemario.work/img/Android黑盒利用/10.png">
 <meta property="og:updated_time" content="2019-09-21T10:48:07.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用Xposed对Android的so黑盒利用">
 <meta name="twitter:description" content="又是N久没有更新, 真的懒是能变成习惯的, 今天记录一下安卓里的so黑盒利用; 一般在逆向安卓的程序时, 重要的算法都在so里, 如果没有OLLVM还好, 如果一旦被VM了, 那么就只能退而其次想其他的解决办法, 那么开始吧">
-<meta name="twitter:image" content="http://strivemario.cn/img/Android黑盒利用/1.png">
+<meta name="twitter:image" content="http://strivemario.work/img/Android黑盒利用/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -320,7 +320,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.cn/2018/09/06/Android_Reverse/Android黑盒利用/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/2018/09/06/Android_Reverse/Android黑盒利用/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -529,7 +529,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,10 +538,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,15 +561,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,11 +573,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,15 +597,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,11 +609,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,6 +622,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
