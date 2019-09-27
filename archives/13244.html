@@ -8,16 +8,19 @@
   <link rel="dns-prefetch" href="http://StriveMario.work">
   <title>AndroidNativeEmu - 自己写个小Demo测试 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Android逆向,Unicron">
+  <meta name="description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
+<meta name="keywords" content="Android逆向,Unicron">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AndroidNativeEmu - 自己写个小Demo测试">
 <meta property="og:url" content="http://StriveMario.work/archives/13244.html">
 <meta property="og:site_name" content="Mario">
+<meta property="og:description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
 <meta property="og:locale" content="CH">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/5fb861fc5228c68edaed83fa7ea411e3/xmlnote/1ECD8674AEE64C58B890ADE6C6E9B40A/1594">
-<meta property="og:updated_time" content="2019-09-26T06:19:36.791Z">
+<meta property="og:updated_time" content="2019-09-27T09:26:41.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AndroidNativeEmu - 自己写个小Demo测试">
+<meta name="twitter:description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
 <meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/5fb861fc5228c68edaed83fa7ea411e3/xmlnote/1ECD8674AEE64C58B890ADE6C6E9B40A/1594">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
@@ -168,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><br><br><a id="more"></a></p>
+        <p><strong>有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^</strong><br><a id="more"></a></p>
 <h2 id="Demo代码"><a href="#Demo代码" class="headerlink" title="Demo代码"></a>Demo代码</h2><p>新建一个jni工程, demo的代码很简单, 就是一个加法<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">JNIEXPORT <span class="keyword">int</span> <span class="title">nativeAdd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> JNIEXPORT jint JNICALL</span><br><span class="line">Java_com_mario_testunicorn_MainActivity_myAdd(</span><br><span class="line">        JNIEnv* env,</span><br><span class="line">        jobject <span class="comment">/*this*/</span>,</span><br><span class="line">        <span class="keyword">int</span> a,</span><br><span class="line">        <span class="keyword">int</span> b)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>  nativeAdd(a,b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="emu代码"><a href="#emu代码" class="headerlink" title="emu代码"></a>emu代码</h2><p>注释写的很详细, 具体看代码吧<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> posixpath</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> unicorn <span class="keyword">import</span> UcError, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED</span><br><span class="line"><span class="keyword">from</span> unicorn.arm_const <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> androidemu.emulator <span class="keyword">import</span> Emulator</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> debug_utils</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置日志</span></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    stream=sys.stdout,</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    format=<span class="string">"%(asctime)s %(levelname)7s %(name)34s | %(message)s"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化模拟器</span></span><br><span class="line">emulator = Emulator(</span><br><span class="line">    vfp_inst_set=<span class="keyword">True</span>,</span><br><span class="line">    vfs_root=posixpath.join(posixpath.dirname(__file__), <span class="string">"vfs"</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载依赖的动态库</span></span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libdl.so"</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libc.so"</span>, do_init=<span class="keyword">False</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libstdc++.so"</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libm.so"</span>)</span><br><span class="line">lib_module = emulator.load_library(<span class="string">"example_binaries/libmytest.so"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前已经load的so</span></span><br><span class="line">logger.info(<span class="string">"Loaded modules:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> module <span class="keyword">in</span> emulator.modules:</span><br><span class="line">    logger.info(<span class="string">"=&gt; 0x%08x - %s"</span> % (module.base, module.filename))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 运行jni onload 这里没有, 但不影响执行</span></span><br><span class="line">    emulator.call_symbol(lib_module, <span class="string">'JNI_OnLoad'</span>, emulator.java_vm.address_ptr, <span class="number">0x00</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">#直接调用符号1, 计算1+2</span></span><br><span class="line">    emulator.call_symbol(lib_module, <span class="string">'_Z9nativeAddii'</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    print(<span class="string">"_Z9nativeAddii result call: %i"</span> % emulator.mu.reg_read(UC_ARM_REG_R0))</span><br><span class="line"></span><br><span class="line">    <span class="comment">#直接调用符号2, 计算1000 + 1000</span></span><br><span class="line">    emulator.call_symbol(lib_module, <span class="string">'Java_com_mario_testunicorn_MainActivity_myAdd'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1000</span>, <span class="number">1000</span>)</span><br><span class="line">    print(<span class="string">"myAdd result call: %i"</span> % emulator.mu.reg_read(UC_ARM_REG_R0))</span><br><span class="line"></span><br><span class="line">    <span class="comment">#执行完成, 退出虚拟机</span></span><br><span class="line">    logger.info(<span class="string">"Exited EMU."</span>)</span><br><span class="line">    logger.info(<span class="string">"Native methods registered to MainActivity:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span> UcError <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"Exit at %x"</span> % emulator.mu.reg_read(UC_ARM_REG_PC))</span><br><span class="line">    <span class="keyword">raise</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="RuntimeError-Unhandled-syscall-x-x-at-解决"><a href="#RuntimeError-Unhandled-syscall-x-x-at-解决" class="headerlink" title="RuntimeError: Unhandled syscall x (x) at 解决"></a>RuntimeError: Unhandled syscall x (x) at 解决</h2><p>这个错误是因为没有实现对应syscall导致的, 缺少什么函数, 自己写一个函数绑定一下, 返回给他需要的值就可以了, 比如getpid, 那么自己写的函数随便返回一个整形就可以了</p>
@@ -479,10 +482,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
@@ -495,15 +494,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,7 +510,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,7 +522,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,11 +542,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,11 +554,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
+                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,15 +574,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">脚本语言</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
