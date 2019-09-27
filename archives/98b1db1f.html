@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>WIN32SDK - 对话框Diglog | Mario</title>
+  <title>Unidbg- 自己写个小Demo测试 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前的笔记搬运">
-<meta name="keywords" content="window开发,WINSDK开发">
+  <meta name="description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
+<meta name="keywords" content="Android逆向,Unicron">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WIN32SDK - 对话框Diglog">
-<meta property="og:url" content="http://StriveMario.work/archives/25207.html">
+<meta property="og:title" content="Unidbg- 自己写个小Demo测试">
+<meta property="og:url" content="http://StriveMario.work/archives/98b1db1f.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="之前的笔记搬运">
+<meta property="og:description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
 <meta property="og:locale" content="CH">
-<meta property="og:image" content="https://i.loli.net/2019/09/15/XUlN23SVJRuWGYE.png">
-<meta property="og:updated_time" content="2019-09-26T06:19:35.928Z">
+<meta property="og:image" content="https://i.loli.net/2019/09/27/z6st8lVahG1EyWm.png">
+<meta property="og:updated_time" content="2019-09-27T12:19:37.331Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WIN32SDK - 对话框Diglog">
-<meta name="twitter:description" content="之前的笔记搬运">
-<meta name="twitter:image" content="https://i.loli.net/2019/09/15/XUlN23SVJRuWGYE.png">
+<meta name="twitter:title" content="Unidbg- 自己写个小Demo测试">
+<meta name="twitter:description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
+<meta name="twitter:image" content="https://i.loli.net/2019/09/27/z6st8lVahG1EyWm.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -151,72 +151,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-W32_SDK/对话框(Diglog)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Android_Reverse/Unidbg-自己写个小Demo测试" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      WIN32SDK - 对话框Diglog
+      Unidbg- 自己写个小Demo测试
     </h1>
   
 
         
-        <a href="/archives/25207.html" class="archive-article-date">
-  	<time datetime="2019-09-15T13:53:12.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+        <a href="/archives/98b1db1f.html" class="archive-article-date">
+  	<time datetime="2019-09-27T09:27:19.675Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前的笔记搬运</p>
+        <p><strong>有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^</strong></p>
 <a id="more"></a>
-<h1 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h1><p><strong>0x1 什么是对话框</strong></p>
-<blockquote>
-<p>  对话框是资源, 窗口信息和控件信息的集合, 他可以通过拖放控件和调整大小,<br>  来绘制你需要的窗口界面, 操作系统通过读取.rc里数据,<br>  来绘制还原出你设置好的窗口界面;</p>
-</blockquote>
-<p><strong>0x2 如何创建与关闭对话框</strong></p>
-<blockquote>
-<p>  DialogBox 这个API可以创建对话框, 还有一个DialogBoxIndirect也可以创建对话框,<br>  但是基本不会用;</p>
-</blockquote>
-<blockquote>
-<p>  EndDialog, 这个API可以用于关闭模态对话框,<br>  而非模态对话框使用DestroyWindow和发送Quit消息来退出窗口</p>
-</blockquote>
-<p><strong>0x3 对话框的种类</strong></p>
-<blockquote>
-<p>  <strong>1模态对话框(modal)</strong></p>
-</blockquote>
-<blockquote>
-<p>  模态创建的窗口, 其父窗口是不接受任何消息的, 也就是卡死的, 并且ShowWindow 和<br>  UpdataWindow和消息循环都是在DialogBox 内实现, 不用在单独编写</p>
-</blockquote>
-<blockquote>
-<p>  <strong>2非模态对话框(modeless)</strong></p>
-</blockquote>
-<blockquote>
-<p>  非模态创建的窗口, 其父窗口同时也是接受消息的, 也就是说都是可以自由活动的,<br>  而ShowWindow 和 UpdataWindow和消息循环都需要在创建窗口后自行编写;</p>
-</blockquote>
-<p><strong>0x4 什么是控件</strong></p>
-<p>控件其实也是一个窗口, 一般都奴隶于某个父窗口, 建立窗口的函数也是CreateWindow,<br>只是其功能和风格都已固定化, 被称谓控件;</p>
-<p><strong>0x5 如何获取和设置控件信息</strong></p>
-<blockquote>
-<p>  获取/设置内容:应用程序向控件发送指定的消息, <strong>SendMessage</strong>();</p>
-</blockquote>
-<blockquote>
-<p>  如发送LB_ADDSTRING, 就是表示给ListBox控件添加字符串;</p>
-</blockquote>
-<p><strong>0x6 父窗口如何与控件交互的</strong></p>
-<blockquote>
-<p>  当你操作一个控件的时候, 控件会向父窗口发送某一个特定的消息,<br>  这个消息就是”WM_COMMAND” 应用程序需要在父窗口的窗口过程函数中处理,<br>  而此消息的w参数的高位, 就是操作控件的动作, 可以以此做出相应的操作;</p>
-</blockquote>
-<blockquote>
-<p>  如下图:</p>
-</blockquote>
-<p><img src="https://i.loli.net/2019/09/15/XUlN23SVJRuWGYE.png" alt="956e9b58227a03b82e07c3536d2b150a.png"></p>
-<blockquote>
-<p>  而WM_COMMAND可以获得控件的信息就只有上图四个,<br>  而你需要获取更多关于控件的信息时, 则需要用到WM_NOTIFY这个消息, 这个以后再谈;</p>
-</blockquote>
+<h2 id="Unidbg有什么用"><a href="#Unidbg有什么用" class="headerlink" title="Unidbg有什么用?"></a>Unidbg有什么用?</h2><p>Unidbg使用Java语言编写和基于Unicron实现的一个指令解析器,  让您能够跨平台模拟Android ARM32/64指令, 并且实现了部分本机lib的功能; 支持iOS的ARM32模拟(实验性)</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>模拟JNI调用API，以便可以调用JNI_OnLoad</li>
+<li>支持JavaVM，JNIEnv</li>
+<li>模拟syscalls调用</li>
+<li>支持ARM32和ARM64位ELF</li>
+<li>基于HookZz实现的inline hook</li>
+<li>基于xHook实现的import hook</li>
+<li>支持简单的调试器，gdb指令跟踪，内存读/写跟踪</li>
+<li><p>实现了以下lib的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">libc.so</span><br><span class="line">libcrypto.so</span><br><span class="line">libdl.so</span><br><span class="line">liblog.so</span><br><span class="line">libm.so</span><br><span class="line">libssl.so</span><br><span class="line">libstdcpp.so</span><br><span class="line">libz.so</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>自测环境: win7</p>
+<p>1.Clone 该项目 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zhkl0228/unidbg.git</span><br></pre></td></tr></table></figure>
+<p>2.工程是基于maven的java项目, 所以下载 IntelliJ IDEA直接导入就可以了</p>
+<p><a href="https://www.jetbrains.com/idea?from=unidbg" target="_blank" rel="noopener">下载链接</a></p>
+<p>3.安装IDEA导入克隆的工程, Build工程, 会自动下载依赖, 等待就可以了</p>
+<p>4.安装完依赖的目录结构应该如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.idea/                   <span class="comment">//idea配置相关</span></span><br><span class="line">.mvn/                    <span class="comment">//maven配置</span></span><br><span class="line">assets/                  <span class="comment">//项目图片图标资源</span></span><br><span class="line">prebuilt/                <span class="comment">//unicron支持</span></span><br><span class="line">src/main                 <span class="comment">//emulator源码</span></span><br><span class="line">src/test/java            <span class="comment">//一些demo</span></span><br><span class="line">src/test/resouces        <span class="comment">//要模拟的文件</span></span><br><span class="line">target/                  <span class="comment">//编译目标路径</span></span><br><span class="line">target/classes/android   <span class="comment">//依赖的lib和vfs,作者这里提供了SDK 19与23的库</span></span><br></pre></td></tr></table></figure>
+<p>5.运行demo测试环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">菜单中 Run -&gt; Edit Configgurations</span><br><span class="line"></span><br><span class="line">Main class 选择要测试的class</span><br><span class="line"></span><br><span class="line">Vm Options 填入 -Djava.library.path=prebuilt/win64 -Djna.library.path=prebuilt/win64</span><br><span class="line">win64可以根据自己系统版本更改, 支持: linux64, win32, win64, osx64</span><br><span class="line"></span><br><span class="line">接着Apply -&gt; Ok</span><br><span class="line"></span><br><span class="line">接入Run</span><br></pre></td></tr></table></figure>
+<p>不出意外的Demo就可以跑起来啦</p>
+<p><img src="https://i.loli.net/2019/09/27/z6st8lVahG1EyWm.png" alt="1.png"></p>
 
       
 
@@ -256,11 +237,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WINSDK开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unicron</a>
         		</li>
       		
 		</ul>
@@ -316,7 +297,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/25207.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/98b1db1f.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,18 +311,18 @@
   
 <nav id="article-nav">
   
-    <a href="/archives/4356.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/archives/40424aca.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          WIN32SDK - Windows常用消息
+          Unidbg - 实战升级款风控SDK
         
       </div>
     </a>
   
   
-    <a href="/archives/41997.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">WIN32SDK - SDK创建窗口和消息过程</div>
+    <a href="/archives/35e8842b.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Unidbg- 安装</div>
       <i class="icon-circle-right"></i>
     </a>
   
