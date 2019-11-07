@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>Archives: 2019 | Mario</title>
+  <title>记一次unity游戏分析 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="StriveMario的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://StriveMario.work/archives/2019/page/3/index.html">
+  <meta name="description" content="记一次unity游戏分析">
+<meta name="keywords" content="Android逆向,unity游戏逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次unity游戏分析">
+<meta property="og:url" content="http://StriveMario.work/archives/ba6de856.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="StriveMario的博客">
+<meta property="og:description" content="记一次unity游戏分析">
 <meta property="og:locale" content="CH">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/QYnXcdGDWRyThp5.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/loAOjn3RkaJc9L8.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/sPxUrAq5wZTiel2.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/JxR7qOEbZQupVtY.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/5VqWgD9aw4sAlhO.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/Y9KykLJBZ75Sqds.png">
+<meta property="og:updated_time" content="2019-11-07T13:29:42.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
-<meta name="twitter:description" content="StriveMario的博客">
+<meta name="twitter:title" content="记一次unity游戏分析">
+<meta name="twitter:description" content="记一次unity游戏分析">
+<meta name="twitter:image" content="https://i.loli.net/2019/11/07/QYnXcdGDWRyThp5.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -147,150 +156,100 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android_Reverse/记一次unity游戏分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次unity游戏分析
+    </h1>
+  
+
+        
+        <a href="/archives/ba6de856.html" class="archive-article-date">
+  	<time datetime="2019-11-06T12:20:52.987Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-06</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记一次unity游戏分析</p>
+<a id="more"></a>
+<h2 id="0x1-分析目标"><a href="#0x1-分析目标" class="headerlink" title="0x1 分析目标"></a>0x1 分析目标</h2><blockquote>
+<ul>
+<li><p>名称: TXHLBY</p>
+</li>
+<li><p>包名: com.tencent.hlfish</p>
+</li>
+<li><p>分析目的: 提取游戏美术/音乐/配置资源</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="0x2-确定目标"><a href="#0x2-确定目标" class="headerlink" title="0x2 确定目标"></a>0x2 确定目标</h2><p>解压apk, 在lib文件夹看到有libil2cpp.so, libunity.so , 是Unity3d游戏, 第一次分析unity游戏, 经过了解发现是IL2cpp打包机制的unity游戏</p>
+<p>而这种打包类型会有global-metadata.dat文件, 这个文件记录了所有的类,方法等名字和地址, 如果找不到的话, 可能是被加密隐藏了, 需要手动分析解密, 我这里比较幸运, 该游戏并没有加密global-metadata.dat</p>
+<p>游戏的核心逻辑都是在libil2cpp.so中</p>
+<p><img src="https://i.loli.net/2019/11/07/QYnXcdGDWRyThp5.png" alt="21.png"></p>
+<h2 id="0x3-解包global-metadata-dat"><a href="#0x3-解包global-metadata-dat" class="headerlink" title="0x3 解包global-metadata.dat"></a>0x3 解包global-metadata.dat</h2><p>这个已经有大佬写过解包的工具: <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">Il2CppDumper</a></p>
+<p>下载好release版本后, 把libil2cpp.so和global-metadata.dat拷贝到dumper目录, 打开dumper, 输入unity版本, 选择Auto(Plus) 模式, 就可以解包了</p>
+<p><img src="https://i.loli.net/2019/11/07/loAOjn3RkaJc9L8.png" alt="22.png"></p>
+<p>解包完的文件:</p>
+<blockquote>
+<p>dump.cs                 记录所有类,函数,字段的符号与地址</p>
+<p>/DummyDll            il虚拟机依赖的dll</p>
+<p>script.py                 重命名函数和遍历的ida python脚本</p>
+</blockquote>
+<p>打开IDA, 使用<code>Alt+F7</code>, 或者打开<code>File -&gt; Script File</code>导入script.py文件, 等待脚本跑完之后, 看伪代码就和看源码差不太多啦</p>
+<p><img src="https://i.loli.net/2019/11/07/sPxUrAq5wZTiel2.png" alt="23.png"></p>
+<h2 id="0x4-so分析过程"><a href="#0x4-so分析过程" class="headerlink" title="0x4 so分析过程"></a>0x4 so分析过程</h2><p>要分析, 熟悉加载流程, 翻到的unity3d文档, 确定了AssetBundle的加载方法</p>
+<p><a href="https://docs.unity3d.com/ScriptReference/AssetBundle.html" target="_blank" rel="noopener">unity3d API文档</a></p>
+<p><img src="https://i.loli.net/2019/11/07/JxR7qOEbZQupVtY.png" alt="24.png"></p>
+<p>通过Frida hook了这些函数, 确定是解密后通关LoadFromMemory来加载unity3d文件的, 再通过栈回溯确定了DecryptFileNew来解密文件, hook这个函数的返回值就可以dump加载的解密文件了, 但是和上次一样, 我们需要的是这个游戏所有的文件, 所以只有主动调用, 批量dump了</p>
+<p>接下就是写hook代码了, 具体的坑就不细说了, 直接上关键代码吧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//构造参数<span class="number">2</span> 路径参数</span><br><span class="line">var careate_str = ptr(parseInt(moduleBase) +  <span class="number">0x00FCA590</span>)</span><br><span class="line">var careate_str_f = new NativeFunction(careate_str, <span class="string">'pointer'</span>, [<span class="string">'pointer'</span>, <span class="string">'pointer'</span>]);</span><br><span class="line">var root = <span class="string">'/storage/emulated/0/Android/data/com.tencent.hlfish/files/AssetBundles/'</span></span><br><span class="line">var path = res_path[i]</span><br><span class="line">var path_str_utf8 = Memory.allocUtf8String(root + path)</span><br><span class="line">var path_str = careate_str_f(args[<span class="number">0</span>], path_str_utf8)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//构造参数<span class="number">3</span></span><br><span class="line">var arg3_ptr = Memory.alloc(<span class="number">4</span>)</span><br><span class="line">Memory.writeInt(arg3_ptr, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//调用解密文件函数</span><br><span class="line">var decrypt = parseInt(moduleBase) +  <span class="number">0x00683014</span>;</span><br><span class="line">var decrypt_f = new NativeFunction(ptr(decrypt), <span class="string">'pointer'</span>, [<span class="string">'int'</span>, <span class="string">'pointer'</span>, <span class="string">'pointer'</span>]);</span><br><span class="line">var retval = decrypt_f(<span class="number">0</span>, path_str, arg3_ptr)</span><br><span class="line">var file_bgein = retval.add(<span class="number">0x10</span>)</span><br><span class="line">var file_end = get_UnityFS_end(file_bgein)</span><br><span class="line">var filesize = parseInt(file_end) - parseInt(file_bgein) </span><br><span class="line"></span><br><span class="line">//写文件</span><br><span class="line">WriteMemoryToFile(res_path[i] + <span class="string">".unity3d"</span>, file_bgein, filesize)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/11/07/5VqWgD9aw4sAlhO.png" alt="20.png"></p>
+<h2 id="0x5-解包Unity3d文件"><a href="#0x5-解包Unity3d文件" class="headerlink" title="0x5 解包Unity3d文件"></a>0x5 解包Unity3d文件</h2><p>这个也有大佬写过解包的工具啦: <a href="https://github.com/Perfare/AssetStudio" target="_blank" rel="noopener">AssetStudio</a></p>
+<p>下载好release版本后, 打开后<code>File-&gt;LoadFolder</code>打开dump后的unity3d文件</p>
+<p>在AssetList就可以看到资源预览了</p>
+<p>在<code>Export-&gt;AllAssert</code>就可以导出所有资源啦</p>
+<p><img src="https://i.loli.net/2019/11/07/Y9KykLJBZ75Sqds.png" alt="25.png"></p>
+<p>至此就分析完毕了, 写的很粗糙, 像流水账一样, 就是做个记录</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="\img\wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/43336.html" class="archive-article-date">
-  	<time datetime="2019-09-24T10:06:44.850Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/43336.html">Android逆向- Smali数组/函数/SwitchCase</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/46009.html" class="archive-article-date">
-  	<time datetime="2019-09-24T10:02:00.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/46009.html">Android逆向- 零散笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/16765.html" class="archive-article-date">
-  	<time datetime="2019-09-22T12:43:44.908Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/16765.html">Android逆向- 初识逆向工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/39415.html" class="archive-article-date">
-  	<time datetime="2019-09-22T12:36:41.409Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/39415.html">ARM汇编- ARM指令2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -300,276 +259,133 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ARM汇编</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">unity游戏逆向</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/ba6de856.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/23701.html" class="archive-article-date">
-  	<time datetime="2019-09-22T12:32:39.086Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/archives/da84ffe0.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          elasticsearch安装使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/d8141220.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记一次cocos2d游戏分析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/23701.html">ARM汇编- IDA动态调试NDK</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ARM汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/63214.html" class="archive-article-date">
-  	<time datetime="2019-09-22T12:22:12.861Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/63214.html">ARM汇编- ARM指令</a>
-    </h1>
-  
+  <div class="gitalk">
+    <div id="gitalk-container"></div>
+    <script type="text/javascript">
+        const gitalk = new Gitalk({
+            clientID: '805f9b5eebc221a5666c',
+            clientSecret: '9decad81c1713609e45577aeb238a9c61e802ea1',
+            repo: 'strivemario.github.io',
+            owner: 'StriveMario',
+            admin: ['StriveMario'],
+            id: md5(location.pathname),
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        })
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ARM汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/38326.html" class="archive-article-date">
-  	<time datetime="2019-09-22T12:06:40.941Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/38326.html">ARM汇编- 初识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ARM汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/61867.html" class="archive-article-date">
-  	<time datetime="2019-09-22T12:02:46.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/61867.html">Android开发- 手机卫士</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/13643.html" class="archive-article-date">
-  	<time datetime="2019-09-22T11:51:36.098Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/13643.html">NDK开发- 动态注册/使用LOG</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android开发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NDK开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/14013.html" class="archive-article-date">
-  	<time datetime="2019-09-22T11:46:20.122Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/14013.html">NDK开发- JNI之C&amp;C++调用Java</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android开发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NDK开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        gitalk.render('gitalk-container')
+    </script>
+</div>
   
   
-    </div></section>
   
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2019/page/4/">4</a><a class="page-number" href="/archives/2019/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/15/">15</a><a class="extend next" rel="next" href="/archives/2019/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -607,8 +423,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

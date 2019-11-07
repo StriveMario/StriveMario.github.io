@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/11/06/HOqTjSWNMVG6FYe.png">
 <meta property="og:image" content="https://i.loli.net/2019/11/06/xhl1dB9uWmjCnMV.png">
 <meta property="og:image" content="https://i.loli.net/2019/11/06/GLSXD2WRCxAQ7vb.png">
-<meta property="og:updated_time" content="2019-11-06T13:59:15.393Z">
+<meta property="og:updated_time" content="2019-11-07T01:31:30.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch安装使用">
 <meta name="twitter:description" content="记一次游戏分析">
@@ -194,12 +194,12 @@
 <p><a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener">elasticsearch下载</a></p>
 <p>3.下载zip包后解压, 进入<code>bin目录</code>打开命令行窗口，运行命令“elasticsearch”, 可以看到启动的日志</p>
 <p>Elasticsearch 启动后，也启动了两个端口 9200 和 9300：</p>
+<blockquote>
 <ul>
-<li><p>9200 端口：HTTP RESTful 接口的通讯端口</p>
-</li>
-<li><p>9300 端口：TCP 通讯端口，用于集群间节点通信和与 Java 客户端通信的端口</p>
-</li>
+<li>9200 端口：HTTP RESTful 接口的通讯端口</li>
+<li>9300 端口：TCP 通讯端口，用于集群间节点通信和与 Java 客户端通信的端口</li>
 </ul>
+</blockquote>
 <p><img src="https://i.loli.net/2019/11/06/DhSkg34Jr9WdVIM.png" alt="16.png"></p>
 <p>4.运行完之后不要关闭窗口,在浏览器里访问<code>127.0.0.1:9200</code>,看到以下内容说明Elasticsearch安装成功了</p>
 <p><img src="https://i.loli.net/2019/11/06/HOqTjSWNMVG6FYe.png" alt="17.png"></p>
@@ -245,7 +245,7 @@
 <p>因为我是在本机搭建, 所以就没有关注物理层的点…</p>
 <h2 id="0x5-Python操作Elasticsearch"><a href="#0x5-Python操作Elasticsearch" class="headerlink" title="0x5 Python操作Elasticsearch"></a>0x5 Python操作Elasticsearch</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -.- coding:utf-8 -.-</span></span><br><span class="line"><span class="keyword">from</span> elasticsearch <span class="keyword">import</span> Elasticsearch</span><br><span class="line"><span class="keyword">from</span> elasticsearch <span class="keyword">import</span> helpers</span><br><span class="line"></span><br><span class="line">es_hosts = [<span class="string">"127.0.0.1:9200"</span>]</span><br><span class="line"></span><br><span class="line">index_name = <span class="string">"log"</span></span><br><span class="line">doc_type = <span class="string">"20170103"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建es对象</span></span><br><span class="line">es = Elasticsearch(es_hosts)</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建索引</span></span><br><span class="line">es.indices.create(index=index_name, body=&#123;<span class="string">"mappings"</span>:&#123;doc_type: &#123;<span class="string">"properties"</span>: &#123;<span class="string">"name"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;, <span class="string">"gender"</span>:&#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;, <span class="string">"age"</span>:&#123;<span class="string">"type"</span>: <span class="string">"integer"</span>&#125;, <span class="string">"phone"</span>:&#123;<span class="string">"type"</span>: <span class="string">"keyword"</span>&#125;&#125;&#125;&#125;&#125;)</span><br><span class="line"><span class="comment">#删除索引</span></span><br><span class="line">es.indices.delete(index=index_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#插入单条数据</span></span><br><span class="line">data = &#123;</span><br><span class="line"><span class="string">"filename"</span>: <span class="string">'1233445'</span>,</span><br><span class="line"><span class="string">"url"</span>: <span class="string">'/root'</span>,</span><br><span class="line"><span class="string">"status"</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">"date"</span>: time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime()),</span><br><span class="line"><span class="string">"total"</span>: <span class="number">100</span>,</span><br><span class="line"><span class="string">"county"</span>: <span class="string">'111111 111112'</span>,</span><br><span class="line"><span class="string">"gender"</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">"agelow"</span>: <span class="number">12</span>,</span><br><span class="line"><span class="string">"agehigh"</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line">es.index(index = index_name, doc_type = doc_type, id= <span class="string">'1233445'</span>, body = data)</span><br><span class="line"></span><br><span class="line"><span class="comment">#批量插入</span></span><br><span class="line">body = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    body.append(&#123;</span><br><span class="line">        <span class="string">"_index"</span>: <span class="string">"students"</span>,</span><br><span class="line">        <span class="string">"_type"</span>: <span class="string">"yinianji"</span>,</span><br><span class="line">        <span class="string">"_id"</span>: i + <span class="number">1</span>,</span><br><span class="line">        <span class="string">"_source"</span>: &#123;</span><br><span class="line">              <span class="string">"name"</span>: <span class="string">'weishihao'</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;)</span><br><span class="line">helpers.bulk(es, body)</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改mapping结构, 在elasticsearch中，更改mapping结构只能新增field</span></span><br><span class="line">es.indices.put_mapping(</span><br><span class="line">                index=index_name,</span><br><span class="line">                doc_type=doc_type,</span><br><span class="line">                body=&#123;</span><br><span class="line">                    <span class="string">"properties"</span>: &#123;</span><br><span class="line">                         <span class="string">"county"</span>: &#123;<span class="string">"type"</span>: <span class="string">"text"</span>&#125;,</span><br><span class="line">                         <span class="string">"total"</span> : &#123;<span class="string">"type"</span>: <span class="string">"integer"</span>&#125;,</span><br><span class="line">                         <span class="string">"gender"</span>: &#123;<span class="string">"type"</span>: <span class="string">"integer"</span>&#125;,</span><br><span class="line">                         <span class="string">"agelow"</span>: &#123;<span class="string">"type"</span>: <span class="string">"integer"</span>&#125;,</span><br><span class="line">                         <span class="string">"agehigh"</span>: &#123;<span class="string">"type"</span>: <span class="string">"integer"</span>&#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">            </span><br><span class="line"><span class="comment">#查询很多, 这里就列举一个模糊查询吧</span></span><br><span class="line">dsl = &#123;</span><br><span class="line">	<span class="string">"query"</span>: &#123;</span><br><span class="line">		<span class="string">"match"</span>: &#123;</span><br><span class="line">			<span class="string">"data"</span>: <span class="string">"xxxxxxxx"</span></span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">result = es.search(index=<span class="string">'table'</span>, body=dsl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#返回值中的total值会给出总数据量，但是_source中，返回显示的，默认只有10条 那么，我们如何查询所有的数据呢，</span></span><br><span class="line">scanResp = helpers.scan(es, &#123;<span class="string">"query"</span>: &#123;<span class="string">"match_all"</span>: &#123;&#125;&#125;&#125;, index= <span class="string">'quanguorenkou'</span>, scroll= <span class="string">"10m"</span>) </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> hit <span class="keyword">in</span> scanResp:  </span><br><span class="line">        print(hit)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#修改数据</span></span><br><span class="line">es.update(index = index_name, doc_type = doc_type, id=<span class="string">'1233445'</span>, body=&#123;<span class="string">"script"</span>: <span class="string">"ctx._source.status = 1"</span>&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="0x6-插入查询注意点"><a href="#0x6-插入查询注意点" class="headerlink" title="0x6 插入查询注意点"></a>0x6 插入查询注意点</h2><blockquote>
-<p>1.bulk插入大量的数据, 经过测试每次10W最优<br>2.模糊查询亿级数据, 可以秒出数据<br>3.插入后的数据大概会膨胀2-3倍, 所以需要预留好空间<br>4.需要插入的文本数据太大不好操作, 最好做分割</p>
+<p>1.bulk插入大量的数据, 经过测试每次10W最优<br>2.模糊查询亿级数据, 可以秒出数据<br>3.插入后的数据大概会膨胀4倍, 所以需要预留好空间<br>4.需要插入的文本数据太大不好操作, 最好做分割</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#文本分割</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">file_split</span><span class="params">(source_dir, target_dir, line_count)</span>:</span></span><br><span class="line">    <span class="comment">#source_dir = '/jz_yuanshi_list0206.txt'</span></span><br><span class="line">    <span class="comment">#target_dir = '/split/'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计数器</span></span><br><span class="line">    flag = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 文件名</span></span><br><span class="line">    name = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 存放数据</span></span><br><span class="line">    dataList = []</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"开始。。。。。"</span>)</span><br><span class="line">    print(datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br><span class="line">    f_source = open(source_dir, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f_source:</span><br><span class="line">        flag += <span class="number">1</span></span><br><span class="line">        dataList.append(line)</span><br><span class="line">        <span class="keyword">if</span> flag == line_count:</span><br><span class="line">            out_path = target_dir + <span class="string">"/"</span> + str(name*line_count) + <span class="string">".txt"</span></span><br><span class="line">            check_path(out_path)</span><br><span class="line">            <span class="keyword">if</span> os.path.exists(out_path):</span><br><span class="line">                print(out_path, <span class="string">' exist'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(out_path)</span><br><span class="line">                <span class="keyword">with</span> open(out_path, <span class="string">'w+'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f_target:</span><br><span class="line">                    <span class="keyword">for</span> data <span class="keyword">in</span> dataList:</span><br><span class="line">                        f_target.write(data)</span><br><span class="line">            name += <span class="number">1</span></span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">            dataList = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"完成。。。。。"</span>)</span><br><span class="line">    print(datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>))</span><br></pre></td></tr></table></figure>
 <h2 id="0x7-Elasticsearch可视化工具"><a href="#0x7-Elasticsearch可视化工具" class="headerlink" title="0x7 Elasticsearch可视化工具"></a>0x7 Elasticsearch可视化工具</h2><blockquote>
@@ -369,7 +369,7 @@
 <nav id="article-nav">
   
   
-    <a href="/archives/d8141220.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/archives/ba6de856.html" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">记一次unity游戏分析</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -550,11 +550,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color4">window开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,42 +578,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
               </li>
              
@@ -618,11 +590,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">cocos2d逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">cocos2d逆向</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,19 +618,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,7 +634,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,10 +663,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
