@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>Archives: 2019 | Mario</title>
+  <title>elasticsearch模糊查询图片与文件 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="C/C++/Android/iOS逆向开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://StriveMario.work/archives/2019/page/7/index.html">
+  <meta name="description" content="elasticsearch模糊查询图片与文件">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch模糊查询图片与文件">
+<meta property="og:url" content="http://StriveMario.work/archives/eb9a371f.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="C/C++/Android/iOS逆向开发">
+<meta property="og:description" content="elasticsearch模糊查询图片与文件">
 <meta property="og:locale" content="CH">
+<meta property="og:updated_time" content="2019-12-09T08:23:05.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
-<meta name="twitter:description" content="C/C++/Android/iOS逆向开发">
+<meta name="twitter:title" content="elasticsearch模糊查询图片与文件">
+<meta name="twitter:description" content="elasticsearch模糊查询图片与文件">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -147,421 +149,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-大数据/elasticsearch模糊查询图标与文件" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      elasticsearch模糊查询图片与文件
+    </h1>
+  
+
+        
+        <a href="/archives/eb9a371f.html" class="archive-article-date">
+  	<time datetime="2019-12-09T04:01:29.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>elasticsearch模糊查询图片与文件</p>
+<a id="more"></a>
+<h2 id="0x1-目标"><a href="#0x1-目标" class="headerlink" title="0x1 目标"></a>0x1 目标</h2><p>需求是可以在亿级文件或图片中, 快速找到相似的图片或文件</p>
+<h2 id="0x2-解决方案"><a href="#0x2-解决方案" class="headerlink" title="0x2 解决方案"></a>0x2 解决方案</h2><p>中间尝试过不少方案, 这里就说一下最后测试可行的方案</p>
+<p><a href="[https://image-match.readthedocs.io/en/latest/searches.html](https://image-match.readthedocs.io/en/latest/searches.html">image-match</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">图片模糊查询: 使用image-match, 这个工程是自己实现的汉明矩阵数据储存和查询, 之前有使用插件形式去解析汉明hash, 但是数据量太大查询太慢, 所以使用了这个方案, 使用空间换时间</span><br></pre></td></tr></table></figure>
+<p><a href="[https://github.com/ssdeep-project/ssdeep](https://github.com/ssdeep-project/ssdeep">ssdeep</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">文件模糊查询: 文件模糊查询使用的ssdeep模糊hash算法</span><br></pre></td></tr></table></figure>
+<h2 id="0x3-在es中使用image-match"><a href="#0x3-在es中使用image-match" class="headerlink" title="0x3 在es中使用image-match"></a>0x3 在es中使用image-match</h2><p> 以下是测试用例, 详细的用法也说了, 有独特的订制需求可以在<em>elasticsearch_driver.py</em>和<em>signature_database_base.py</em>文件中修改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> elasticsearch <span class="keyword">import</span> Elasticsearch, ConnectionError, RequestError, NotFoundError</span><br><span class="line"><span class="keyword">from</span> image_match.elasticsearch_driver <span class="keyword">import</span> SignatureES</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DOC_TYPE = <span class="string">'image'</span></span><br><span class="line">MAPPINGS = &#123;</span><br><span class="line">  <span class="string">"mappings"</span>: &#123;</span><br><span class="line">    DOC_TYPE: &#123;</span><br><span class="line">      <span class="string">"dynamic"</span>: <span class="keyword">True</span>,</span><br><span class="line">      <span class="string">"properties"</span>: &#123;</span><br><span class="line">        <span class="string">"metadata"</span>: &#123;</span><br><span class="line">            <span class="string">"type"</span>: <span class="string">"object"</span>,</span><br><span class="line">            <span class="string">"dynamic"</span>: <span class="keyword">True</span>,</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"tenant_id"</span>: &#123; <span class="string">"type"</span>: <span class="string">"string"</span>, <span class="string">"index"</span> : <span class="string">"not_analyzed"</span>   &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setup_index</span><span class="params">()</span>:</span></span><br><span class="line">    es = Elasticsearch()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        es.indices.create(index=<span class="string">"images"</span>,  body=MAPPINGS)</span><br><span class="line">    <span class="keyword">except</span> RequestError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">if</span> e.error == <span class="string">u'index_already_exists_exception'</span>:</span><br><span class="line">            es.indices.delete(index_name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#建立索引</span></span><br><span class="line">setup_index()</span><br><span class="line"></span><br><span class="line"><span class="comment">#插入图片数据</span></span><br><span class="line">es = Elasticsearch()</span><br><span class="line">ses = SignatureES(es)</span><br><span class="line"></span><br><span class="line"><span class="comment">#参数可以是url, 路径, 原始图片数据</span></span><br><span class="line">ses.add_image(<span class="string">'xxx.jpg'</span>)</span><br><span class="line"></span><br><span class="line">ses.add_image(<span class="string">'xxx1.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#检索</span></span><br><span class="line">r = ses.search_image(<span class="string">'xxx.jpg'</span>)</span><br><span class="line">print(r)</span><br><span class="line"></span><br><span class="line"><span class="comment">#查询结果,  dist越小, 说明相似度越高</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">[</span></span><br><span class="line"><span class="string"> &#123;'dist': 0.0,</span></span><br><span class="line"><span class="string">  'id': u'AVM37oZq0osmmAxpPvx7',</span></span><br><span class="line"><span class="string">  'metadata': None,</span></span><br><span class="line"><span class="string">  'path': u'xxx.jpg',</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  'score': 7.937254&#125;,</span></span><br><span class="line"><span class="string"> &#123;'dist': 0.22095170140933634,</span></span><br><span class="line"><span class="string">  'id': u'AVM37nMg0osmmAxpPvx6',</span></span><br><span class="line"><span class="string">  'metadata': None,</span></span><br><span class="line"><span class="string">  'path': u'xxx1.jpg',</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  'score': 0.28797293&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="0x4-在es中查询ssdeep"><a href="#0x4-在es中查询ssdeep" class="headerlink" title="0x4 在es中查询ssdeep"></a>0x4 在es中查询ssdeep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ssdeep哈希的格式如下：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    chunksize:chunk:double_chunk</span><br><span class="line"></span><br><span class="line">    96:4mkbL7ruouQiayH6Zaw2wL/ThZy9snQzzvPpsplhgHRofZxOfYVHjnU/r2CydUXe:qnNiOZQvvaWAV7VYr68XWvth</span><br></pre></td></tr></table></figure>
+<p>但是比较ssdeep的方式, 只能调用ssdeep库的compare函数去比较相似度, 但用在es中, 只能使用写插件的形式, 之前也说了, 在图标模糊搜索的时候尝试过使用插件来搜索结果, 结果是太慢了, 所以这里采用了几个办法去过滤搜索结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 过滤hash中chunksize相同的</span><br><span class="line">2. 过滤chunk和double_chunk中字符超过7位以上相同的(因为相似的文件的模糊hash会有连续相同的字符, 这个需要在es创建index的时候修改mapping中的分词器, 后面代码中会列出)</span><br></pre></td></tr></table></figure>
+<p>具体实现的核心代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## es 5.x 创建分词器的, 动态mapping</span></span><br><span class="line"></span><br><span class="line">dsl = &#123;</span><br><span class="line">    <span class="string">"mappings"</span>: &#123;</span><br><span class="line">        <span class="string">"self"</span>: &#123;</span><br><span class="line">            <span class="string">"_all"</span>: &#123;</span><br><span class="line">                <span class="string">"enabled"</span>: <span class="keyword">True</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"dynamic"</span>: <span class="string">"true"</span>,</span><br><span class="line">            <span class="string">"properties"</span>: &#123;</span><br><span class="line">                <span class="string">"file_ssdeep.chunk"</span>: &#123; <span class="comment">#chunck</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"analyzer"</span>: <span class="string">"ssdeep_analyzer"</span>, <span class="comment">#指定分词器</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">"file_ssdeep.chunk_size"</span>: &#123; <span class="comment">#size</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"type"</span>: <span class="string">"integer"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">"file_ssdeep.double_chunk"</span>: &#123; <span class="comment">#double_chunck</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"analyzer"</span>: <span class="string">"ssdeep_analyzer"</span>, <span class="comment">#指定分词器</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"analysis"</span>: &#123; <span class="comment">#自定义分词器</span></span><br><span class="line"></span><br><span class="line">            <span class="string">"analyzer"</span>: &#123;</span><br><span class="line">                <span class="string">"ssdeep_analyzer"</span>: &#123; <span class="comment">#分词器名称</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"tokenizer"</span>: <span class="string">"ssdeep_tokenizer"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"tokenizer"</span>: &#123;</span><br><span class="line">                <span class="string">"ssdeep_tokenizer"</span>: &#123; <span class="comment">#分词器参数</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"max_gram"</span>: <span class="number">7</span>, <span class="comment">#最大分词数</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"min_gram"</span>: <span class="number">7</span>, <span class="comment">#最小分词数</span></span><br><span class="line"></span><br><span class="line">                    <span class="string">"type"</span>: <span class="string">"ngram"</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建index</span></span><br><span class="line">es = Elasticsearch([<span class="string">'localhost:9200'</span>])  <span class="comment"># body = dsl,</span></span><br><span class="line">result = es.indices.create(index=<span class="string">'ssdeep-index'</span>, body=dsl, ignore=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#插入ssdeep数据</span></span><br><span class="line"></span><br><span class="line">document = &#123;<span class="string">'chunksize'</span>: <span class="number">96</span>, <span class="string">'chunk'</span>: <span class="string">'4mkbL7ruouQiayH6Zaw2wL/ThZy9snQzzvPpsplhgHRofZxOfYVHjnU/r2CydUXe'</span>, <span class="string">'double_chunk'</span>: <span class="string">'qnNiOZQvvaWAV7VYr68XWvth'</span>&#125;</span><br><span class="line"></span><br><span class="line">es.index(<span class="string">'ssdeep-index'</span>, <span class="string">'record'</span>, document)</span><br><span class="line">es.indices.refresh(<span class="string">'ssdeep-index'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查询ssdeep</span></span><br><span class="line">ssdeep_value = <span class="string">"96:4mkbL7ruouQiayH6Zaw2wL/ThZy9snQzzvPpsplhgHRofZxOfYVHjnU/r2CydUXe:qnNiOZQvvaWAV7VYr68XWvth"</span> <span class="comment">#查询目标</span></span><br><span class="line">chunksize, chunk, double_chunk = ssdeep_value.split(<span class="string">':'</span>)</span><br><span class="line">chunksize = int(chunksize)</span><br><span class="line"><span class="comment">#查询语句</span></span><br><span class="line">query = &#123;</span><br><span class="line">    <span class="string">'query'</span>: &#123;</span><br><span class="line">        <span class="string">'bool'</span>: &#123;</span><br><span class="line">            <span class="string">'must'</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">'terms'</span>: &#123; <span class="comment">#必须是相同的chunksize</span></span><br><span class="line"></span><br><span class="line">                        <span class="string">'chunksize'</span>: [chunksize]</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">'bool'</span>: &#123;</span><br><span class="line">                        <span class="string">'should'</span>: [ <span class="comment">#查询chunk和doublechunk, 因为在创建index时候指定的分词器了, 所以这里的逻辑就是: 如果chunk和doublechunk中有任意一个7个字符以上相同, 则条件成立</span></span><br><span class="line"></span><br><span class="line">                            &#123;</span><br><span class="line">                                <span class="string">'match'</span>: &#123;</span><br><span class="line">                                    <span class="string">'chunk'</span>: &#123; </span><br><span class="line"></span><br><span class="line">                                        <span class="string">'query'</span>: chunk</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;,</span><br><span class="line">                            &#123;</span><br><span class="line">                                <span class="string">'match'</span>: &#123;</span><br><span class="line">                                    <span class="string">'double_chunk'</span>: &#123;</span><br><span class="line">                                        <span class="string">'query'</span>: double_chunk</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        ],</span><br><span class="line">                        <span class="string">'minimum_should_match'</span>: <span class="number">1</span> <span class="comment">#以上条件任意一个成立, 逻辑成立</span></span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">results = es.search(<span class="string">'ssdeep-index'</span>, body=query)</span><br><span class="line"><span class="comment">#相似度 1 - 100, 越高相似度越高</span></span><br><span class="line">threshold_grade = <span class="number">80</span></span><br><span class="line"><span class="comment">#相似文件</span></span><br><span class="line">sim_file = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> record <span class="keyword">in</span> results[<span class="string">'hits'</span>][<span class="string">'hits'</span>]:</span><br><span class="line">    <span class="comment">#取出结果中的ssdeep</span></span><br><span class="line">    record_ssdeep = record[<span class="string">'_source'</span>][<span class="string">'ssdeep'</span>]</span><br><span class="line">    <span class="comment">#调用库函数比较相似度</span></span><br><span class="line">    ssdeep_grade = ssdeep.compare(record_ssdeep, ssdeep_value)</span><br><span class="line">    <span class="comment">#判断相似度阈值, 是否符合要求</span></span><br><span class="line">    <span class="keyword">if</span> ssdeep_grade &gt;= threshold_grade:</span><br><span class="line">        sim_file.append(record)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">'result : '</span> +  str(sim_file))</span><br></pre></td></tr></table></figure>
+<h2 id="0x5-结语"><a href="#0x5-结语" class="headerlink" title="0x5 结语"></a>0x5 结语</h2><p>以上就是粗略的记录了此次解决方案的思路, 可能细节还有遗漏, 或者有更好的解决方案可以留言或加V一起交流^-^</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="\img\wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/36606.html" class="archive-article-date">
-  	<time datetime="2019-09-22T07:41:06.876Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/36606.html">x86逆向 - SwitchCase逆向</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/eb9a371f.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/14802.html" class="archive-article-date">
-  	<time datetime="2019-09-22T07:36:55.218Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/archives/da84ffe0.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">elasticsearch安装使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/14802.html">x86逆向 - IFELSE逆向</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/51881.html" class="archive-article-date">
-  	<time datetime="2019-09-22T07:33:07.367Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/51881.html">x86逆向 - 三目运算符</a>
-    </h1>
-  
+  <div class="gitalk">
+    <div id="gitalk-container"></div>
+    <script type="text/javascript">
+        const gitalk = new Gitalk({
+            clientID: '805f9b5eebc221a5666c',
+            clientSecret: '9decad81c1713609e45577aeb238a9c61e802ea1',
+            repo: 'strivemario.github.io',
+            owner: 'StriveMario',
+            admin: ['StriveMario'],
+            id: md5(location.pathname),
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        })
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/60588.html" class="archive-article-date">
-  	<time datetime="2019-09-22T07:25:31.175Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/60588.html">x86逆向 - 取模</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/36948.html" class="archive-article-date">
-  	<time datetime="2019-09-22T07:20:47.899Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/36948.html">x86逆向 - 四则运算</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/2198.html" class="archive-article-date">
-  	<time datetime="2019-09-22T07:11:01.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/2198.html">x86逆向 - lib转ida_sig</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/57346.html" class="archive-article-date">
-  	<time datetime="2019-09-22T06:58:37.312Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/57346.html">64位汇编- x64异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">64位汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/47762.html" class="archive-article-date">
-  	<time datetime="2019-09-22T06:46:01.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/47762.html">64位汇编- x64除法定式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">64位汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/49112.html" class="archive-article-date">
-  	<time datetime="2019-09-22T06:09:02.384Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/49112.html">64位汇编- 零碎笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">64位汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/36493.html" class="archive-article-date">
-  	<time datetime="2019-09-22T05:56:47.095Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/36493.html">32位汇编- 汇编实现调试器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">32位汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        gitalk.render('gitalk-container')
+    </script>
+</div>
   
   
-    </div></section>
   
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/6/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/5/">5</a><a class="page-number" href="/archives/2019/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/2019/page/8/">8</a><a class="page-number" href="/archives/2019/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/15/">15</a><a class="extend next" rel="next" href="/archives/2019/page/8/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -599,8 +379,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
