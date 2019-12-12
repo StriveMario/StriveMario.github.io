@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>Android逆向- ARM函数逆向 | Mario</title>
+  <title>Archives: 2019 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前的笔记搬运">
-<meta name="keywords" content="Android逆向">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android逆向- ARM函数逆向">
-<meta property="og:url" content="http://StriveMario.work/archives/60500.html">
+  <meta name="description" content="C/C++/Android/iOS逆向开发">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mario">
+<meta property="og:url" content="http://StriveMario.work/archives/2019/page/16/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="之前的笔记搬运">
+<meta property="og:description" content="C/C++/Android/iOS逆向开发">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2019-09-26T06:19:36.730Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android逆向- ARM函数逆向">
-<meta name="twitter:description" content="之前的笔记搬运">
+<meta name="twitter:title" content="Mario">
+<meta name="twitter:description" content="C/C++/Android/iOS逆向开发">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -149,213 +147,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Android_Reverse/ARM函数" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Android逆向- ARM函数逆向
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/archives/4266.html" class="archive-article-date">
+  	<time datetime="2019-09-14T10:37:31.765Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/archives/4266.html">C语言 - 栈的结构</a>
     </h1>
   
 
-        
-        <a href="/archives/60500.html" class="archive-article-date">
-  	<time datetime="2019-09-24T13:29:38.181Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前的笔记搬运</p>
-<a id="more"></a>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="传参方式"><a href="#传参方式" class="headerlink" title="传参方式"></a>传参方式</h2><ul>
-<li><p>前四个参数使用R0-R3寄存器, 多余参数使用栈储存;</p>
-</li>
-<li><p>当一个参数超过DWORD时, 会使用多个连续寄存器来存放传递,但是起始的寄存器编号可以是偶数, 如R0, R2, R4</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    如: fun(int a, double b, double c)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这样的一个函数, 会使用R0存放a, R2与R3存放b, 栈存放c, R1因为是奇数所以被舍弃;</li>
-</ul>
-<h2 id="结构体传参"><a href="#结构体传参" class="headerlink" title="结构体传参"></a>结构体传参</h2><ul>
-<li>前4个DWORD量用寄存器传参, 后面使用栈传参, 所以建议使用指针传参;</li>
-</ul>
-<h2 id="结构体返回值"><a href="#结构体返回值" class="headerlink" title="结构体返回值"></a>结构体返回值</h2><ul>
-<li><p>结构体大小不超过64位使用R0, R1返回;</p>
-</li>
-<li><p>超过64位的提前开辟好结构体空间, 在调用函数时传入指针;</p>
-</li>
-</ul>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="\img\wxpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">window开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/60500.html" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
+  
+  
+    </div></section>
+  
 
-  
-<nav id="article-nav">
-  
-    <a href="/archives/6314.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android逆向- ARM全局和局部变量
-        
-      </div>
-    </a>
-  
-  
-    <a href="/archives/56679.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android逆向- ARM除法与取模优化</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  <div class="gitalk">
-    <div id="gitalk-container"></div>
-    <script type="text/javascript">
-        const gitalk = new Gitalk({
-            clientID: '805f9b5eebc221a5666c',
-            clientSecret: '9decad81c1713609e45577aeb238a9c61e802ea1',
-            repo: 'strivemario.github.io',
-            owner: 'StriveMario',
-            admin: ['StriveMario'],
-            id: md5(location.pathname),
-            distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</div>
-  
-  
-  
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2019/page/15/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/14/">14</a><a class="page-number" href="/archives/2019/page/15/">15</a><span class="page-number current">16</span>
+    </nav>
   
 
 
@@ -393,8 +245,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

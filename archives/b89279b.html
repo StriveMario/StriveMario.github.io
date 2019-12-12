@@ -6,20 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>Android逆向- ARM函数逆向 | Mario</title>
+  <title>iOS重打包内嵌DLGMEMOR | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前的笔记搬运">
-<meta name="keywords" content="Android逆向">
+  <meta name="description" content="忽然翻到之前的笔记, 一块备份上来吧">
+<meta name="keywords" content="iOS逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android逆向- ARM函数逆向">
-<meta property="og:url" content="http://StriveMario.work/archives/60500.html">
+<meta property="og:title" content="iOS重打包内嵌DLGMEMOR">
+<meta property="og:url" content="http://StriveMario.work/archives/b89279b.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="之前的笔记搬运">
+<meta property="og:description" content="忽然翻到之前的笔记, 一块备份上来吧">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2019-09-26T06:19:36.730Z">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/CYMHxG8KPkf2Fh6.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/yHiKcEAo6TnPvXw.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/hm5wSBQX8CjNaUg.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/6LKNpmMQCsIvqGe.png">
+<meta property="og:image" content="https://i.loli.net/2019/12/12/MDuPUyIezJYA5cE.png">
+<meta property="og:updated_time" content="2019-12-12T02:45:42.472Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android逆向- ARM函数逆向">
-<meta name="twitter:description" content="之前的笔记搬运">
+<meta name="twitter:title" content="iOS重打包内嵌DLGMEMOR">
+<meta name="twitter:description" content="忽然翻到之前的笔记, 一块备份上来吧">
+<meta name="twitter:image" content="https://i.loli.net/2019/12/12/CYMHxG8KPkf2Fh6.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -149,47 +155,87 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Android_Reverse/ARM函数" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-iOS_Reverse/iOS重打包内嵌DLGMEMOR" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Android逆向- ARM函数逆向
+      iOS重打包内嵌DLGMEMOR
     </h1>
   
 
         
-        <a href="/archives/60500.html" class="archive-article-date">
-  	<time datetime="2019-09-24T13:29:38.181Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
+        <a href="/archives/b89279b.html" class="archive-article-date">
+  	<time datetime="2019-12-12T02:03:15.363Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前的笔记搬运</p>
+        <p>忽然翻到之前的笔记, 一块备份上来吧</p>
 <a id="more"></a>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="传参方式"><a href="#传参方式" class="headerlink" title="传参方式"></a>传参方式</h2><ul>
-<li><p>前四个参数使用R0-R3寄存器, 多余参数使用栈储存;</p>
-</li>
-<li><p>当一个参数超过DWORD时, 会使用多个连续寄存器来存放传递,但是起始的寄存器编号可以是偶数, 如R0, R2, R4</p>
-</li>
+<h2 id="0x1-前期准备工作"><a href="#0x1-前期准备工作" class="headerlink" title="0x1 前期准备工作"></a>0x1 前期准备工作</h2><blockquote>
+<p>1、装有MAC OS 的VMware虚拟机（PS：MAC OS的版本需要在10.12.6以上 推荐：10.12.6）或者有MAC or 黑苹果</p>
+<p>2、Xcode9.0 (9.0版本最低需要MAC OS 10.12.6的版本)</p>
+<p>3、Optool注入工具</p>
+<p>4、DLGmemor.dylib动态库文件</p>
+<p>5、Impactor</p>
+<p>6、你想要破解的游戏ipa文件</p>
+</blockquote>
+<h2 id="0x2-optool编译"><a href="#0x2-optool编译" class="headerlink" title="0x2 optool编译"></a>0x2 optool编译</h2><ul>
+<li>clone 仓库</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    如: fun(int a, double b, double c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/alexzielenski/optool.git</span><br></pre></td></tr></table></figure>
 <ul>
-<li>这样的一个函数, 会使用R0存放a, R2与R3存放b, 栈存放c, R1因为是奇数所以被舍弃;</li>
+<li>初始化依赖</li>
 </ul>
-<h2 id="结构体传参"><a href="#结构体传参" class="headerlink" title="结构体传参"></a>结构体传参</h2><ul>
-<li>前4个DWORD量用寄存器传参, 后面使用栈传参, 所以建议使用指针传参;</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> optool/</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译</li>
 </ul>
-<h2 id="结构体返回值"><a href="#结构体返回值" class="headerlink" title="结构体返回值"></a>结构体返回值</h2><ul>
-<li><p>结构体大小不超过64位使用R0, R1返回;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcodebuild -project optool.xcodeproj -configuration Release ARCHS=<span class="string">"x86_64"</span> build</span><br></pre></td></tr></table></figure>
+<p>这时候<em>build/realese</em>里就是编译后的optool了</p>
+<h2 id="0x3-加入注入模块"><a href="#0x3-加入注入模块" class="headerlink" title="0x3 加入注入模块"></a>0x3 加入注入模块</h2><ul>
+<li><p>编译DLGMEMOR, readme里有, 不赘述</p>
+<p><a href="https://github.com/DeviLeo/DLGMemor" target="_blank" rel="noopener">DLGMemor</a></p>
 </li>
-<li><p>超过64位的提前开辟好结构体空间, 在调用函数时传入指针;</p>
+<li><p>把ipa改为zip解压, 在payload里就能看到app了</p>
+<p><img src="https://i.loli.net/2019/12/12/CYMHxG8KPkf2Fh6.png" alt="26.png"></p>
+</li>
+<li><p>使用命令注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">optool install -c load -p &quot;@executable_path/[注入动态库名称].dylib&quot; -t 被注入的程序</span><br><span class="line"></span><br><span class="line">这里就是</span><br><span class="line"></span><br><span class="line">optool install -c load -p &quot;@executable_path/dlgmemor.dylib&quot; –t smoba</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>  <img src="https://i.loli.net/2019/12/12/yHiKcEAo6TnPvXw.png" alt="27.png"></p>
+<ul>
+<li><p>之后再执行 otool -l 拖入注入的程序</p>
+<p><img src="https://i.loli.net/2019/12/12/hm5wSBQX8CjNaUg.png" alt="28.png"></p>
+</li>
+<li><p>把dlgmemor拖入app</p>
+<p>右键app -&gt; 显示包内容 -&gt; 把dlgmemor copy到文件夹里</p>
+</li>
+<li><p>重新打包, 就是重新压缩为zip, 改名ipa就行了</p>
+</li>
+</ul>
+<h2 id="0x4-重签名安装"><a href="#0x4-重签名安装" class="headerlink" title="0x4 重签名安装"></a>0x4 重签名安装</h2><p>这里修改后文件, 要么重新签名, 要么使用impactor安装</p>
+<p>下载最新的impactor: <a href="http://www.cydiaimpactor.com/" target="_blank" rel="noopener">impactor</a></p>
+<p>impactor安装:</p>
+<ul>
+<li>关闭SSL校验</li>
+</ul>
+<p><img src="https://i.loli.net/2019/12/12/6LKNpmMQCsIvqGe.png" alt="29.png"></p>
+<ul>
+<li><p>把ipa包拖入impactor, 输入appid和密码就行了, 如果有开启二次验证, 需要到apple申请一个独立密码, 不过还是建议用新号</p>
+<p>  <img src="https://i.loli.net/2019/12/12/MDuPUyIezJYA5cE.png" alt="30.png"></p>
+</li>
+</ul>
+<p>或者自己申请临时证书, 可以用7天:  <a href="http://www.applicationloader.net/blog/zh/1073.html" target="_blank" rel="noopener">申请教程</a></p>
+<p>使用iResign重签: <a href="https://blog.csdn.net/gavin__fan/article/details/78593359" target="_blank" rel="noopener">iResign重签</a></p>
+<p>出现 provisioning failed , 记得检查路径是否出错, 签名之后, 用爱思助手, 或者PP助手安装就可以了</p>
+<h2 id="0x5-最后"><a href="#0x5-最后" class="headerlink" title="0x5  最后"></a>0x5  最后</h2><p>流水式的笔记, 可能会有纰漏和错误, 欢迎留言或加V指正</p>
 
       
 
@@ -229,7 +275,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">iOS逆向</a>
         		</li>
       		
 		</ul>
@@ -285,7 +331,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/60500.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://StriveMario.work/archives/b89279b.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +345,9 @@
   
 <nav id="article-nav">
   
-    <a href="/archives/6314.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android逆向- ARM全局和局部变量
-        
-      </div>
-    </a>
   
-  
-    <a href="/archives/56679.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android逆向- ARM除法与取模优化</div>
+    <a href="/archives/eb9a371f.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">elasticsearch模糊查询图片与文件</div>
       <i class="icon-circle-right"></i>
     </a>
   
