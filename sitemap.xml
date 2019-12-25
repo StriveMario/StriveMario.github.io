@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://StriveMario.work/resume/index.html</loc>
+    
+    <lastmod>2019-12-25T09:48:20.209Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://StriveMario.work/archives/488c6e54.html</loc>
     
     <lastmod>2019-12-17T12:15:29.177Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://StriveMario.work/archives/eb9a371f.html</loc>
     
     <lastmod>2019-12-10T03:06:48.614Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://StriveMario.work/resume/index.html</loc>
-    
-    <lastmod>2019-12-10T03:06:07.502Z</lastmod>
     
   </url>
   
