@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://StriveMario.work">
   <title>AndroidNativeEmu - 实战一款风控SDK | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
+  <meta name="description" content="有问题可以下方留言给我">
 <meta name="keywords" content="Android逆向,Unicron">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AndroidNativeEmu - 实战一款风控SDK">
 <meta property="og:url" content="http://StriveMario.work/archives/57508.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
+<meta property="og:description" content="有问题可以下方留言给我">
 <meta property="og:locale" content="CH">
 <meta property="og:image" content="https://i.loli.net/2019/09/21/XuoanLZ6UzwlIqK.png">
 <meta property="og:image" content="https://i.loli.net/2019/09/21/aMR9n8xHOUK4cBZ.png">
-<meta property="og:updated_time" content="2019-09-27T09:26:38.548Z">
+<meta property="og:updated_time" content="2020-03-19T02:34:37.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AndroidNativeEmu - 实战一款风控SDK">
-<meta name="twitter:description" content="有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^">
+<meta name="twitter:description" content="有问题可以下方留言给我">
 <meta name="twitter:image" content="https://i.loli.net/2019/09/21/XuoanLZ6UzwlIqK.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
@@ -172,7 +172,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>有问题可以下方留言给我, 如果对你有用, 下方有二维码可以请我喝杯咖啡哦, 感谢^-^</strong><br><a id="more"></a></p>
+        <p><strong>有问题可以下方留言给我</strong><br><a id="more"></a></p>
 <h2 id="实战目标"><a href="#实战目标" class="headerlink" title="实战目标"></a>实战目标</h2><p>以下信息通过分析所得, 具体分析过程不是本文重点, 这里不赘述;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">目标文件:  libtest.so</span><br><span class="line">目标函数:  a(char* buf, int buf_len)</span><br><span class="line">返回值: return_value &gt; 0, 表示风险环境并且会在buf参数里写入详细风险环境信息;</span><br><span class="line">        return_value == 0, 表示正常环境</span><br></pre></td></tr></table></figure></p>
 <h2 id="EMU代码"><a href="#EMU代码" class="headerlink" title="EMU代码"></a>EMU代码</h2><p>详情看注释, 写的很详细<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> posixpath</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> unicorn <span class="keyword">import</span> UcError, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED</span><br><span class="line"><span class="keyword">from</span> unicorn.arm_const <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> androidemu.emulator <span class="keyword">import</span> Emulator</span><br><span class="line"><span class="keyword">from</span> androidemu.java.java_class_def <span class="keyword">import</span> JavaClassDef</span><br><span class="line"><span class="keyword">from</span> androidemu.java.java_method_def <span class="keyword">import</span> java_method_def</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create java class.</span></span><br><span class="line"><span class="keyword">import</span> debug_utils</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置日志</span></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    stream=sys.stdout,</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    format=<span class="string">"%(asctime)s %(levelname)7s %(name)34s | %(message)s"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化模拟器</span></span><br><span class="line">emulator = Emulator(</span><br><span class="line">    vfp_inst_set=<span class="keyword">True</span>,</span><br><span class="line">    vfs_root=posixpath.join(posixpath.dirname(__file__), <span class="string">"vfs"</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载依赖的动态库</span></span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libdl.so"</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libc.so"</span>, do_init=<span class="keyword">False</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libstdc++.so"</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/liblog.so"</span>)</span><br><span class="line">emulator.load_library(<span class="string">"example_binaries/libm.so"</span>)</span><br><span class="line"><span class="comment">#目标so</span></span><br><span class="line">lib_module = emulator.load_library(<span class="string">"example_binaries/libtest.so"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前已经load的so</span></span><br><span class="line">logger.info(<span class="string">"Loaded modules:"</span>)</span><br><span class="line"><span class="keyword">for</span> module <span class="keyword">in</span> emulator.modules:</span><br><span class="line">    logger.info(<span class="string">"=&gt; 0x%08x - %s"</span> % (module.base, module.filename))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 运行jni onload 这里没有, 但不影响执行</span></span><br><span class="line">    emulator.call_symbol(lib_module, <span class="string">'JNI_OnLoad'</span>, emulator.java_vm.address_ptr, <span class="number">0x00</span>)</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 增加properties, 该so或通过获取一些properties来判断环境</span></span><br><span class="line">    emulator.system_properties[<span class="string">'ro.build.fingerprint'</span>] = <span class="string">'google/passion/passion:2.3.3/GRI40/102588:user/release-keys'</span></span><br><span class="line">    emulator.system_properties[<span class="string">'ro.product.cpu.abi'</span>] = <span class="string">'arm'</span></span><br><span class="line">    emulator.system_properties[<span class="string">'microvirt.vbox_dpi'</span>] = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#申请一块buff, 用作参数</span></span><br><span class="line">    emulator.call_symbol(lib_module, <span class="string">'malloc'</span>, <span class="number">0x1000</span>)</span><br><span class="line">    address = emulator.mu.reg_read(UC_ARM_REG_R0)</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#在之前申请的buff读取内存</span></span><br><span class="line">    detect_str = memory_helpers.read_utf8(emulator.mu, address)</span><br><span class="line">    print(<span class="string">"detect_str: "</span> + detect_str)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#执行完成, 退出虚拟机</span></span><br><span class="line">    logger.info(<span class="string">"Exited EMU."</span>)</span><br><span class="line">    logger.info(<span class="string">"Native methods registered to MainActivity:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span> UcError <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"Exit at %x"</span> % emulator.mu.reg_read(UC_ARM_REG_PC))</span><br><span class="line">    <span class="keyword">raise</span></span><br></pre></td></tr></table></figure></p>
 <p><font size="5">执行结果: </font><br><br><img src="https://i.loli.net/2019/09/21/XuoanLZ6UzwlIqK.png" alt="QQ图片20190921161209.png"></p>
@@ -488,11 +488,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">16位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,18 +505,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,7 +520,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
+                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,15 +532,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
+                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,19 +568,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">iOS逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,19 +576,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">iOS逆向</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,7 +660,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://deelmind.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>deelmind</a>
+              <a href="http://ccint3.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>CCint3</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://4ch12dy.site/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>4ch12d</a>
             </li>
           
         </ul>
