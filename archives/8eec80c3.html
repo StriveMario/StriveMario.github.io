@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="最近有些忙, 很久没写笔记了, 之前看大佬介绍的工具, 挺好使, 记个笔记…">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2020-04-11T10:03:21.756Z">
+<meta property="og:updated_time" content="2020-04-11T13:35:48.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="objection - 基于frida的命令行hook工具食用手册">
 <meta name="twitter:description" content="最近有些忙, 很久没写笔记了, 之前看大佬介绍的工具, 挺好使, 记个笔记…">
@@ -162,7 +162,7 @@
 
         
         <a href="/archives/8eec80c3.html" class="archive-article-date">
-  	<time datetime="2020-04-11T09:56:57.281Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-11</time>
+  	<time datetime="2020-04-12T05:38:36.521Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
 </a>
         
       </header>
@@ -213,18 +213,27 @@
 </li>
 </ul>
 <p><a href="https://github.com/sensepost/objection/wiki/API" target="_blank" rel="noopener">RPC WIKI</a></p>
-<h2 id="0x3-API介绍"><a href="#0x3-API介绍" class="headerlink" title="0x3 API介绍"></a>0x3 API介绍</h2><ul>
+<h2 id="0x3-API介绍"><a href="#0x3-API介绍" class="headerlink" title="0x3 API介绍"></a>0x3 API介绍</h2><blockquote>
+<p>以下只是写了一部分指令和功能, 详细的功能需要合理运用<code>空格</code>和<code>help</code>呦</p>
+</blockquote>
+<ul>
 <li><p>Memory 指令</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">memory <span class="built_in">list</span> modules <span class="comment">//枚举当前进程模块</span></span><br><span class="line">memory <span class="built_in">list</span> exports [lib_name] <span class="comment">//查看指定模块的导出函数</span></span><br><span class="line">memory <span class="built_in">list</span> exports libart.so --json /root/libart.json <span class="comment">//将结果保存到json文件中</span></span><br><span class="line">memory search --<span class="built_in">string</span> --offsets-only <span class="comment">//搜索内存</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>android heap</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//堆内存中搜索指定类的实例, 可以获取该类的实例id</span></span><br><span class="line">search instances search instances com.xx.xx.class</span><br><span class="line"></span><br><span class="line"><span class="comment">//直接调用指定实例下的方法</span></span><br><span class="line">android heap execute [ins_id] [func_name]</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义frida脚本, 执行实例的方法</span></span><br><span class="line">android heap execute [ins_id]</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>root</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//尝试关闭app的root检测</span></span><br><span class="line">android root disable</span><br><span class="line"></span><br><span class="line"><span class="comment">//尝试模拟root环境</span></span><br><span class="line">android root simulate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ui</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//截图</span></span><br><span class="line">android ui screenshot [image.png]</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置FLAG_SECURE权限</span></span><br><span class="line">android ui FLAG_SECURE <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>内存漫游</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//列出内存中所有的类</span></span><br><span class="line">android hooking <span class="built_in">list</span> classes</span><br><span class="line"></span><br><span class="line"><span class="comment">//在内存中所有已加载的类中搜索包含特定关键词的类</span></span><br><span class="line">android hooking search classes [search_name] </span><br><span class="line"></span><br><span class="line"><span class="comment">//在内存中所有已加载的方法中搜索包含特定关键词的方法</span></span><br><span class="line">android hooking search methods [search_name] </span><br><span class="line"></span><br><span class="line"><span class="comment">//直接生成hook代码</span></span><br><span class="line">android hooking generate simple [class_name]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>hook 方式</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">hook指定方法, 如果有重载会hook所有重载,如果有疑问可以看 help android hooking watch</span></span><br><span class="line"><span class="comment">--dump-args : 打印参数</span></span><br><span class="line"><span class="comment">--dump-backtrace : 打印调用栈</span></span><br><span class="line"><span class="comment">--dump-return : 打印返回值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">android hooking watch class_method com.xxx.xxx.methodName --dump-args --dump-backtrace --dump-<span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//hook指定类, 会打印该类下的所以调用</span></span><br><span class="line">android hooking watch class com.xxx.xxx</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">hook指定方法, 如果有重载会hook所有重载,如果有疑问可以看</span></span><br><span class="line"><span class="comment">--dump-args : 打印参数</span></span><br><span class="line"><span class="comment">--dump-backtrace : 打印调用栈</span></span><br><span class="line"><span class="comment">--dump-return : 打印返回值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">android hooking watch class_method com.xxx.xxx.methodName --dump-args --dump-backtrace --dump-<span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//hook指定类, 会打印该类下的所以调用</span></span><br><span class="line">android hooking watch class com.xxx.xxx</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置返回值(只支持bool类型)</span></span><br><span class="line">android hooking <span class="built_in">set</span> return_value com.xxx.xxx.methodName <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Spawn方式Hook</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objection -g packageName explore --startup-command '[obejection_command]'</span><br></pre></td></tr></table></figure>
@@ -234,6 +243,15 @@
 </li>
 <li><p>任务管理器</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看任务列表</span></span><br><span class="line">jobs <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭任务</span></span><br><span class="line">jobs kill [task_id]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭app的ssl校验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android sslpinning</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监控系统剪贴板</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Android剪贴板服务上的句柄并每5秒轮询一次用于数据。 如果发现新数据，与之前的调查不同，则该数据将被转储到屏幕上。</span></span><br><span class="line">help android  clipboard</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help android shell_exec [command]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>插件编写 : <a href="https://github.com/sensepost/objection/wiki/Plugins" target="_blank" rel="noopener">objection pluging</a></p>
 </li>
@@ -540,7 +558,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,27 +570,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,19 +578,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Unicron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">AndroidHook</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
+                <a href="javascript:void(0)" class="js-tag color3">Unicron</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
+                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,6 +598,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MFC</a>
               </li>
              
@@ -612,27 +618,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,7 +630,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,7 +654,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,10 +679,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
