@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>Archives: 2018/9 | Mario</title>
+  <title>Android群控黑盒调用 - Sekiro食用手册 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="C/C++/Android/iOS逆向开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://StriveMario.work/archives/2018/09/index.html">
+  <meta name="description" content="有问题可以下方留言给我">
+<meta name="keywords" content="Android逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android群控黑盒调用 - Sekiro食用手册">
+<meta property="og:url" content="http://StriveMario.work/archives/4270850.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="C/C++/Android/iOS逆向开发">
+<meta property="og:description" content="有问题可以下方留言给我">
 <meta property="og:locale" content="CH">
+<meta property="og:image" content="https://i.loli.net/2020/06/07/xWTNh4ny5kzpKU3.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/06/07/G2f5OlLFTBY7aMQ.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/06/07/K84iSLGYU1MusAw.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/06/07/zh147FtuAfiTrBI.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/06/07/2Tds3vUF7wCNXKc.jpg">
+<meta property="og:updated_time" content="2020-06-07T06:32:43.169Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mario">
-<meta name="twitter:description" content="C/C++/Android/iOS逆向开发">
+<meta name="twitter:title" content="Android群控黑盒调用 - Sekiro食用手册">
+<meta name="twitter:description" content="有问题可以下方留言给我">
+<meta name="twitter:image" content="https://i.loli.net/2020/06/07/xWTNh4ny5kzpKU3.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -159,36 +167,134 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android_Reverse/Android群控黑盒调用 - Sekiro食用手册" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/archives/46868.html" class="archive-article-date">
-  	<time datetime="2018-09-06T08:35:45.052Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/archives/46868.html">利用Xposed对Android的so黑盒利用</a>
+    <h1 class="article-title" itemprop="name">
+      Android群控黑盒调用 - Sekiro食用手册
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/archives/4270850.html" class="archive-article-date">
+  	<time datetime="2020-06-07T06:26:42.783Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>有问题可以下方留言给我</strong></p>
+<a id="more"></a>
+<h2 id="0x0-前言"><a href="#0x0-前言" class="headerlink" title="0x0 前言"></a>0x0 前言</h2><p>之前尝试用过virjar大佬的hermesagent, 后来大佬又迭代出新的基于长链接的<code>Sekiro</code>,一直想看都被耽搁了, 今天正好抽空尝试一下, 顺便写篇笔记, 有错误的地方欢迎指正哈</p>
+<h2 id="0x1-Sekiro介绍"><a href="#0x1-Sekiro介绍" class="headerlink" title="0x1 Sekiro介绍"></a>0x1 Sekiro介绍</h2><p>SEKIRO 是一个android下的API服务暴露框架，可以用在app逆向、app数据抓取、android群控等场景</p>
+<p><strong>和其他群控框架相比的特点如下:</strong></p>
+<ul>
+<li><p>对网络环境要求低，sekiro使用长链接管理服务，使得Android手机可以分布于全国各地，甚至全球各地。手机掺合在普通用户群体，方便实现反抓突破，更加适合获取下沉数据。<br>不依赖hook框架，就曾经的Hermes系统来说，和xposed框架深度集成，在当今hook框架遍地开花的环境下，框架无法方便迁移。所以在Sekiro的设计中，只提供了RPC功能了。</p>
+</li>
+<li><p>纯异步调用，在Hermes和其他曾经出现过的框架中，基本都是同步调用。虽然说签名计算可以达到上百QPS，但是如果用来做业务方法调用的话，由于调用过程穿透到目标app的服务器，会有大量请求占用线程。系统吞吐存在上线(hermes系统达到2000QPS的时候，基本无法横向扩容和性能优化了)。但是Sekiro全程使用NIO，理论上其吞吐可以把资源占满。</p>
+</li>
+<li><p>client实时状态，在Hermes系统我使用http进行调用转发，通过手机上报心跳感知手机存活状态。心跳时间至少20s，这导致服务器调度层面对手机在线状态感知不及时，请求过大的时候大量转发调用由于client掉线timeout。在Sekiro长链接管理下，手机掉线可以实时感知。不再出现由于框架层面机制导致timeout</p>
+</li>
+</ul>
+<p><strong>Sekiro架构</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">    暴露一个TCP端口和两个HTTP端口</span><br><span class="line">    管理通过TCP连接的client和user发来的http 请求</span><br><span class="line">client:</span><br><span class="line">    通过TCP和server连接，响应server发来的请求</span><br><span class="line"></span><br><span class="line">工作流程是这样的：</span><br><span class="line">    1. client通过TCP和server建立长连接</span><br><span class="line">    2. user发送http请求给server</span><br><span class="line">    3. server根据用户发来的http请求的参数，通过TCP将请求转发给client</span><br><span class="line">    4. client收到请求并响应server</span><br><span class="line">    5. server将从client收到的请求返回给user</span><br></pre></td></tr></table></figure>
+<p>详细的可以去看项目的readme, 说的非常详细: <a href="https://github.com/virjar/sekiro" target="_blank" rel="noopener">项目传送门</a></p>
+<h2 id="0x2-服务端部署"><a href="#0x2-服务端部署" class="headerlink" title="0x2 服务端部署"></a>0x2 服务端部署</h2><ul>
+<li><p>克隆项目: <code>git clone https://github.com/virjar/sekiro.git</code></p>
+</li>
+<li><p>修改settings.gradle的内容为: <code>include  &#39;:sekiro-server&#39;, &#39;:sekiro-lib&#39;</code> ,删掉appdemo防止编译它</p>
+</li>
+<li><p>启动服务器前注意事项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. server端在`sekiro-server/src/main/resources/appliation.properties`中可以配置三个服务端端口, 主要服务端安全策略的出入口需要开放这个三个端口</span><br><span class="line"></span><br><span class="line">#tomcat 占用端口</span><br><span class="line">server.port=5602</span><br><span class="line">#长链接服务占用端口</span><br><span class="line">natServerPort=5600</span><br><span class="line"># 异步http占用端口</span><br><span class="line">natHttpServerPort=5601</span><br><span class="line"># websocket占用端口</span><br><span class="line">webSocketServerPort=5603</span><br><span class="line"></span><br><span class="line">2. 如果自定义端口,client需要调用SekiroClient.start(String serverHost, int serverPort, final String clientID, String group)中去连接server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令:<code>./gradlew sekiro-server:bootJar</code> 即可在 <code>sekiro-server/build/libs/sekiro-server-0.0.1-SNAPSHOT.jar</code>找到all-in-one的jar包</p>
+</li>
+</ul>
+<ul>
+<li>通过<code>nohup java -jar sekiro-server/build/libs/sekiro-server-0.0.1-SNAPSHOT.jar &gt;/dev/null 2&gt;&amp;1 &amp;</code>启动server<br><img src="https://i.loli.net/2020/06/07/xWTNh4ny5kzpKU3.jpg" alt="53.png"></li>
+</ul>
+<h2 id="0x3-客户端"><a href="#0x3-客户端" class="headerlink" title="0x3 客户端"></a>0x3 客户端</h2><ul>
+<li><p>先准备一个测试的Demo, 很简单就是个加法, 注意Demo必须有加<code>android.permission.INTERNET</code>权限</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> n1, <span class="keyword">int</span> n2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n1 + n2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"3 + 2 = "</span> + Add(<span class="number">3</span>, <span class="number">2</span>), Toast.LENGTH_LONG).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再准备的一个Xposed的项目, 不会的可以先看我之前写的一篇笔记: <a href="http://strivemario.work/archives/34941.html">AndroidStudio使用Xposed</a></p>
+</li>
+<li><p>在app的build.gradle添加依赖 <code>implementation &#39;com.virjar:sekiro-api:1.0.1&#39;</code></p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/07/G2f5OlLFTBY7aMQ.jpg" alt="52.png"></p>
+<ul>
+<li><p>在Xposed的<code>handleLoadPackage</code>中启动client链接server，并添加处理事件的handler, 用于调用Add函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Log.i(TAG, <span class="string">"connect server...."</span>);</span><br><span class="line"><span class="comment">//服务端host</span></span><br><span class="line">String testHost = <span class="string">"your_host"</span>;</span><br><span class="line"><span class="comment">//客户端标识</span></span><br><span class="line">String clientId = UUID.randomUUID().toString();</span><br><span class="line"><span class="comment">//接口组名称</span></span><br><span class="line">String groupName = <span class="string">"addDemoTest2"</span>;</span><br><span class="line"><span class="comment">//暴露的接口名称</span></span><br><span class="line">String actionName = <span class="string">"myAdd"</span>;</span><br><span class="line"><span class="comment">//拿classloader</span></span><br><span class="line">clzLoader = lpparam.classLoader;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//连接服务端并且注册处理的handler<br>SekiroClient.start(testHost, clientId, groupName)<br>        .registerHandler(actionName, new SekiroRequestHandler(){<br>            @Override<br>            public void handleRequest(SekiroRequest sekiroRequest, SekiroResponse sekiroResponse){</p>
+<pre><code>        //当服务端分配任务时, 这里处理逻辑, 并把结果返回给服务端, 服务端再返回给调用者
+        Class&lt;?&gt; clz = XposedHelpers.findClass(&quot;com.example.administrator.adddemo.MainActivity&quot;, clzLoader);
+        int arg1  = sekiroRequest.getInt(&quot;arg1&quot;);
+        int arg2  = sekiroRequest.getInt(&quot;arg2&quot;);
+        Log.i(TAG, String.format(&quot;arg1 : %d, arg2 : %d&quot;, arg1, arg2));
+        Object result = XposedHelpers.callStaticMethod(clz, &quot;Add&quot;, arg1, arg2);
+        Log.i(TAG, &quot;result : &quot; + result);
+        sekiroResponse.success(result);
+    }
+
+});
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 编译错误`More than one file was found with OS independent path`解决</span><br><span class="line">```java</span><br><span class="line">//build.gradle里android&#123;&#125;添加错误的path</span><br><span class="line"></span><br><span class="line">packagingOptions &#123;</span><br><span class="line">    exclude &apos;META-INF/DEPENDENCIES&apos;</span><br><span class="line">    exclude &apos;META-INF/INDEX.LIST&apos;</span><br><span class="line">    exclude (&apos;META-INF/io.netty.versions.properties&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>打开app后, 使用浏览器查看group列表是否注册成功:<br><code>[your_server_ip]:[server.port]/groupList</code></li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/07/K84iSLGYU1MusAw.jpg" alt="54.png"></p>
+<ul>
+<li><p>调用接口查看结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">格式: your_server_ip:[natHttpServerPort]/[invoke_type]?group=[group_id]&amp;action=[action_name]&amp;param1=[arg]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>例子: <a href="https://x.x.x.x:5602/asyncInvoke?group=addDemoTest2&amp;action=myAdd&amp;arg1=300&amp;arg2=300" target="_blank" rel="noopener">https://x.x.x.x:5602/asyncInvoke?group=addDemoTest2&amp;action=myAdd&amp;arg1=300&amp;arg2=300</a><br><code>`</code></p>
+<p><img src="https://i.loli.net/2020/06/07/zh147FtuAfiTrBI.jpg" alt="55.png"></p>
+<ul>
+<li>clent调用日志</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/07/2Tds3vUF7wCNXKc.jpg" alt="56.png"></p>
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p><a href="https://www.jianshu.com/p/6b71106c45eb?from=timeline" target="_blank" rel="noopener">sekiro实践</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="\img\wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,19 +306,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?data=http://StriveMario.work/archives/4270850.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/archives/8eec80c3.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">objection - 基于frida的命令行hook工具食用手册</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  <div class="gitalk">
+    <div id="gitalk-container"></div>
+    <script type="text/javascript">
+        const gitalk = new Gitalk({
+            clientID: '805f9b5eebc221a5666c',
+            clientSecret: '9decad81c1713609e45577aeb238a9c61e802ea1',
+            repo: 'strivemario.github.io',
+            owner: 'StriveMario',
+            admin: ['StriveMario'],
+            id: md5(location.pathname),
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</div>
+  
+  
+  
+  
 
 
           </div>
@@ -251,8 +457,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
@@ -360,7 +566,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -380,7 +586,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
+                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -388,15 +594,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -408,15 +610,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -428,6 +626,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
@@ -436,7 +646,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,11 +662,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,10 +679,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
               </li>
             
             <div class="clearfix"></div>
