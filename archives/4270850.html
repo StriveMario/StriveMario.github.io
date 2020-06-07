@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/06/07/K84iSLGYU1MusAw.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/06/07/zh147FtuAfiTrBI.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/06/07/2Tds3vUF7wCNXKc.jpg">
-<meta property="og:updated_time" content="2020-06-07T06:45:34.082Z">
+<meta property="og:updated_time" content="2020-06-07T06:47:17.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android群控黑盒调用 - Sekiro食用手册">
 <meta name="twitter:description" content="有问题可以下方留言给我">
@@ -209,7 +209,7 @@
 <li><p>修改settings.gradle的内容为: <code>include  &#39;:sekiro-server&#39;, &#39;:sekiro-lib&#39;</code> ,删掉appdemo防止编译它</p>
 </li>
 <li><p>启动服务器前注意事项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. server端在`sekiro-server/src/main/resources/appliation.properties`中可以配置三个服务端端口, 主要服务端安全策略的出入口需要开放这个三个端口</span><br><span class="line"></span><br><span class="line">#tomcat 占用端口</span><br><span class="line">server.port=5602</span><br><span class="line">#长链接服务占用端口</span><br><span class="line">natServerPort=5600</span><br><span class="line"></span><br><span class="line"># 异步http占用端口</span><br><span class="line"></span><br><span class="line">natHttpServerPort=5601</span><br><span class="line"></span><br><span class="line"># websocket占用端口</span><br><span class="line"></span><br><span class="line">webSocketServerPort=5603</span><br><span class="line"></span><br><span class="line">2. 如果自定义端口,client需要调用SekiroClient.start(String serverHost, int serverPort, final String clientID, String group)中去连接server</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. server端在`sekiro-server/src/main/resources/appliation.properties`中可以配置三个服务端端口, 主要服务端安全策略的出入口需要开放这个三个端口</span><br><span class="line"></span><br><span class="line">#tomcat 占用端口</span><br><span class="line">server.port=5602</span><br><span class="line">#长链接服务占用端口</span><br><span class="line">natServerPort=5600</span><br><span class="line"># 异步http占用端口</span><br><span class="line">natHttpServerPort=5601</span><br><span class="line"># websocket占用端口</span><br><span class="line">webSocketServerPort=5603</span><br><span class="line"></span><br><span class="line">2. 如果自定义端口,client需要调用SekiroClient.start(String serverHost, int serverPort, final String clientID, String group)中去连接server</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行命令:<code>./gradlew sekiro-server:bootJar</code> 即可在 <code>sekiro-server/build/libs/sekiro-server-0.0.1-SNAPSHOT.jar</code>找到all-in-one的jar包</p>
 </li>
@@ -245,7 +245,7 @@
 </ul>
 <p><img src="https://i.loli.net/2020/06/07/zh147FtuAfiTrBI.jpg" alt="55.png"></p>
 <ul>
-<li>clent调用日志</li>
+<li>client调用日志</li>
 </ul>
 <p><img src="https://i.loli.net/2020/06/07/2Tds3vUF7wCNXKc.jpg" alt="56.png"></p>
 <h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p><a href="https://www.jianshu.com/p/6b71106c45eb?from=timeline" target="_blank" rel="noopener">sekiro实践</a></p>
