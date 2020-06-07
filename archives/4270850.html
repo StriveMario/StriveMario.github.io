@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/06/07/K84iSLGYU1MusAw.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/06/07/zh147FtuAfiTrBI.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/06/07/2Tds3vUF7wCNXKc.jpg">
-<meta property="og:updated_time" content="2020-06-07T06:47:17.730Z">
+<meta property="og:updated_time" content="2020-06-07T06:50:06.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android群控黑盒调用 - Sekiro食用手册">
 <meta name="twitter:description" content="有问题可以下方留言给我">
@@ -234,8 +234,9 @@
 <li><p>编译错误<code>More than one file was found with OS independent path</code>解决</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//build.gradle里android&#123;&#125;添加错误的path</span></span><br><span class="line"></span><br><span class="line">packagingOptions &#123;</span><br><span class="line">    exclude <span class="string">'META-INF/DEPENDENCIES'</span></span><br><span class="line">    exclude <span class="string">'META-INF/INDEX.LIST'</span></span><br><span class="line">    exclude (<span class="string">'META-INF/io.netty.versions.properties'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>打开app后, 使用浏览器查看group列表是否注册成功:<br><code>[your_server_ip]:[server.port]/groupList</code></p>
-</li>
+</ul>
+<h2 id="0x4-尝试调用"><a href="#0x4-尝试调用" class="headerlink" title="0x4 尝试调用"></a>0x4 尝试调用</h2><ul>
+<li>打开app后, 使用浏览器查看group列表是否注册成功:<br><code>[your_server_ip]:[server.port]/groupList</code></li>
 </ul>
 <p><img src="https://i.loli.net/2020/06/07/K84iSLGYU1MusAw.jpg" alt="54.png"></p>
 <ul>
