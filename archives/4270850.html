@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/06/07/K84iSLGYU1MusAw.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/06/07/zh147FtuAfiTrBI.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/06/07/2Tds3vUF7wCNXKc.jpg">
-<meta property="og:updated_time" content="2020-06-07T06:50:06.466Z">
+<meta property="og:updated_time" content="2020-07-03T07:03:03.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android群控黑盒调用 - Sekiro食用手册">
 <meta name="twitter:description" content="有问题可以下方留言给我">
@@ -209,7 +209,7 @@
 <li><p>修改settings.gradle的内容为: <code>include  &#39;:sekiro-server&#39;, &#39;:sekiro-lib&#39;</code> ,删掉appdemo防止编译它</p>
 </li>
 <li><p>启动服务器前注意事项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. server端在`sekiro-server/src/main/resources/appliation.properties`中可以配置三个服务端端口, 主要服务端安全策略的出入口需要开放这个三个端口</span><br><span class="line"></span><br><span class="line">#tomcat 占用端口</span><br><span class="line">server.port=5602</span><br><span class="line">#长链接服务占用端口</span><br><span class="line">natServerPort=5600</span><br><span class="line"># 异步http占用端口</span><br><span class="line">natHttpServerPort=5601</span><br><span class="line"># websocket占用端口</span><br><span class="line">webSocketServerPort=5603</span><br><span class="line"></span><br><span class="line">2. 如果自定义端口,client需要调用SekiroClient.start(String serverHost, int serverPort, final String clientID, String group)中去连接server</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. server端在`sekiro-server/src/main/resources/appliation.properties`中可以配置三个服务端端口, 主要服务端安全策略的出入口需要开放这个三个端口</span><br><span class="line"></span><br><span class="line">#tomcat 占用端口</span><br><span class="line">server.port=5602</span><br><span class="line">#长链接服务占用端口</span><br><span class="line">natServerPort=5600</span><br><span class="line"></span><br><span class="line"># 异步http占用端口</span><br><span class="line"></span><br><span class="line">natHttpServerPort=5601</span><br><span class="line"></span><br><span class="line"># websocket占用端口</span><br><span class="line"></span><br><span class="line">webSocketServerPort=5603</span><br><span class="line"></span><br><span class="line">2. 如果自定义端口,client需要调用SekiroClient.start(String serverHost, int serverPort, final String clientID, String group)中去连接server</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行命令:<code>./gradlew sekiro-server:bootJar</code> 即可在 <code>sekiro-server/build/libs/sekiro-server-0.0.1-SNAPSHOT.jar</code>找到all-in-one的jar包</p>
 </li>
@@ -229,12 +229,10 @@
 <p><img src="https://i.loli.net/2020/06/07/G2f5OlLFTBY7aMQ.jpg" alt="52.png"></p>
 <ul>
 <li><p>在Xposed的<code>handleLoadPackage</code>中启动client链接server，并添加处理事件的handler, 用于调用Add函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Log.i(TAG, <span class="string">"connect server...."</span>);</span><br><span class="line"><span class="comment">//服务端host</span></span><br><span class="line">String testHost = <span class="string">"your_host"</span>;</span><br><span class="line"><span class="comment">//客户端标识</span></span><br><span class="line">String clientId = UUID.randomUUID().toString();</span><br><span class="line"><span class="comment">//接口组名称</span></span><br><span class="line">String groupName = <span class="string">"addDemoTest2"</span>;</span><br><span class="line"><span class="comment">//暴露的接口名称</span></span><br><span class="line">String actionName = <span class="string">"myAdd"</span>;</span><br><span class="line"><span class="comment">//拿classloader</span></span><br><span class="line">clzLoader = lpparam.classLoader;</span><br><span class="line"></span><br><span class="line"><span class="comment">//连接服务端并且注册处理的handler</span></span><br><span class="line">SekiroClient.start(testHost, clientId, groupName)</span><br><span class="line">        .registerHandler(actionName, <span class="keyword">new</span> SekiroRequestHandler()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(SekiroRequest sekiroRequest, SekiroResponse sekiroResponse)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//当服务端分配任务时, 这里处理逻辑, 并把结果返回给服务端, 服务端再返回给调用者</span></span><br><span class="line">                Class&lt;?&gt; clz = XposedHelpers.findClass(<span class="string">"com.example.administrator.adddemo.MainActivity"</span>, clzLoader);</span><br><span class="line">                <span class="keyword">int</span> arg1  = sekiroRequest.getInt(<span class="string">"arg1"</span>);</span><br><span class="line">                <span class="keyword">int</span> arg2  = sekiroRequest.getInt(<span class="string">"arg2"</span>);</span><br><span class="line">                Log.i(TAG, String.format(<span class="string">"arg1 : %d, arg2 : %d"</span>, arg1, arg2));</span><br><span class="line">                Object result = XposedHelpers.callStaticMethod(clz, <span class="string">"Add"</span>, arg1, arg2);</span><br><span class="line">                Log.i(TAG, <span class="string">"result : "</span> + result);</span><br><span class="line">                sekiroResponse.success(result);</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译错误<code>More than one file was found with OS independent path</code>解决</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//build.gradle里android&#123;&#125;添加错误的path</span></span><br><span class="line"></span><br><span class="line">packagingOptions &#123;</span><br><span class="line">    exclude <span class="string">'META-INF/DEPENDENCIES'</span></span><br><span class="line">    exclude <span class="string">'META-INF/INDEX.LIST'</span></span><br><span class="line">    exclude (<span class="string">'META-INF/io.netty.versions.properties'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Log.i(TAG, <span class="string">"connect server...."</span>);</span><br><span class="line"><span class="comment">//服务端host</span></span><br><span class="line">String testHost = <span class="string">"your_host"</span>;</span><br><span class="line"><span class="comment">//客户端标识</span></span><br><span class="line">String clientId = UUID.randomUUID().toString();</span><br><span class="line"><span class="comment">//接口组名称</span></span><br><span class="line">String groupName = <span class="string">"addDemoTest2"</span>;</span><br><span class="line"><span class="comment">//暴露的接口名称</span></span><br><span class="line">String actionName = <span class="string">"myAdd"</span>;</span><br><span class="line"><span class="comment">//拿classloader</span></span><br><span class="line">clzLoader = lpparam.classLoader;</span><br><span class="line"></span><br><span class="line"><span class="comment">//连接服务端并且注册处理的handler</span></span><br><span class="line">SekiroClient.start(testHost, clientId, groupName)</span><br><span class="line">        .registerHandler(actionName, <span class="keyword">new</span> SekiroRequestHandler()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(SekiroRequest sekiroRequest, SekiroResponse sekiroResponse)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//当服务端分配任务时, 这里处理逻辑, 并把结果返回给服务端, 服务端再返回给调用者</span></span><br><span class="line">                Class&lt;?&gt; clz = XposedHelpers.findClass(<span class="string">"com.example.administrator.adddemo.MainActivity"</span>, clzLoader);</span><br><span class="line">                <span class="keyword">int</span> arg1  = sekiroRequest.getInt(<span class="string">"arg1"</span>);</span><br><span class="line">                <span class="keyword">int</span> arg2  = sekiroRequest.getInt(<span class="string">"arg2"</span>);</span><br><span class="line">                Log.i(TAG, String.format(<span class="string">"arg1 : %d, arg2 : %d"</span>, arg1, arg2));</span><br><span class="line">                Object result = XposedHelpers.callStaticMethod(clz, <span class="string">"Add"</span>, arg1, arg2);</span><br><span class="line">                Log.i(TAG, <span class="string">"result : "</span> + result);</span><br><span class="line">                sekiroResponse.success(result);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 编译错误`More than one file was found with OS independent path`解决</span><br><span class="line">```java</span><br><span class="line">//build.gradle里android&#123;&#125;添加错误的path</span><br><span class="line"></span><br><span class="line">packagingOptions &#123;</span><br><span class="line">    exclude &apos;META-INF/DEPENDENCIES&apos;</span><br><span class="line">    exclude &apos;META-INF/INDEX.LIST&apos;</span><br><span class="line">    exclude (&apos;META-INF/io.netty.versions.properties&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="0x4-尝试调用"><a href="#0x4-尝试调用" class="headerlink" title="0x4 尝试调用"></a>0x4 尝试调用</h2><ul>
 <li>打开app后, 使用浏览器查看group列表是否注册成功:<br><code>[your_server_ip]:[server.port]/groupList</code></li>
 </ul>
@@ -358,6 +356,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/archives/95bb1c0e.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android 无root静默截图方案
+        
+      </div>
+    </a>
   
   
     <a href="/archives/8eec80c3.html" id="article-nav-older" class="article-nav-link-wrap">
@@ -547,10 +554,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window开发</a>
               </li>
              
@@ -559,7 +562,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">截图方案</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,7 +578,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,11 +606,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,6 +618,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
               </li>
              
@@ -615,19 +630,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,15 +638,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">iOS逆向</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,7 +646,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">iOS逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,7 +662,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,6 +671,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
