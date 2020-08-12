@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://StriveMario.work">
   <title>给&#34;某音&#34;的js虚拟机写一个编译器 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x0 前言其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈; 0x1 js虚拟机逆向   先看看原始文件是什么样的(一部分opcode片段), 这时候看还是比较乱的… 123456789101112131415">
+  <meta name="description" content="0x0 前言其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈;">
 <meta name="keywords" content="Android逆向,js逆向">
 <meta property="og:type" content="article">
 <meta property="og:title" content="给&quot;某音&quot;的js虚拟机写一个编译器">
 <meta property="og:url" content="http://StriveMario.work/archives/7087e3bf.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="0x0 前言其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈; 0x1 js虚拟机逆向   先看看原始文件是什么样的(一部分opcode片段), 这时候看还是比较乱的… 123456789101112131415">
+<meta property="og:description" content="0x0 前言其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈;">
 <meta property="og:locale" content="CH">
 <meta property="og:image" content="https://i.loli.net/2020/08/12/WGI3HareZPt7oOj.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/12/xbXQg5GC84UKkeM.png">
@@ -22,10 +22,10 @@
 <meta property="og:image" content="https://i.loli.net/2020/08/12/tFN6p1jCwHcBh8J.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/12/BjXclwHsQJY5EfP.png">
 <meta property="og:image" content="https://i.loli.net/2020/08/12/iW1mNVxrcXwnkEL.png">
-<meta property="og:updated_time" content="2020-08-12T07:15:35.706Z">
+<meta property="og:updated_time" content="2020-08-12T07:20:39.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="给&quot;某音&quot;的js虚拟机写一个编译器">
-<meta name="twitter:description" content="0x0 前言其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈; 0x1 js虚拟机逆向   先看看原始文件是什么样的(一部分opcode片段), 这时候看还是比较乱的… 123456789101112131415">
+<meta name="twitter:description" content="0x0 前言其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈;">
 <meta name="twitter:image" content="https://i.loli.net/2020/08/12/WGI3HareZPt7oOj.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
@@ -189,6 +189,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="0x0-前言"><a href="#0x0-前言" class="headerlink" title="0x0 前言"></a>0x0 前言</h2><p>其实这篇笔记很久之前就写了, 写的零零碎碎的, 最近翻硬盘的时候看到了, 就想着整理一下发出来, 和大家讨论一下, 其中有些逻辑可能自己都不太清楚了(毕竟写代码不注释, 一周不看代码就不属于自己了, 手动狗头), 描述的有问题欢迎指出哈;</p>
+<a id="more"></a>
 <h2 id="0x1-js虚拟机逆向"><a href="#0x1-js虚拟机逆向" class="headerlink" title="0x1 js虚拟机逆向"></a>0x1 js虚拟机逆向</h2><p>   先看看原始文件是什么样的(一部分opcode片段), 这时候看还是比较乱的…</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">.........</span><br><span class="line"><span class="keyword">case</span> <span class="number">71</span>:</span><br><span class="line">    v[x++] = n;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">72</span>:</span><br><span class="line">    v[x++] = +f();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">73</span>:</span><br><span class="line">    u(<span class="built_in">parseInt</span>(f(), <span class="number">36</span>));</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">75</span>:</span><br><span class="line">    <span class="keyword">if</span> (v[--x]) &#123;</span><br><span class="line">        b++;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">case</span> <span class="number">74</span>:</span><br><span class="line">    g = t.charCodeAt(b++) - <span class="number">32</span> &lt;&lt; <span class="number">16</span> &gt;&gt; <span class="number">16</span>,</span><br><span class="line">    b += g;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">76</span>:</span><br><span class="line">    u(k[t.charCodeAt(b++) - <span class="number">32</span>]);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">77</span>:</span><br><span class="line">    y = v[--x],</span><br><span class="line">    u(v[--x][y]);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">78</span>:</span><br><span class="line">    g = t.charCodeAt(b++) - <span class="number">32</span>,</span><br><span class="line">    u(a(v, x -= g + <span class="number">1</span>, g));</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">79</span>:</span><br><span class="line">    g = t.charCodeAt(b++) - <span class="number">32</span>,</span><br><span class="line">    u(k[<span class="string">"$"</span> + g]);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">.........</span><br></pre></td></tr></table></figure>
 <p>如何逆向这部分我这里不细说了, 单步调试的话还是很容易看出每个操作的意义的, 经过一步步单步分析后, 逻辑就清晰了很多, 可以看到不少压栈出栈的操作, 是一个基于堆栈的栈式虚拟机, 利用数组模拟堆栈, 且有作用域管理 (完整的代码我会放在附件)</p>
@@ -667,6 +668,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window开发</a>
               </li>
              
@@ -679,7 +684,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">截图方案</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,11 +708,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
+                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,19 +720,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">截图方案</a>
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,15 +740,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -743,7 +748,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -763,19 +772,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -787,11 +788,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">js逆向</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">js逆向</a>
               </li>
             
             <div class="clearfix"></div>
