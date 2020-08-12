@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Mario">
 <meta property="og:description" content="最近有些忙, 很久没写笔记了, 之前看大佬介绍的工具, 挺好使, 记个笔记…">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2020-07-15T06:28:09.375Z">
+<meta property="og:updated_time" content="2020-08-12T07:19:03.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="objection - 基于frida的命令行hook工具食用手册">
 <meta name="twitter:description" content="最近有些忙, 很久没写笔记了, 之前看大佬介绍的工具, 挺好使, 记个笔记…">
@@ -214,9 +214,10 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">com.opera.mini.native on (samsung: 6.0.1) [usb] # env</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Name                    Path</span><br><span class="line"></span><br><span class="line">----------------------  ------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">filesDirectory          /data/user/0/com.opera.mini.native/files</span><br><span class="line">cacheDirectory          /data/user/0/com.opera.mini.native/cache</span><br><span class="line">externalCacheDirectory  /storage/emulated/0/Android/data/com.opera.mini.native/cache</span><br><span class="line">codeCacheDirectory      /data/user/0/com.opera.mini.native/code_cache</span><br><span class="line">obbDir                  /storage/emulated/0/Android/obb/com.opera.mini.native</span><br><span class="line">packageCodePath         /data/app/com.opera.mini.native-1/base.apk</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>我们可以使用以下file download命令从远程文件系统中下载文件:<br><code>file download [file] [outfile]</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">com.opera.mini.native on (samsung: 6.0.1) [usb] # file download fhash.dat fhash.dat</span><br><span class="line">Downloading /data/user/0/com.opera.mini.native/cache/fhash.dat to fhash.dat</span><br></pre></td></tr></table></figure>
-</li>
+<li>我们可以使用以下file download命令从远程文件系统中下载文件:<br><code>file download [file] [outfile]</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.opera.mini.native on (samsung: 6.0.1) [usb] # file download fhash.dat fhash.dat</span><br><span class="line">Downloading /data/user/0/com.opera.mini.native/cache/fhash.dat to fhash.dat</span><br></pre></td></tr></table></figure>
+<ul>
 <li><p>可以列出app具有的所有avtivity: <code>android hooking list activities</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">com.opera.mini.native on (samsung: 6.0.1) [usb] # android hooking list activities</span><br><span class="line">com.facebook.ads.AudienceNetworkActivity</span><br><span class="line">com.google.android.gms.ads.AdActivity</span><br><span class="line">com.google.android.gms.auth.api.signin.internal.SignInHubActivity</span><br><span class="line">com.google.android.gms.common.api.GoogleApiActivity</span><br><span class="line">com.opera.android.AssistActivity</span><br><span class="line">com.opera.android.MiniActivity</span><br><span class="line">com.opera.android.ads.AdmobIntentInterceptor</span><br><span class="line">com.opera.mini.android.Browser</span><br><span class="line"></span><br><span class="line">Found 8 classes</span><br></pre></td></tr></table></figure>
 </li>
@@ -224,48 +225,59 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">com.opera.mini.native on (samsung: 6.0.1) [usb] # android intent launch_activity com.facebook.ads.AudienceNetworkActivity</span><br><span class="line">Launching Activity: com.facebook.ads.AudienceNetworkActivity...</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>RPC 调用命令: <code>curl -s &quot;http://127.0.0.1:8888/rpc/invoke/androidHookingListActivities&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ curl -s &quot;http://127.0.0.1:8888/rpc/invoke/androidHookingListActivities&quot;</span><br><span class="line">[&quot;com.reddit.frontpage.StartActivity&quot;,&quot;com.reddit.frontpage.IntroductionActivity&quot;, ... snip ...]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- RPC调用执行脚本:`url -X POST -H &quot;Content-Type: text/javascript&quot; http://127.0.0.1:8888/script/runonce -d &quot;@script.js&quot;`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ cat script.js</span><br><span class="line">&#123;</span><br><span class="line">    send(Frida.version);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[&#123;&quot;payload&quot;:&quot;12.8.0&quot;,&quot;type&quot;:&quot;send&quot;&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[RPC WIKI](https://github.com/sensepost/objection/wiki/API)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 0x3 API介绍</span><br><span class="line"></span><br><span class="line">&gt; 以下只是写了一部分指令和功能, 详细的功能需要合理运用`空格`和`help`呦</span><br><span class="line"></span><br><span class="line">- Memory 指令</span><br><span class="line">```c</span><br><span class="line">    memory list modules //枚举当前进程模块</span><br><span class="line">    memory list exports [lib_name] //查看指定模块的导出函数</span><br><span class="line">    memory list exports libart.so --json /root/libart.json //将结果保存到json文件中</span><br><span class="line">    memory search --string --offsets-only //搜索内存</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ curl -s &quot;http://127.0.0.1:8888/rpc/invoke/androidHookingListActivities&quot;</span><br><span class="line">[&quot;com.reddit.frontpage.StartActivity&quot;,&quot;com.reddit.frontpage.IntroductionActivity&quot;, ... snip ...]</span><br><span class="line"></span><br><span class="line">- RPC调用执行脚本:`url -X POST -H &quot;Content-Type: text/javascript&quot; http://127.0.0.1:8888/script/runonce -d &quot;@script.js&quot;`</span><br><span class="line"></span><br><span class="line">$ cat script.js</span><br><span class="line">&#123;</span><br><span class="line">    send(Frida.version);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[&#123;&quot;payload&quot;:&quot;12.8.0&quot;,&quot;type&quot;:&quot;send&quot;&#125;]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://github.com/sensepost/objection/wiki/API" target="_blank" rel="noopener">RPC WIKI</a></p>
+<h2 id="0x3-API介绍"><a href="#0x3-API介绍" class="headerlink" title="0x3 API介绍"></a>0x3 API介绍</h2><blockquote>
+<p>以下只是写了一部分指令和功能, 详细的功能需要合理运用<code>空格</code>和<code>help</code>呦</p>
+</blockquote>
+<ul>
+<li><p>Memory 指令</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">memory <span class="built_in">list</span> modules <span class="comment">//枚举当前进程模块</span></span><br><span class="line">memory <span class="built_in">list</span> exports [lib_name] <span class="comment">//查看指定模块的导出函数</span></span><br><span class="line">memory <span class="built_in">list</span> exports libart.so --json /root/libart.json <span class="comment">//将结果保存到json文件中</span></span><br><span class="line">memory search --<span class="built_in">string</span> --offsets-only <span class="comment">//搜索内存</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>android heap</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//堆内存中搜索指定类的实例, 可以获取该类的实例id</span></span><br><span class="line">search instances search instances com.xx.xx.class</span><br><span class="line"></span><br><span class="line"><span class="comment">//直接调用指定实例下的方法</span></span><br><span class="line">android heap execute [ins_id] [func_name]</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义frida脚本, 执行实例的方法</span></span><br><span class="line">android heap execute [ins_id]</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>root</p>
+<li>root</li>
+</ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//尝试关闭app的root检测</span></span><br><span class="line">android root disable</span><br><span class="line"></span><br><span class="line"><span class="comment">//尝试模拟root环境</span></span><br><span class="line">android root simulate</span><br></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>ui</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//截图</span></span><br><span class="line">android ui screenshot [image.png]</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置FLAG_SECURE权限</span></span><br><span class="line">android ui FLAG_SECURE <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>内存漫游</p>
+</li>
+</ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//列出内存中所有的类</span></span><br><span class="line">android hooking <span class="built_in">list</span> classes</span><br><span class="line"></span><br><span class="line"><span class="comment">//在内存中所有已加载的类中搜索包含特定关键词的类</span></span><br><span class="line">android hooking search classes [search_name] </span><br><span class="line"></span><br><span class="line"><span class="comment">//在内存中所有已加载的方法中搜索包含特定关键词的方法</span></span><br><span class="line">android hooking search methods [search_name] </span><br><span class="line"></span><br><span class="line"><span class="comment">//直接生成hook代码</span></span><br><span class="line">android hooking generate simple [class_name]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>hook 方式</p>
-</li>
+<ul>
+<li>hook 方式</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  hook指定方法, 如果有重载会hook所有重载,如果有疑问可以看</span></span><br><span class="line"><span class="comment">  --dump-args : 打印参数</span></span><br><span class="line"><span class="comment">  --dump-backtrace : 打印调用栈</span></span><br><span class="line"><span class="comment">  --dump-return : 打印返回值</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">android hooking watch class_method com.xxx.xxx.methodName --dump-args --dump-backtrace --dump-<span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//hook指定类, 会打印该类下的所以调用</span></span><br><span class="line">android hooking watch class com.xxx.xxx</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置返回值(只支持bool类型)</span></span><br><span class="line">android hooking <span class="built_in">set</span> return_value com.xxx.xxx.methodName <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>Spawn方式Hook</p>
+<li>Spawn方式Hook</li>
+</ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objection -g packageName explore --startup-command '[obejection_command]'</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>activity和service操作</p>
-</li>
+<ul>
+<li>activity和service操作</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//枚举activity</span></span><br><span class="line">android hooking <span class="built_in">list</span> activities</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动activity</span></span><br><span class="line">android intent launch_activity [activity_class]</span><br><span class="line"></span><br><span class="line"><span class="comment">//枚举services</span></span><br><span class="line">android hooking <span class="built_in">list</span> services</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动services</span></span><br><span class="line">android intent launch_service [services_class]</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>任务管理器</p>
+<li>任务管理器</li>
+</ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看任务列表</span></span><br><span class="line">jobs <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭任务</span></span><br><span class="line">jobs kill [task_id]</span><br></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>关闭app的ssl校验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android sslpinning disable</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监控系统剪贴板</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android sslpinning disable</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>监控系统剪贴板</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Android剪贴板服务上的句柄并每5秒轮询一次用于数据。 如果发现新数据，与之前的调查不同，则该数据将被转储到屏幕上。</span></span><br><span class="line">help android  clipboard</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行命令行</p>
-</li>
+<ul>
+<li>执行命令行</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help android shell_exec [command]</span><br></pre></td></tr></table></figure>
 <ul>
@@ -590,27 +602,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">截图方案</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +618,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
+                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,11 +630,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">截图方案</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,19 +650,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MFC原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,11 +690,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -699,6 +711,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">js逆向</a>
               </li>
              
               <li class="article-tag-list-item">
