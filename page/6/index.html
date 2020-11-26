@@ -161,93 +161,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Android_Reverse/Frida Hook框架初试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/10313.html">Frida Hook框架初试</a>
-    </h1>
-  
-
-        
-        <a href="/archives/10313.html" class="archive-article-date">
-  	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><a href="https://www.frida.re/" target="_blank" rel="noopener">Frida官网</a></p>
-<h3 id="1-什么是Frida"><a href="#1-什么是Frida" class="headerlink" title="1.什么是Frida ?"></a>1.什么是Frida ?</h3><ul>
-<li><p>它是一个将JavaScript注入到目标进程的工具，适用于Windows、macOS、Linux、iOS、Android和QNX。JavaScript采用的Google开源的JavaScript V8引擎。 通过JavaScript脚本可以注入到目标进程执行自定义代码。Hook任意函数、监控加密API或者跟踪应用程序代码。依赖于任何软件或硬件断点的代码追踪。有很多种方式来使用Frida。Python、Swift、.NET、Qt/Qml、C和Node.js。本文主要讨论Python和C方式使用Frida。</p>
-</li>
-<li><p>这里我们只尝试 [windows平台] [python调用] [HOOK安卓代码]</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/archives/10313.html#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">AndroidHook</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/10313.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Android_Reverse/IFELSE-SwitchCase-VS和GCC编译的差异" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -324,6 +237,83 @@
 
 
   
+    <article id="post-Android_Reverse/Android黑盒利用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/46868.html">利用Xposed对Android的so黑盒利用</a>
+    </h1>
+  
+
+        
+        <a href="/archives/46868.html" class="archive-article-date">
+  	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>又是N久没有更新, 真的懒是能变成习惯的, 今天记录一下安卓里的so黑盒利用;</p>
+<p>一般在逆向安卓的程序时, 重要的算法都在so里, 如果没有OLLVM还好, 如果一旦被VM了, 那么就只能退而其次想其他的解决办法, 那么开始吧</p>
+        
+          <a class="article-more-a" href="/archives/46868.html#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/46868.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android_Reverse/try catch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -371,6 +361,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/archives/54534.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android_Reverse/初识逆向工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/16765.html">Android逆向- 初识逆向工具</a>
+    </h1>
+  
+
+        
+        <a href="/archives/16765.html" class="archive-article-date">
+  	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/archives/16765.html#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/16765.html">展开全文 >></a>
         </p>
       
 
@@ -478,19 +544,19 @@
 
 
   
-    <article id="post-Android_Reverse/初识逆向工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android_Reverse/数组-函数-SwitchCase" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/16765.html">Android逆向- 初识逆向工具</a>
+      <a class="article-title" href="/archives/43336.html">Android逆向- Smali数组/函数/SwitchCase</a>
     </h1>
   
 
         
-        <a href="/archives/16765.html" class="archive-article-date">
+        <a href="/archives/43336.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -500,7 +566,7 @@
       
         <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/archives/16765.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/43336.html#more">查看更多 >></a>
         
       
 
@@ -524,7 +590,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/16765.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/43336.html">展开全文 >></a>
         </p>
       
 
@@ -601,82 +667,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/archives/8311.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android_Reverse/数组-函数-SwitchCase" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/43336.html">Android逆向- Smali数组/函数/SwitchCase</a>
-    </h1>
-  
-
-        
-        <a href="/archives/43336.html" class="archive-article-date">
-  	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前的笔记搬运</p>
-        
-          <a class="article-more-a" href="/archives/43336.html#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android逆向</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/43336.html">展开全文 >></a>
         </p>
       
 
@@ -858,19 +848,19 @@
 
 
   
-    <article id="post-C/栈结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-MFC/线程知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/4266.html">C语言 - 栈的结构</a>
+      <a class="article-title" href="/archives/38.html">MFC - 什么是线程</a>
     </h1>
   
 
         
-        <a href="/archives/4266.html" class="archive-article-date">
+        <a href="/archives/38.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -878,9 +868,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前的笔记搬运<br>
+        <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/archives/4266.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/38.html#more">查看更多 >></a>
         
       
 
@@ -898,7 +888,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MFC</a>
         		</li>
       		
 		</ul>
@@ -908,7 +898,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/4266.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/38.html">展开全文 >></a>
         </p>
       
 
@@ -1082,10 +1072,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window开发</a>
               </li>
              
@@ -1102,15 +1088,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android逆向</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">截图方案</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,14 +1128,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
               </li>
              
@@ -1154,19 +1140,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,11 +1164,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
