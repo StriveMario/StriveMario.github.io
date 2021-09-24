@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>C++ - 类初始化列表/类Const成员 | Mario</title>
+  <title>Tag: ue4游戏逆向 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前的笔记搬运">
-<meta name="keywords" content="window开发,C++">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++ - 类初始化列表&#x2F;类Const成员">
-<meta property="og:url" content="http://StriveMario.work/archives/20102.html">
+  <meta name="description" content="C/C++/Android/iOS逆向开发">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mario">
+<meta property="og:url" content="http://StriveMario.work/tags/ue4游戏逆向/index.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="之前的笔记搬运">
+<meta property="og:description" content="C/C++/Android/iOS逆向开发">
 <meta property="og:locale" content="CH">
-<meta property="og:updated_time" content="2019-09-26T06:19:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++ - 类初始化列表&#x2F;类Const成员">
-<meta name="twitter:description" content="之前的笔记搬运">
+<meta name="twitter:title" content="Mario">
+<meta name="twitter:description" content="C/C++/Android/iOS逆向开发">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -161,226 +159,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++/初始化列表(list)" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      C++ - 类初始化列表/类Const成员
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/archives/25d9e671.html" class="archive-article-date">
+  	<time datetime="2019-11-07T13:29:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/archives/25d9e671.html">记一次UE4(某平精英)Lua脚本dump</a>
     </h1>
   
 
-        
-        <a href="/archives/20102.html" class="archive-article-date">
-  	<time datetime="2019-09-26T06:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前的笔记搬运</p>
-<a id="more"></a>
-<h3 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a><strong>初始化列表</strong></h3><ul>
-<li>初始化列表是指在类的构造函数后, 以 ” : ” 开始, “ , ”分割的数据成员列表，每个数据成员后面跟一个放在括号中的初始化式。</li>
-</ul>
-<p>如:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        test() : a(<span class="number">1</span>), b(<span class="number">2</span>) &#123;&#125;;<span class="comment">//构造函数 表示把变量a初始化为1, b变量函数初始化2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>const</strong>成员或<strong>(&amp;)引用类型</strong>的成员。这两种类型都<strong>必须初始化</strong>，不能对他们赋值,<br>而在类中定义变量时, 又不是可以直接赋值, 那么就可以使用初始化列表对其初始化;</p>
-<p>如:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        test() : a(<span class="number">1</span>), b(<span class="number">2</span>)&#123;&#125;; <span class="comment">//构造函数 表示把变量a初始化为1, b变量函数初始化2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> a; <span class="comment">//const和&amp;引用成员必须成员初始化</span></span><br><span class="line">        <span class="keyword">int</span>&amp; b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还有一种情况可以是用初始化列表, 就是你是你需要初始化指定对象的值时;</p>
-<p>如果你定义了两个类:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        test(<span class="keyword">int</span> a, in b, <span class="keyword">int</span> c) : one(a, b, c)  &#123;&#125;;<span class="comment">//可以通过test的构造函数的初始化列表初始化one这个对象构造函数, 也可以传入常量, 如: one (1, 2, 3)</span></span><br><span class="line"></span><br><span class="line">        test2  one; <span class="comment">//实例化一个类</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        test2(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)<span class="comment">//构造函数</span></span><br><span class="line">        &#123;</span><br><span class="line">            m_a = a;</span><br><span class="line">            m_b = b;</span><br><span class="line">            m_c = c;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> m_a; <span class="comment">//经过test1的初始化</span></span><br><span class="line">        <span class="keyword">int</span> m_b;</span><br><span class="line">        <span class="keyword">int</span> m_c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Const修饰类对象参数"><a href="#Const修饰类对象参数" class="headerlink" title="Const修饰类对象参数"></a><strong>Const修饰类对象参数</strong></h4><p>当一个函数的参数是一个类对象, 并且使用const修饰的情况下, 如:</p>
-<p><strong>void fun(const 类名 对象名)</strong>, 那么在此函数中,</p>
-<p>是<strong>不能</strong>通过传入的类对象<strong>使用任何类中成员函数</strong>的,</p>
-<p>因为使用const修饰过的属性是不可更改, 编译器不知道该函数会不会更改类的数据成员;</p>
-<p>但是可以在类中的函数参数后也加上const修饰, 告诉编译器,</p>
-<p>此函数不会修改类中的数据成员的值,</p>
-<p>那么在经过const修饰的类对象中就可以调用此函数了;</p>
-<p>格式: <strong>void getxx() const,</strong> 经过这样定义的类成员函数也称(<strong>常成员函数</strong>),<br>一般用来修饰Get的函数;</p>
-<h4 id="成员函数指针"><a href="#成员函数指针" class="headerlink" title="成员函数指针"></a><strong>成员函数指针</strong></h4><p>之前在C语言中我们学到普通的函数指针命名函数如下:</p>
-<p>函数指针的定义命名规范: typedef type (*pfn) (参数类型)</p>
-<p>使用: </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(*指针名) (参数); <span class="comment">//调用</span></span><br><span class="line"></span><br><span class="line">pfn 指针名 = &amp;函数地址; <span class="comment">//赋值</span></span><br></pre></td></tr></table></figure>
-<p>那么该如何定义类的成员函数指针呢? 如何赋值与调用呢?</p>
-<p>定义时只需要加上类的作用域和星号即可</p>
-<p>如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">类成员函数指针的定义命名规范:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">type</span> <span class="params">(类名::*pfn)</span> <span class="params">(参数类型)</span> <span class="comment">//使用时, 别忘了加上对象噢, 因为要传this指针呢</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line">类名 对象名; //实例化一个对象</span><br><span class="line"></span><br><span class="line">pfn 指针名 = &amp;类名::函数名; <span class="comment">//申请指针赋值 这里注意不要加上()</span></span><br><span class="line"></span><br><span class="line">(对象名.*指针名)(参数); <span class="comment">//调用</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大佬<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="\img\wxpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">window开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">Android逆向</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">ue4游戏逆向</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?data=http://StriveMario.work/archives/20102.html" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
+  
+  
+    </div></section>
+  
 
-  
-<nav id="article-nav">
-  
-    <a href="/archives/40990.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++ - inline(内联)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/archives/44099.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++ - 友元函数</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  <div class="gitalk">
-    <div id="gitalk-container"></div>
-    <script type="text/javascript">
-        const gitalk = new Gitalk({
-            clientID: '805f9b5eebc221a5666c',
-            clientSecret: '9decad81c1713609e45577aeb238a9c61e802ea1',
-            repo: 'strivemario.github.io',
-            owner: 'StriveMario',
-            admin: ['StriveMario'],
-            id: md5(location.pathname),
-            distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    </script>
-</div>
-  
-  
-  
-  
+    
 
 
           </div>
@@ -419,9 +255,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

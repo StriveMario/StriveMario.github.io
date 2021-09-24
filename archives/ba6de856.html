@@ -6,22 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://StriveMario.work">
-  <title>记一次UE4(某平精英)Lua脚本dump | Mario</title>
+  <title>记一次unity游戏分析 | Mario</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记一次UE4(某平精英)Lua脚本dump">
+  <meta name="description" content="记一次unity游戏分析">
 <meta name="keywords" content="Android逆向,unity游戏逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一次UE4(某平精英)Lua脚本dump">
+<meta property="og:title" content="记一次unity游戏分析">
 <meta property="og:url" content="http://StriveMario.work/archives/ba6de856.html">
 <meta property="og:site_name" content="Mario">
-<meta property="og:description" content="记一次UE4(某平精英)Lua脚本dump">
+<meta property="og:description" content="记一次unity游戏分析">
 <meta property="og:locale" content="CH">
-<meta property="og:image" content="https://i.loli.net/2021/09/24/ModF6iSEGaL9m38.png">
-<meta property="og:updated_time" content="2021-09-24T09:57:37.559Z">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/QYnXcdGDWRyThp5.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/loAOjn3RkaJc9L8.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/sPxUrAq5wZTiel2.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/JxR7qOEbZQupVtY.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/5VqWgD9aw4sAlhO.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/07/Y9KykLJBZ75Sqds.png">
+<meta property="og:updated_time" content="2020-11-26T04:39:50.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次UE4(某平精英)Lua脚本dump">
-<meta name="twitter:description" content="记一次UE4(某平精英)Lua脚本dump">
-<meta name="twitter:image" content="https://i.loli.net/2021/09/24/ModF6iSEGaL9m38.png">
+<meta name="twitter:title" content="记一次unity游戏分析">
+<meta name="twitter:description" content="记一次unity游戏分析">
+<meta name="twitter:image" content="https://i.loli.net/2019/11/07/QYnXcdGDWRyThp5.png">
   
     <link rel="alternative" href="/atom.xml" title="Mario" type="application/atom+xml">
   
@@ -163,14 +168,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Android_Reverse/记一次UE4(某平精英)Lua脚本dump" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Android_Reverse/记一次unity游戏分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      记一次UE4(某平精英)Lua脚本dump
+      记一次unity游戏分析
     </h1>
   
 
@@ -183,39 +188,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记一次UE4(某平精英)Lua脚本dump</p>
+        <p>记一次unity游戏分析</p>
 <a id="more"></a>
 <h2 id="0x1-分析目标"><a href="#0x1-分析目标" class="headerlink" title="0x1 分析目标"></a>0x1 分析目标</h2><blockquote>
 <ul>
-<li><p>名称: 某平精英</p>
+<li><p>名称: TXHLBY</p>
 </li>
-<li><p>包名: com.<em>**</em>.tmgp.pubgmhd</p>
+<li><p>包名: com.tencent.hlfish</p>
 </li>
-<li><p>背景: 游戏内点击”开始游戏”会跳出”人脸识别”的弹窗, 必须号主本人人脸认证后才可以继续游戏</p>
-</li>
-<li><p>分析目的: 逆向游戏是如何判断账号是需要人脸认证的</p>
+<li><p>分析目的: 提取游戏美术/音乐/配置资源</p>
 </li>
 </ul>
 </blockquote>
-<p>## </p>
-<h2 id="0x2-尝试抓包"><a href="#0x2-尝试抓包" class="headerlink" title="0x2 尝试抓包"></a>0x2 尝试抓包</h2><p>使用fildder和r0capture抓包并无相关包, 哈哈哈果然想多了…</p>
-<h2 id="0x3-尝试分析UE4逻辑"><a href="#0x3-尝试分析UE4逻辑" class="headerlink" title="0x3 尝试分析UE4逻辑"></a>0x3 尝试分析UE4逻辑</h2><p>从和平精英包的Apk中发现libUE4.so, 游戏是基于虚幻4开发的游戏, 之前弄个Unity相关的游戏(某者荣耀) 游戏内的逻辑都在i2cpp里, 可以dump出global-table里的类/方法/变量信息, 按照这个思路, 开搜….<br>链接: <a href="https://github.com/kp7742/UE4Dumper/" target="_blank" rel="noopener">UE4Dumper</a><br>该开源项目是针对UE4dumplib和objSDk的, 不过不是傻瓜式, 需要自己去UE4lib里去找到GNames和GWorld, 经过一通搜索, 得到结论如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GWorld : 在UE4导出表里可以直接得到地址</span><br><span class="line">GNames: 在导出表拿到GNameEntryPoolAllocato的地址+0x14, 就是GNames地址</span><br></pre></td></tr></table></figure>
-<p>然而pubgmhd好像针对ue4做了修改, 只能dump出Lib, 却找不到SDK, 不过所幸在仓库找到了作者共享的SDK<br>链接: <a href="https://github.com/kp7742/UE4Dumper/tree/master/SDKs" target="_blank" rel="noopener">SDKs</a><br>PUBGCN就是国服的SDK, 还挺全, 不过经过比对搜索并未找到人脸认证相关的信息…所以此思路gg</p>
-<h2 id="0x4-过调试检测"><a href="#0x4-过调试检测" class="headerlink" title="0x4 过调试检测"></a>0x4 过调试检测</h2><p>发现开启frida-server游戏会自动关闭, 按照之前调试王者荣耀的惊讶, 尝试以下方式均无法绕过</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 改文件名, 端口, 闪退, 猝</span><br><span class="line">2. 删除 libtersafe.so,  闪退, 猝</span><br><span class="line">3. hook libtersafe.so相关的初始化函数, 使其break. 闪退, 猝</span><br><span class="line">4. 替换别人修改后的libtersafe.so, 闪退, 猝</span><br></pre></td></tr></table></figure>
-<p>最后想到一个很骚的方式, 检测线程循环大部分要调用sleep, 直接干他, hook libc的sleep, 查看栈, 调用方是libtersafe的, 统统等一辈子吧…..</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fuckmtp</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// fuck mtp detect frida</span></span><br><span class="line">    Interceptor.attach(Module.findExportByName(<span class="literal">null</span>, <span class="string">"sleep"</span>), &#123;</span><br><span class="line">        onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> trace = Thread.backtrace(<span class="keyword">this</span>.context,Backtracer.ACCURATE).map(DebugSymbol.fromAddress).join(<span class="string">"\n"</span>);</span><br><span class="line">            <span class="keyword">if</span>(trace.indexOf(<span class="string">'libtersafe.so'</span>) != <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                args[<span class="number">0</span>] = ptr(<span class="number">99999999</span>)</span><br><span class="line">                <span class="comment">//console.log("sleep&gt;&gt;</span></span><br><span class="line">                &gt;&gt;&gt;&gt;&gt;<span class="string">" +  args[0]);</span></span><br><span class="line"><span class="string">                console.log("</span>trace&gt;&gt;&gt;&gt;&gt;&gt;&gt;<span class="string">" +  trace);</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &#125;,</span></span><br><span class="line"><span class="string">        onLeave: function(retval) &#123;</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="0x5-dump游戏逻辑"><a href="#0x5-dump游戏逻辑" class="headerlink" title="0x5 dump游戏逻辑"></a>0x5 dump游戏逻辑</h2><p>经过查询有些ue4游戏会使用lua写逻辑, 发现libue4.so里也有lua相关的函数<br>果断hook一波, dump下来,  frida关键代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dumpLua</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// dump  lua</span></span><br><span class="line">    Interceptor.attach(Module.findExportByName(<span class="string">"libUE4.so"</span>, <span class="string">"lua_load"</span>), &#123;</span><br><span class="line">        onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">                <span class="comment">//console.log(args[0].readPointer().readCString());</span></span><br><span class="line">                <span class="keyword">var</span> name = args[<span class="number">3</span>].readCString().replace(<span class="string">"/"</span>, <span class="string">"_"</span>)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                name = name.replace(<span class="string">"/"</span>, <span class="string">"_"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">var</span> len = args[<span class="number">2</span>].add(<span class="number">4</span>).readInt()</span><br><span class="line">                <span class="keyword">var</span> addr = args[<span class="number">2</span>].readPointer()</span><br><span class="line">                <span class="comment">//console.log(name, len);</span></span><br><span class="line">                WriteMemoryToFile(name, addr, len)</span><br><span class="line">                <span class="comment">//console.log(hexdump(args[2].readPointer()));</span></span><br><span class="line">                <span class="comment">//console.log(args[3].readCString());</span></span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        onLeave: <span class="function"><span class="keyword">function</span>(<span class="params">retval</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//console.log("strstr Interceptor attached onLeave..." + retval.readCString());</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>dump下来大部分是luac, 不过天美很良心没有改lua引擎, 直接unluac就能解, dump下来批量解一波就ok</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">sys.argv.append(<span class="string">r"F:\luacdump"</span>)</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(sys.argv[<span class="number">1</span>]):</span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span>(filename.find(<span class="string">".lua"</span>) != <span class="number">-1</span>):</span><br><span class="line">            sourcename = os.path.join(root, filename)</span><br><span class="line">            destroot = root.replace(<span class="string">'luacdump'</span>, <span class="string">"unluac_dump"</span>)</span><br><span class="line">            destname = destroot + <span class="string">"\\"</span> + filename</span><br><span class="line">            <span class="keyword">if</span>(os.path.exists(destroot) == <span class="keyword">False</span>):</span><br><span class="line">                os.makedirs(destroot)</span><br><span class="line"></span><br><span class="line">            f = open(sourcename, <span class="string">'rb'</span>)</span><br><span class="line">            b = f.read(<span class="number">1</span>)</span><br><span class="line">            f.close()</span><br><span class="line">            <span class="keyword">if</span>(b != <span class="string">b'\x1b'</span>):</span><br><span class="line">                shutil.copy(sourcename, destname)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">                commd = <span class="string">"java -jar ./unluac_2021_03_19b.jar %s &gt;&gt; %s"</span> % (sourcename, destname)</span><br><span class="line">                print(commd)</span><br><span class="line">                os.system(commd)</span><br></pre></td></tr></table></figure>
-<h2 id="0x6-替换lua逻辑"><a href="#0x6-替换lua逻辑" class="headerlink" title="0x6 替换lua逻辑"></a>0x6 替换lua逻辑</h2><p>看到逻辑得调试, 修改代码执行, 得替换lua, 直接贴frida关键代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// repalce dest lua</span></span><br><span class="line"><span class="keyword">var</span> luaL_loadbufferxPtr = Module.findExportByName(<span class="string">"libUE4.so"</span>, <span class="string">"luaL_loadbufferx"</span>)</span><br><span class="line"><span class="keyword">var</span> luaL_loadfilexPtr = Module.findExportByName(<span class="string">"libUE4.so"</span>, <span class="string">"luaL_loadfilex"</span>)</span><br><span class="line"><span class="keyword">var</span> luaL_loadbufferx = <span class="keyword">new</span> NativeFunction(luaL_loadbufferxPtr, <span class="string">'int'</span>, [<span class="string">'pointer'</span>, <span class="string">'pointer'</span>, <span class="string">'int'</span>, <span class="string">'pointer'</span>, <span class="string">'pointer'</span>]);</span><br><span class="line"><span class="keyword">var</span> luaL_loadfilex = <span class="keyword">new</span> NativeFunction(luaL_loadfilexPtr, <span class="string">'int'</span>, [<span class="string">'pointer'</span>, <span class="string">'pointer'</span>, <span class="string">'pointer'</span>]);</span><br><span class="line">Interceptor.replace(luaL_loadbufferxPtr, <span class="keyword">new</span> NativeCallback(<span class="function"><span class="keyword">function</span> (<span class="params">luas, buff, sz, fname, mode</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    luaL_loadbufferx(luas, buff, sz, fname, mode)</span><br><span class="line">    <span class="keyword">var</span> name = fname.readCString()</span><br><span class="line">    <span class="keyword">if</span>( name.indexOf(<span class="string">"/log.lua"</span>) != <span class="number">-1</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'******replace log.lua*****'</span>);</span><br><span class="line">        <span class="keyword">var</span> filename = Memory.allocUtf8String(<span class="string">"/data/local/tmp/log.lua"</span>);</span><br><span class="line">        luaL_loadfilex(luas, filename, mode)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>( name.indexOf(<span class="string">"logic_face_check.lua"</span>) != <span class="number">-1</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'******replace logic_face_check.lua*****'</span>);</span><br><span class="line">        <span class="keyword">var</span> filename = Memory.allocUtf8String(<span class="string">"/data/local/tmp/@client_logic_face_check_logic_face_check.lua"</span>);</span><br><span class="line">        luaL_loadfilex(luas, filename, mode)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        luaL_loadbufferx(luas, buff, sz, fname, mode)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;, <span class="string">'int'</span>, [<span class="string">'pointer'</span>, <span class="string">'pointer'</span>, <span class="string">'int'</span>, <span class="string">'pointer'</span>, <span class="string">'pointer'</span>]))</span><br></pre></td></tr></table></figure>
-<h2 id="0x7-分析逻辑"><a href="#0x7-分析逻辑" class="headerlink" title="0x7 分析逻辑"></a>0x7 分析逻辑</h2><p>其实没什么好说的, 基本都是读源码, 甚至还有注释….</p>
-<p>通过多次调试分析, 最终还是没达到需求, 因为他丫的把人脸认真和游戏游戏耦合了<br>在匹配, 邀请好友, 接受邀请等场景…. 直接在游戏操作的返回失败逻辑里处理</p>
-<p><img src="https://i.loli.net/2021/09/24/ModF6iSEGaL9m38.png" alt="65.png"></p>
-<p>至此就分析完毕了, 纯笔记….</p>
+<h2 id="0x2-确定目标"><a href="#0x2-确定目标" class="headerlink" title="0x2 确定目标"></a>0x2 确定目标</h2><p>解压apk, 在lib文件夹看到有libil2cpp.so, libunity.so , 是Unity3d游戏, 第一次分析unity游戏, 经过了解发现是IL2cpp打包机制的unity游戏</p>
+<p>而这种打包类型会有global-metadata.dat文件, 这个文件记录了所有的类,方法等名字和地址, 如果找不到的话, 可能是被加密隐藏了, 需要手动分析解密, 我这里比较幸运, 该游戏并没有加密global-metadata.dat</p>
+<p>游戏的核心逻辑都是在libil2cpp.so中</p>
+<p><img src="https://i.loli.net/2019/11/07/QYnXcdGDWRyThp5.png" alt="21.png"></p>
+<h2 id="0x3-解包global-metadata-dat"><a href="#0x3-解包global-metadata-dat" class="headerlink" title="0x3 解包global-metadata.dat"></a>0x3 解包global-metadata.dat</h2><p>这个已经有大佬写过解包的工具: <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">Il2CppDumper</a></p>
+<p>下载好release版本后, 把libil2cpp.so和global-metadata.dat拷贝到dumper目录, 打开dumper, 输入unity版本, 选择Auto(Plus) 模式, 就可以解包了</p>
+<p><img src="https://i.loli.net/2019/11/07/loAOjn3RkaJc9L8.png" alt="22.png"></p>
+<p>解包完的文件:</p>
+<blockquote>
+<p>dump.cs                 记录所有类,函数,字段的符号与地址</p>
+<p>/DummyDll            il虚拟机依赖的dll</p>
+<p>script.py                 重命名函数和遍历的ida python脚本</p>
+</blockquote>
+<p>打开IDA, 使用<code>Alt+F7</code>, 或者打开<code>File -&gt; Script File</code>导入script.py文件, 等待脚本跑完之后, 看伪代码就和看源码差不太多啦</p>
+<p><img src="https://i.loli.net/2019/11/07/sPxUrAq5wZTiel2.png" alt="23.png"></p>
+<h2 id="0x4-so分析过程"><a href="#0x4-so分析过程" class="headerlink" title="0x4 so分析过程"></a>0x4 so分析过程</h2><p>要分析, 熟悉加载流程, 翻到的unity3d文档, 确定了AssetBundle的加载方法</p>
+<p><a href="https://docs.unity3d.com/ScriptReference/AssetBundle.html" target="_blank" rel="noopener">unity3d API文档</a></p>
+<p><img src="https://i.loli.net/2019/11/07/JxR7qOEbZQupVtY.png" alt="24.png"></p>
+<p>通过Frida hook了这些函数, 确定是解密后通关LoadFromMemory来加载unity3d文件的, 再通过栈回溯确定了DecryptFileNew来解密文件, hook这个函数的返回值就可以dump加载的解密文件了, 但是和上次一样, 我们需要的是这个游戏所有的文件, 所以只有主动调用, 批量dump了</p>
+<p>接下就是写hook代码了, 具体的坑就不细说了, 直接上关键代码吧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//构造参数<span class="number">2</span> 路径参数</span><br><span class="line">var careate_str = ptr(parseInt(moduleBase) +  <span class="number">0x00FCA590</span>)</span><br><span class="line">var careate_str_f = new NativeFunction(careate_str, <span class="string">'pointer'</span>, [<span class="string">'pointer'</span>, <span class="string">'pointer'</span>]);</span><br><span class="line">var root = <span class="string">'/storage/emulated/0/Android/data/com.tencent.hlfish/files/AssetBundles/'</span></span><br><span class="line">var path = res_path[i]</span><br><span class="line">var path_str_utf8 = Memory.allocUtf8String(root + path)</span><br><span class="line">var path_str = careate_str_f(args[<span class="number">0</span>], path_str_utf8)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//构造参数<span class="number">3</span></span><br><span class="line">var arg3_ptr = Memory.alloc(<span class="number">4</span>)</span><br><span class="line">Memory.writeInt(arg3_ptr, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//调用解密文件函数</span><br><span class="line">var decrypt = parseInt(moduleBase) +  <span class="number">0x00683014</span>;</span><br><span class="line">var decrypt_f = new NativeFunction(ptr(decrypt), <span class="string">'pointer'</span>, [<span class="string">'int'</span>, <span class="string">'pointer'</span>, <span class="string">'pointer'</span>]);</span><br><span class="line">var retval = decrypt_f(<span class="number">0</span>, path_str, arg3_ptr)</span><br><span class="line">var file_bgein = retval.add(<span class="number">0x10</span>)</span><br><span class="line">var file_end = get_UnityFS_end(file_bgein)</span><br><span class="line">var filesize = parseInt(file_end) - parseInt(file_bgein) </span><br><span class="line"></span><br><span class="line">//写文件</span><br><span class="line">WriteMemoryToFile(res_path[i] + <span class="string">".unity3d"</span>, file_bgein, filesize)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/11/07/5VqWgD9aw4sAlhO.png" alt="20.png"></p>
+<h2 id="0x5-解包Unity3d文件"><a href="#0x5-解包Unity3d文件" class="headerlink" title="0x5 解包Unity3d文件"></a>0x5 解包Unity3d文件</h2><p>这个也有大佬写过解包的工具啦: <a href="https://github.com/Perfare/AssetStudio" target="_blank" rel="noopener">AssetStudio</a></p>
+<p>下载好release版本后, 打开后<code>File-&gt;LoadFolder</code>打开dump后的unity3d文件</p>
+<p>在AssetList就可以看到资源预览了</p>
+<p>在<code>Export-&gt;AllAssert</code>就可以导出所有资源啦</p>
+<p><img src="https://i.loli.net/2019/11/07/Y9KykLJBZ75Sqds.png" alt="25.png"></p>
+<p>至此就分析完毕了, 写的很粗糙, 像流水账一样, 就是做个记录</p>
 
       
 
@@ -329,11 +341,11 @@
   
 <nav id="article-nav">
   
-    <a href="/archives/ba6de856.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/archives/25d9e671.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          记一次unity游戏分析
+          记一次UE4(某平精英)Lua脚本dump
         
       </div>
     </a>
@@ -526,19 +538,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window开发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,39 +562,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Unicron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">AndroidHook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">cocos2d逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color1">32位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,7 +586,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unicron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">AndroidHook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ollvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Frida</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ue4游戏逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">cocos2d逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">unity游戏逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">PE结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">COM组件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,11 +626,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,19 +642,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
               </li>
              
               <li class="article-tag-list-item">
