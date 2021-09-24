@@ -161,19 +161,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-W32_SDK/Windows常用消息" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS_Develop/iOS开发之Objective-C之KVC、KVO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/4356.html">WIN32SDK - Windows常用消息</a>
+      <a class="article-title" href="/archives/19987.html">iOS开发之Objective-C之KVC、KVO</a>
     </h1>
   
 
         
-        <a href="/archives/4356.html" class="archive-article-date">
+        <a href="/archives/19987.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -181,9 +181,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前的笔记搬运</p>
+        <p>今天我们着重介绍ObjC中的键值编码（KVC）、键值监听（KVO）特性</p>
+<h3 id="键值编码-KVC"><a href="#键值编码-KVC" class="headerlink" title="键值编码(KVC)"></a>键值编码(KVC)</h3><blockquote>
+<p>Key Value Coding（简称KVC）, 可以利用字符串的方式去动态控制一个对象</p>
+</blockquote>
+<p>KVC的操作方法由NSKeyValueCoding协议提供，而NSObject就实现了这个协议，也就是说ObjC中几乎所有的对象都支持KVC操作，常用的KVC操作方法如下：</p>
+<ul>
+<li>动态设置：<br>　　setValue:属性值 forKey:属性名（用于简单路径）<br>　　setValue:属性值 forKeyPath:属性路径（用于复合路径，例如Person有一个Account类型的属性，那么person.account就是一个复合属性）</li>
+<li>动态读取：<br>　　valueForKey:属性名 、valueForKeyPath:属性名（用于复合路径）</li>
+</ul>
         
-          <a class="article-more-a" href="/archives/4356.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/19987.html#more">查看更多 >></a>
         
       
 
@@ -197,11 +205,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">window开发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">WINSDK开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">IOS开发</a>
         		</li>
       		
 		</ul>
@@ -211,7 +215,90 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/4356.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/19987.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Script_language/VBS/提取office文档中的宏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/53435.html">提取office文档中的宏</a>
+    </h1>
+  
+
+        
+        <a href="/archives/53435.html" class="archive-article-date">
+  	<time datetime="2019-09-26T06:19:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法:"></a>使用方法:</h2><pre><code>- OleDump.exe [docpath]
+</code></pre><ul>
+<li>运行之后选择.xls?|.doc?|.ppt?|.bin文件，会生成以模块名开头的文本文件，用记事本打开查看即可, 只支持2003或之前的版本, 之后的版本把文档改为.zip就可以拿出宏</li>
+</ul>
+<p><a href="https://pan.baidu.com/s/1Wdfdh_VbRTv9pdNXMhAN0A" target="_blank" rel="noopener">点我下载</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">脚本语言</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">OLE文件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/53435.html">展开全文 >></a>
         </p>
       
 
@@ -327,89 +414,6 @@
 
 
   
-    <article id="post-Script_language/VBS/提取office文档中的宏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/53435.html">提取office文档中的宏</a>
-    </h1>
-  
-
-        
-        <a href="/archives/53435.html" class="archive-article-date">
-  	<time datetime="2019-09-26T06:19:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法:"></a>使用方法:</h2><pre><code>- OleDump.exe [docpath]
-</code></pre><ul>
-<li>运行之后选择.xls?|.doc?|.ppt?|.bin文件，会生成以模块名开头的文本文件，用记事本打开查看即可, 只支持2003或之前的版本, 之后的版本把文档改为.zip就可以拿出宏</li>
-</ul>
-<p><a href="https://pan.baidu.com/s/1Wdfdh_VbRTv9pdNXMhAN0A" target="_blank" rel="noopener">点我下载</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">脚本语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">OLE文件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/53435.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-16_asm/8086寻址方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -461,86 +465,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/archives/18711.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-16_asm/寄存器与标志位" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/288.html">16位汇编- 寄存器与标志位</a>
-    </h1>
-  
-
-        
-        <a href="/archives/288.html" class="archive-article-date">
-  	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前的笔记搬运</p>
-        
-          <a class="article-more-a" href="/archives/288.html#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">window逆向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">16位汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/288.html">展开全文 >></a>
         </p>
       
 
@@ -730,6 +654,86 @@
 
 
   
+    <article id="post-16_asm/串操作指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/36237.html">16位汇编- 串操作指令</a>
+    </h1>
+  
+
+        
+        <a href="/archives/36237.html" class="archive-article-date">
+  	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/archives/36237.html#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">window逆向</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">16位汇编</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/36237.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-16_asm/or指令底层实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -810,19 +814,19 @@
 
 
   
-    <article id="post-16_asm/串操作指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-16_asm/寄存器与标志位" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/36237.html">16位汇编- 串操作指令</a>
+      <a class="article-title" href="/archives/288.html">16位汇编- 寄存器与标志位</a>
     </h1>
   
 
         
-        <a href="/archives/36237.html" class="archive-article-date">
+        <a href="/archives/288.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -832,7 +836,7 @@
       
         <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/archives/36237.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/288.html#more">查看更多 >></a>
         
       
 
@@ -860,7 +864,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/36237.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/288.html">展开全文 >></a>
         </p>
       
 
@@ -1114,15 +1118,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window开发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">驱动开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">64位汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,7 +1154,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1178,7 +1182,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,7 +1198,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1202,15 +1206,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1222,15 +1226,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color1">ARM汇编</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">吐槽</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1243,6 +1243,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">js逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
