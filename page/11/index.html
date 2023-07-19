@@ -161,19 +161,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-iOS_Develop/IOS开发之内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-arm/IDA动态调试NDK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/20527.html">iOS开发之内存管理</a>
+      <a class="article-title" href="/archives/23701.html">ARM汇编- IDA动态调试NDK</a>
     </h1>
   
 
         
-        <a href="/archives/20527.html" class="archive-article-date">
+        <a href="/archives/23701.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -181,11 +181,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这章很简单, 基本和C++是一样的, 利用引用计数管理内存中的对象</p>
-<h3 id="用例子看一下引用计数器的知识："><a href="#用例子看一下引用计数器的知识：" class="headerlink" title="用例子看一下引用计数器的知识："></a>用例子看一下引用计数器的知识：</h3><p>Person.h</p>
-  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 属性</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+        <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/archives/20527.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/23701.html#more">查看更多 >></a>
         
       
 
@@ -199,7 +197,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">IOS开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">Android逆向</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">ARM汇编</a>
         		</li>
       		
 		</ul>
@@ -209,7 +211,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/20527.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/23701.html">展开全文 >></a>
         </p>
       
 
@@ -475,86 +477,6 @@
 
 
   
-    <article id="post-Android_Develop/NDK文件操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/archives/472.html">Android开发- NDK文件操作</a>
-    </h1>
-  
-
-        
-        <a href="/archives/472.html" class="archive-article-date">
-  	<time datetime="2019-09-26T06:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前的笔记搬运</p>
-        
-          <a class="article-more-a" href="/archives/472.html#more">查看更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">Android开发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">NDK开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/archives/472.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Android_Develop/OnLoad动态注册函数_NDK使用LOG" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -711,19 +633,19 @@
 
 
   
-    <article id="post-Android_Develop/Socket-Shell-模拟器和PC通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android_Develop/NDK文件操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/18878.html">Android开发- Socket/Shell截图-输入/模拟器和PC通信</a>
+      <a class="article-title" href="/archives/472.html">Android开发- NDK文件操作</a>
     </h1>
   
 
         
-        <a href="/archives/18878.html" class="archive-article-date">
+        <a href="/archives/472.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -733,7 +655,7 @@
       
         <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/archives/18878.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/472.html#more">查看更多 >></a>
         
       
 
@@ -749,6 +671,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">Android开发</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">NDK开发</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -757,7 +683,87 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/18878.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/472.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android_Develop/jni之Java调用C&amp;C++" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/archives/28700.html">NDK开发- jni之Java调用C&amp;C++</a>
+    </h1>
+  
+
+        
+        <a href="/archives/28700.html" class="archive-article-date">
+  	<time datetime="2019-09-26T06:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的笔记搬运</p>
+        
+          <a class="article-more-a" href="/archives/28700.html#more">查看更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">Android开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">NDK开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/archives/28700.html">展开全文 >></a>
         </p>
       
 
@@ -867,19 +873,19 @@
 
 
   
-    <article id="post-Android_Develop/jni之Java调用C&amp;C++" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android_Develop/layout布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/archives/28700.html">NDK开发- jni之Java调用C&amp;C++</a>
+      <a class="article-title" href="/archives/24139.html">Android开发- layout布局</a>
     </h1>
   
 
         
-        <a href="/archives/28700.html" class="archive-article-date">
+        <a href="/archives/24139.html" class="archive-article-date">
   	<time datetime="2019-09-26T06:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
 </a>
         
@@ -889,7 +895,7 @@
       
         <p>之前的笔记搬运</p>
         
-          <a class="article-more-a" href="/archives/28700.html#more">查看更多 >></a>
+          <a class="article-more-a" href="/archives/24139.html#more">查看更多 >></a>
         
       
 
@@ -905,10 +911,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">Android开发</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color6">NDK开发</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -917,7 +919,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/archives/28700.html">展开全文 >></a>
+          <a class="article-more-a" href="/archives/24139.html">展开全文 >></a>
         </p>
       
 
@@ -1167,6 +1169,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">cocos2d逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">cocos游戏逆向</a>
               </li>
              
@@ -1175,15 +1181,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">cocos2d逆向</a>
+                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Lua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,6 +1209,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">window注入</a>
               </li>
              
@@ -1223,19 +1229,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">iOS逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">IOS开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WINSDK开发</a>
+                <a href="javascript:void(0)" class="js-tag color1">IOS逆向</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1243,11 +1241,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color1">iOS逆向</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1255,11 +1253,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">OLE文件</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
             
             <div class="clearfix"></div>
